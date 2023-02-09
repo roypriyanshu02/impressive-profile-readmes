@@ -50,26 +50,26 @@ We welcome impressive Github profile readmes.
        - [dennishartrampf](https://github.com/dennishartrampf)
      ```
 
-   - To update the category of a profile, move the exact line that contains the username and link of that profile from below the old category heading to below the new best-fit category heading. To update the profile username or link, replace the current one with the new username and link while maintaining the alphabetical order and format.
+   - To update the category of a profile, simply move the specific line that includes the username and link of the profile from under the previous category heading to below the appropriate, newly chosen category heading. Additionally, to update the screenshot, remove or delete the `[<username>].webp` file from the `screenshot/` folder/directory. Finally, if you need to update the profile username or link, replace the current information with the updated username and link, making sure to maintain the alphabetical order and format.
 
-     Example: Updating profile of Aveek-Saha
+   Example: Updating profile of Aveek-Saha
 
-     ```diff
-       ### Dynamic Realtime
+   ```diff
+     ### Dynamic Realtime
 
-       - [andyruwruw](https://github.com/andyruwruw)
-       - [anuraghazra](https://github.com/anuraghazra)
-     + - [aveek-saha](https://github.com/aveek-saha)
-       - [daniakash](https://github.com/daniakash)
-       - [denvercoder1](https://github.com/denvercoder1)
+     - [andyruwruw](https://github.com/andyruwruw)
+     - [anuraghazra](https://github.com/anuraghazra)
+   + - [aveek-saha](https://github.com/aveek-saha)
+     - [daniakash](https://github.com/daniakash)
+     - [denvercoder1](https://github.com/denvercoder1)
 
-       ### Minimalistic
+     ### Minimalistic
 
-       - [alexmartinfr](https://github.com/alexmartinfr)
-     - - [aveek-saha](https://github.com/aveek-saha)
-       - [caneco](https://github.com/caneco)
-       - [dennishartrampf](https://github.com/dennishartrampf)
-     ```
+     - [alexmartinfr](https://github.com/alexmartinfr)
+   - - [aveek-saha](https://github.com/aveek-saha)
+     - [caneco](https://github.com/caneco)
+     - [dennishartrampf](https://github.com/dennishartrampf)
+   ```
 
 4. Commit changes and push to the fork repository by following this commit message format: `[Add/Remove/Update] [<profile_username>] profile`.
 
