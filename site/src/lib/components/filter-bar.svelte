@@ -1,13 +1,24 @@
 <script>
 	import { fly } from 'svelte/transition';
 
-	// Export the props
-	export let filters = [];
-	export let totalCards = 0;
-	export let selectedFilter = filters[0] || '';
+	// Export component props
+	export let filterItems;
+	export let totalCardsCount;
+	export let selectedFilter;
+	export let updateFilteredDataCallback;
 
-	// Define a flag to show or hide the filter
-	let showFilter = false;
+	// Define internal component state
+	let isDropdownVisible = false;
+
+	// Define click event handler
+	let handleFilterClick = (newSelectedFilter) => {
+		isDropdownVisible = false;
+		if (newSelectedFilter === selectedFilter) {
+			return;
+		}
+		selectedFilter = newSelectedFilter;
+		updateFilteredDataCallback(newSelectedFilter);
+	};
 </script>
 
 <section class="filter-bar">
@@ -15,8 +26,8 @@
 		<div class="dropdown-menu">
 			<button
 				class="filter-dropdown"
-				class:active={showFilter}
-				on:click={() => (showFilter = !showFilter)}
+				class:active={isDropdownVisible}
+				on:click={() => (isDropdownVisible = !isDropdownVisible)}
 			>
 				<span>{selectedFilter}</span>
 				<svg role="img" viewBox="0 0 512 512">
@@ -25,17 +36,20 @@
 					/>
 				</svg>
 			</button>
-			{#if showFilter}
+			{#if isDropdownVisible}
 				<ul class="filter-list" transition:fly={{ y: -50, duration: 200 }}>
-					{#each filters as option}
-						<li
-							class="filter-item"
-							on:click={() => {
-								selectedFilter = option;
-								showFilter = false;
-							}}
-						>
-							<span class="filter">{option}</span>
+					{#each filterItems as item}
+						<li>
+							<a
+								href={`#${item.categoryTitle.replace(/\s+/g, '-').toLowerCase()}`}
+								class="filter-item"
+								on:click|preventDefault={handleFilterClick(item.categoryTitle)}
+							>
+								{item.categoryTitle}
+								<span>
+									{item.totalProfileCount}
+								</span>
+							</a>
 						</li>
 					{/each}
 				</ul>
@@ -44,7 +58,7 @@
 	</div>
 	<div class="total-result-container">
 		Results
-		<span class="total-cards-count">{totalCards}</span>
+		<span class="total-cards-count">{totalCardsCount}</span>
 	</div>
 </section>
 
@@ -143,6 +157,8 @@
 	}
 
 	.filter-list .filter-item {
+		display: flex;
+		justify-content: space-between;
 		align-items: center;
 		border-radius: var(--border-radius);
 		cursor: pointer;
@@ -150,6 +166,9 @@
 		font-weight: 400;
 		padding: 0.75rem 1rem;
 		transition: background var(--transition-default);
+		color: var(--color-on-foreground);
+		font-size: 1rem;
+		text-decoration: none;
 	}
 
 	.filter-list .filter-item:hover {
@@ -157,8 +176,13 @@
 		color: var(--color-primary-hover);
 	}
 
-	.filter-list .option .filter {
-		color: var(--color-on-foreground);
-		font-size: 1rem;
+	.filter-item span {
+		background-color: var(--color-background);
+		border-radius: var(--border-radius);
+		padding: 0.25rem 0.5rem;
+		color: var(--color-on-background);
+		font-size: 0.75rem;
+		font-weight: 600;
+		white-space: nowrap;
 	}
 </style>
