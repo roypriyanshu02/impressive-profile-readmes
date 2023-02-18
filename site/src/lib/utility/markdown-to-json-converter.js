@@ -7,7 +7,12 @@ import dimerappMarkdown from '@dimerapp/markdown'; // importing the dimerapp mar
  */
 const markdownToJsonConverter = async (markdown) => {
 	const markdownLib = new dimerappMarkdown(markdown);
-	return await markdownLib.toJSON();
+	const json = await markdownLib.toJSON();
+	json.lastModified = Date.now();
+	delete json.data;
+	delete json.messages;
+	delete json.history;
+	return json;
 };
 
 export default markdownToJsonConverter;
