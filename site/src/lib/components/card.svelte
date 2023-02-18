@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 
 	// Export the props
-	export let screenshot, username, category, starCount;
+	export let screenshot, username, category, starCount, loadStarCount;
 
 	// Destructure properties from $$props
 	let { cardRef, cardFooterRef, imageRef } = $$props;
@@ -20,6 +20,9 @@
 			'--image-translateY',
 			`${totalCardHeight - cardFooterHeight - imageHeight}px`
 		);
+
+		// Call the loadStarCount function
+		loadStarCount();
 	});
 </script>
 
