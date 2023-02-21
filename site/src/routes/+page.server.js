@@ -36,3 +36,5 @@ export const load = async () => {
 		profiles
 	};
 };
+
+export const prerender = true;

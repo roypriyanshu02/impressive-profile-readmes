@@ -10,14 +10,16 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
-		"generate": "node src/generate-data.js"
+		"generate": "node src/generate-data.js",
+		"deploy": "touch build/.nojekyll && gh-pages -d build -t true"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-static": "^2.0.1",
 		"@sveltejs/kit": "^1.0.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-svelte3": "^4.0.0",
+		"gh-pages": "^5.0.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
 		"svelte": "^3.54.0",
