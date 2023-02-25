@@ -146,6 +146,7 @@
 		border-radius: var(--border-radius);
 		margin-top: 0.5rem;
 		min-width: 12rem;
+                list-style-type: none;
 		overflow: auto;
 		padding: 0.5rem;
 		position: absolute;
