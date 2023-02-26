@@ -11,7 +11,7 @@
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
 		"generate": "node src/generate-data.js",
-		"deploy": "touch build/.nojekyll && gh-pages -d build -t true"
+		"deploy": "gh-pages -d build -t true"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^2.0.1",
