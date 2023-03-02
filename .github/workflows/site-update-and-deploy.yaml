@@ -1,0 +1,57 @@
+name: Automated Latest Site Deployment Workflow
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  # This job builds and deploys the site
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    # Run The job when there are no changes in the README.md file or Screenshot directory
+    if: (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)) && !( contains(github.event.pull_request.changed_files, 'README.md') || contains(github.event.pull_request.changed_files, 'Screenshot/'))
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: site/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      # Install the correct version of Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      # Install npm dependencies
+      - name: Install npm dependencies
+        run: npm ci
+        working-directory: site/
+
+      # Build the site
+      - name: Build
+        run: |
+          npm run build
+        working-directory: site/
+
+      # Deploy to GitHub Pages on the gh-pages branch
+      - name: Deploy
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
+          git config user.name "github-actions[bot]"
+          npm run deploy -- -m "Update the site to latest changes"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
