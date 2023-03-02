@@ -67,3 +67,37 @@
 		</IntersectionObserver>
 	{/each}
 </CardSection>
+
+<svelte:head>
+	<meta name="theme-color" content="var(--color-background)" />
+	<title>Impressive Profile Readmes</title>
+	<meta
+		name="description"
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of impressive READMEs and take your profile to the next level."
+	/>
+	<meta
+		name="keywords"
+		content="github, readme, profile, portfolio, gallery, github-profile, awesome-list, inspired, impressive, github-readme, profile-readme, github-profile-readme, awesome-readme-template, developer-profile"
+	/>
+	<link rel="canonical" href="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
+	<meta name="author" content="Contributors" />
+	<meta name="robots" content="index, follow" />
+	<!-- Meta Tags For Open Graph / Facebook -->
+	<meta property="og:type" content="Website" />
+	<meta property="og:title" content="Impressive Profile Readmes" />
+	<meta
+		property="og:description"
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of impressive READMEs and take your profile to the next level."
+	/>
+	<meta property="og:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
+	<meta property="og:image" content="screenshot.webp" />
+	<!-- Meta Tags For Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Impressive Profile Readmes" />
+	<meta
+		name="twitter:description"
+		content="Get inspired to make your GitHub profile stand out! Browse our collection of impressive READMEs and take your profile to the next level."
+	/>
+	<meta name="twitter:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
+	<meta name="twitter:image" content="screenshot.webp" />
+</svelte:head>
