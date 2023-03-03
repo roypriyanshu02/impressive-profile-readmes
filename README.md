@@ -22,6 +22,28 @@ Remember to give a ⭐ if you found this helpful.
 
 ## Categories
 
+#### A Little Bit of Everything
+
+#### Animation
+
+#### Badges/Icons
+
+#### Code
+
+#### Descriptive
+
+#### Dynamic
+
+#### Fancy Fonts
+
+#### Image
+
+#### Innovative
+
+#### Interactive
+
+#### Minimalistic
+
 ## Tools
 
 ## Articles and Tutorials
