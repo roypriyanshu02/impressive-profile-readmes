@@ -1,68 +1,73 @@
-name: Automated Site Deployment Workflow with Data Update
+name: Site Deployment Workflow with Data Update
 
 on:
   push:
     branches: [main]
+    paths:
+      - "README.md"
+      - "screenshots/**"
   pull_request:
     branches: [main]
     types: [closed]
+    paths:
+      - "README.md"
+      - "screenshots/**"
+    condition: github.event.pull_request.merged == true
 
 jobs:
-  # This job generates latest data required for the site
+  # This job generates latest data
   generate-data:
     runs-on: ubuntu-latest
-    # Run The job when there are changes in the README.md file or Screenshot directory
-    if: (github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)) && (contains(github.event.pull_request.changed_files, 'README.md') || contains(github.event.pull_request.changed_files, 'Screenshot/'))
 
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
 
       # Cache node modules for faster builds
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: site/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-      # Install the correct version of Node.js
+      # Install Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
-      # Install Chromium and its dependencies for puppeteer
-      - name: Install Chromium and its dependencies
+      # Install Chromium for puppeteer
+      - name: Install Chromium
         run: |
           sudo apt-get update
           sudo apt-get install -y chromium-browser
 
-      # Install npm dependencies
-      - name: Install npm dependencies
+      # Clean Install npm packages
+      - name: Install npm packages
         run: npm ci
         working-directory: site/
 
-      # Generate data
+      # Generate README.json and Screenshots
       - name: Generate data
         run: CHROME_BIN=$(which chromium-browser) npm run generate
-        env:
-          CHROME_BIN: ${{ which chromium-browser }}
         working-directory: site/
 
-      # Commit and push the generated data
+      # Commit and Push the generated data
       - name: Commit and Push generated data
-        uses: EndBug/add-and-commit@v4
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: "github-actions[bot]"
           author_email: "41898282+github-actions[bot]@users.noreply.github.com"
           message: "Update least data"
-          add: "*.webp README.json"
+          add: .
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        working-directory: site/
 
   # This job builds and deploys the site
   build-and-deploy:
@@ -70,38 +75,45 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Wait for 60 seconds to allow generate-data job to complete
+      - name: Wait for 60 seconds
+        run: sleep 60
+
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
 
       # Cache node modules for faster builds
       - name: Cache node modules
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: site/node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
-      # Install the correct version of Node.js
+      # Install Node.js
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16.x
 
-      # Install npm dependencies
-      - name: Install npm dependencies
+      # Clean Install npm packages
+      - name: Install npm packages
         run: npm ci
         working-directory: site/
 
       # Build the site
-      - name: Build
+      - name: Build the site
         run: |
           npm run build
         working-directory: site/
 
-      # Deploy to GitHub Pages on the gh-pages branch
-      - name: Deploy
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
