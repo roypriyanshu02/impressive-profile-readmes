@@ -28,7 +28,7 @@ body {
 	margin: auto;
 	min-height: 100vh;
 	padding: 0 1rem;
-	width: 100vw;
+	width: 100%;
 }
 a {
 	text-decoration: none;
