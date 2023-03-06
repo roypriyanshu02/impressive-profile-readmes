@@ -24,15 +24,46 @@ Remember to give a ⭐ if you found this helpful.
 
 #### A Little Bit of Everything
 
+- [anmol098](https://github.com/anmol098)
+- [guilyx](https://github.com/guilyx)
+- [iampavangandhi](https://github.com/iampavangandhi)
+- [itgoyo](https://github.com/itgoyo)
+- [rahul-jha98](https://github.com/rahul-jha98)
+- [Spiderpig86](https://github.com/Spiderpig86)
+
 #### Animation
+
+- [martonlederer](https://github.com/martonlederer)
 
 #### Badges/Icons
 
 #### Code
 
+- [ashbakernz](https://github.com/ashbakernz)
+- [monkindey](https://github.com/monkindey)
+- [Thaiane](https://github.com/Thaiane)
+- [Zhenye-Na](https://github.com/Zhenye-Na)
+
 #### Descriptive
 
+- [gautamkrishnar](https://github.com/gautamkrishnar)
+- [roaldnefs](https://github.com/roaldnefs)
+
 #### Dynamic
+
+- [abhisheknaiidu](https://github.com/abhisheknaiidu)
+- [blackcater](https://github.com/blackcater)
+- [codestackr](https://github.com/codestackr)
+- [kittinan](https://github.com/kittinan)
+- [moepoi](https://github.com/moepoi)
+- [mokkapps](https://github.com/mokkapps)
+- [mscoutermarsh](https://github.com/mscoutermarsh)
+- [ouuan](https://github.com/ouuan)
+- [RaoHai](https://github.com/RaoHai)
+- [simonw](https://github.com/simonw)
+- [sw-yx](https://github.com/sw-yx)
+- [teoxoy](https://github.com/teoxoy)
+- [thmsgbrt](https://github.com/thmsgbrt)
 
 #### Fancy Fonts
 
@@ -40,9 +71,23 @@ Remember to give a ⭐ if you found this helpful.
 
 #### Innovative
 
+- [HwangTaehyun](https://github.com/HwangTaehyun)
+- [JessicaLim8](https://github.com/JessicaLim8)
+- [liununu](https://github.com/liununu)
+
 #### Interactive
 
+- [andyruwruw](https://github.com/andyruwruw)
+- [DenverCoder1](https://github.com/DenverCoder1)
+
 #### Minimalistic
+
+- [anuraghazra](https://github.com/anuraghazra)
+- [aralroca](https://github.com/aralroca)
+- [athul](https://github.com/athul)
+- [d-koppenhagen](https://github.com/d-koppenhagen)
+- [gargakshit](https://github.com/gargakshit)
+- [novatorem](https://github.com/novatorem)
 
 ## Tools
 
