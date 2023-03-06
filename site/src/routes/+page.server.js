@@ -14,19 +14,23 @@ export const load = async () => {
 			let section = sections[i];
 			if (section.tag === 'h4') {
 				const categoryName = section.children[1]?.value;
-				const profilesForCategory =
-					sections[i + 1]?.children.map((profile) => {
-						const username = profile.children[0]?.children[0]?.value;
+				const profilesForCategory = sections[i + 1]?.children
+					?.map((profile) => {
+						const username = profile?.children?.[0]?.children?.[0]?.value;
+						if (!username) return null;
 						return {
 							username,
 							category: categoryName
 						};
-					}) || [];
-				profiles.push(...profilesForCategory);
-				categories.push({
-					categoryTitle: categoryName,
-					totalProfileCount: profilesForCategory.length
-				});
+					})
+					.filter(Boolean);
+				if (profilesForCategory) {
+					profiles.push(...profilesForCategory);
+					categories.push({
+						categoryTitle: categoryName,
+						totalProfileCount: profilesForCategory.length
+					});
+				}
 				i++;
 			}
 		}
