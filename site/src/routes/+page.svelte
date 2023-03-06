@@ -57,7 +57,7 @@
 		<IntersectionObserver let:intersecting once>
 			{#if intersecting}
 				<Card
-					screenshot={`https://raw.githubusercontent.com/roypriyanshu02/impressive-profile-readmes/main/screenshots/${profile.username}.webp`}
+					screenshot={`https://raw.githubusercontent.com/roypriyanshu02/impressive-profile-readmes/main/screenshots/${profile.username.toLowerCase()}.webp`}
 					username={profile.username}
 					category={profile.category}
 					starCount={profile.starCount}
