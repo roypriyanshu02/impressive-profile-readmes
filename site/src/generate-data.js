@@ -8,41 +8,72 @@ const __dirname = process.cwd();
 // Read the contents of the README.md file and return it as a string
 const readMarkdownFile = async () => {
 	const filePath = resolve(__dirname, '..', 'README.md');
-	return await readFile(filePath, 'utf-8');
+	try {
+		const data = await readFile(filePath, 'utf-8');
+		console.log(`Successfully read "README.md" file`);
+		return data;
+	} catch (error) {
+		console.error(`Failed to read the markdown file: ${error.message}`);
+		throw error;
+	}
 };
 
 // Read the list of files in the screenshots directory
 const readScreenshotFiles = async () => {
 	const dirPath = resolve(__dirname, '..', 'screenshots');
-	const files = await readdir(dirPath, { withFileTypes: true });
-	// Filter out only the files (not directories), and remove the ".webp" extension from the filenames
-	return files.filter((file) => file.isFile()).map((file) => file.name.replace(/\.webp$/g, ''));
+	try {
+		const files = await readdir(dirPath, { withFileTypes: true });
+		// Filter out only the files (not directories), and remove the ".webp" extension from the filenames
+		const screenshotList = files
+			.filter((file) => file.isFile())
+			.map((file) => file.name.replace(/\.webp$/g, ''));
+		console.log(`Successfully extracted the list of screenshots`);
+		return screenshotList;
+	} catch (error) {
+		console.error(`Failed to read the screenshot files: ${error.message}`);
+		throw error;
+	}
 };
 
 // Extract the list of profile names from the JSON structure produced by the markdownToJSONConverter
 const readProfilesList = async (json) => {
-	const { contents } = json;
-	const children = contents.children;
-	let profilesList = [];
-	for (let i = 0; i < children.length; i++) {
-		let item = children[i];
-		if (item.tag === 'h4') {
-			profilesList = profilesList.concat(
-				children[i + 1].children.map((child) => {
+	try {
+		const { contents } = json;
+		const children = contents.children;
+		const profilesList = [];
+
+		for (let i = 0; i < children.length; i++) {
+			const item = children[i];
+			if (item.tag === 'h4') {
+				children[i + 1].children.forEach((child) => {
+					if (!child.children) return;
 					const children = child.children[0];
-					return children.children[0].value.toLowerCase();
-				})
-			);
-			i++;
+					if (!children.children[0]) return;
+					profilesList.push(children.children[0].value.toLowerCase());
+				});
+				i++;
+			}
 		}
+
+		console.log('Successfully extracted the list of profiles');
+		return profilesList;
+	} catch (error) {
+		console.error(`Failed to extract the list of profiles: ${error.message}`);
+		throw error;
 	}
-	return profilesList;
 };
 
 // Write the JSON data to the "README.json" file in the "static" directory
 const writeJsonFile = async (json) => {
 	const filePath = resolve(__dirname, 'static', 'README.json');
-	return await writeFile(filePath, JSON.stringify(json));
+	try {
+		await writeFile(filePath, JSON.stringify(json));
+		console.log(`Successfully wrote the JSON file`);
+		return;
+	} catch (error) {
+		console.error(`Failed to write the JSON file: ${error.message}`);
+		throw error;
+	}
 };
 
 // Compare the list of profile names to the list of existing screenshots, and capture or delete screenshots as necessary
@@ -54,29 +85,33 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 	for (const profile of added) {
 		try {
 			await captureScreenshot(resolve(__dirname, '..', 'screenshots'), profile);
+			console.log(`Successfully captured a screenshot for the profile: "${profile}"`);
 		} catch (error) {
-			console.error(`Failed to capture screenshot for profile "${profile}": ${error.message}`);
+			console.error(
+				`Failed to capture the screenshot for the profile: "${profile}": ${error.message}`
+			);
+			throw error;
 		}
 	}
 	for (const profile of removed) {
 		if (profile === '.gitkeep') continue;
 		try {
 			await unlink(resolve(__dirname, '..', 'screenshots', `${profile}.webp`));
+			console.log(`Successfully deleted the screenshot for the profile: "${profile}"`);
 		} catch (error) {
-			console.error(`Failed to delete screenshot for profile "${profile}": ${error.message}`);
+			console.error(
+				`Failed to delete the screenshot for the profile: "${profile}": ${error.message}`
+			);
+			throw error;
 		}
 	}
 };
 
 (async () => {
-	try {
-		const markdown = await readMarkdownFile();
-		const json = await markdownToJSONConverter(markdown);
-		await writeJsonFile(json);
-		const screenshotList = await readScreenshotFiles();
-		const profilesList = await readProfilesList(json);
-		await handleScreenshots(profilesList, screenshotList);
-	} catch (error) {
-		console.error(`An error occurred: ${error.message}`);
-	}
+	const markdown = await readMarkdownFile();
+	const json = await markdownToJSONConverter(markdown);
+	await writeJsonFile(json);
+	const screenshotList = await readScreenshotFiles();
+	const profilesList = await readProfilesList(json);
+	await handleScreenshots(profilesList, screenshotList);
 })();
