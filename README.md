@@ -89,6 +89,10 @@ Remember to give a ⭐ if you found this helpful.
 - [gargakshit](https://github.com/gargakshit)
 - [novatorem](https://github.com/novatorem)
 
+#### Anime
+
+- [krishnapriya-n] (https://github.com/krishnapriya-n)
+
 ## Tools
 
 ## Articles and Tutorials
