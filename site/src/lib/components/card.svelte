@@ -8,19 +8,33 @@
 	// Destructure properties from $$props
 	let { cardRef, cardFooterRef, imageRef } = $$props;
 
+	// Keep track of the number of images that are still loading
+	let waiting = 0;
+
+	// Run the following code when the image finishes loading
+	const onload = (el) => {
+		waiting++;
+		el.addEventListener('load', () => {
+			waiting--;
+			if (waiting === 0) {
+				// Calculate the height of the card, card footer, and image
+				const totalCardHeight = cardRef.offsetHeight;
+				const cardFooterHeight = cardFooterRef.offsetHeight;
+				const imageHeight = imageRef.height;
+
+				// Set the --image-translateY CSS variable to position the image
+				const calc = totalCardHeight - cardFooterHeight - imageHeight;
+				if (calc < 0) {
+					imageRef.style.setProperty('--image-translateY', `${calc}px`);
+				} else {
+					imageRef.style.setProperty('--image-translateY', `0px`);
+				}
+			}
+		});
+	};
+
 	// Run the following code when the component is mounted
 	onMount(() => {
-		// Calculate the height of the card, card footer, and image
-		const totalCardHeight = cardRef.offsetHeight;
-		const cardFooterHeight = cardFooterRef.offsetHeight;
-		const imageHeight = imageRef.height;
-
-		// Set the --image-translateY CSS variable to position the image
-		imageRef.style.setProperty(
-			'--image-translateY',
-			`${totalCardHeight - cardFooterHeight - imageHeight}px`
-		);
-
 		// Call the loadStarCount function
 		loadStarCount();
 	});
@@ -34,6 +48,7 @@
 			alt={`${username}'s Github profile screenshot`}
 			style={`--image-translateY: 0;`}
 			bind:this={imageRef}
+			use:onload
 		/>
 	</div>
 	<div class="footer" bind:this={cardFooterRef}>
@@ -83,6 +98,8 @@
 	}
 	.card .image-container:hover img {
 		transform: translateY(var(--image-translateY));
+		transition-delay: var(--transition-default);
+		transition-timing-function: ease-in-out;
 	}
 	.card .footer {
 		box-sizing: border-box;
