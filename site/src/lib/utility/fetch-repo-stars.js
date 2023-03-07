@@ -10,7 +10,7 @@ const fetchRepoStar = async (username) => {
 	const request = {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${import.meta.env.VITE_GITHUB_API_TOKEN}`, // use the provided API token for authentication
+			Authorization: `Bearer ${import.meta.env.VITE_GH_TOKEN}`, // use the provided API token for authentication
 			'Content-Type': 'application/json' // set the content type to JSON
 		},
 		body: JSON.stringify({ query }) // stringify the query
