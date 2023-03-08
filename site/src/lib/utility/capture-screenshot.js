@@ -19,63 +19,45 @@ const captureScreenshot = async (path, userName) => {
 	// Create new page and navigate to the user's GitHub profile
 	const page = await browser.newPage();
 	try {
-		await page.goto(url, { waitUntil: 'networkidle0' });
-	} catch (e) {
-		console.error(e);
-		throw e;
+		await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+	} catch (error) {
+		console.error(error);
+		throw error;
 	}
+
+	// Set the viewport height
+	await page.setViewport({
+		width: windowWidth,
+		height: 5000
+	});
 
 	// Get the README DOM height
 	let domHeight = await page.evaluate(() => {
 		const domPath = 'div.profile-readme';
 		const readme = document.querySelector(domPath);
-		return readme ? readme.offsetHeight : 0;
+		return readme ? readme.getBoundingClientRect().bottom : 0;
 	});
 
 	// If the DOM height is higher than minWindowHeight, use that for the viewport height
 	const windowHeight = domHeight > minWindowHeight ? domHeight : minWindowHeight;
 
-	// Set the viewport height
-	await page.setViewport({
-		width: windowWidth,
-		height: windowHeight
-	});
-
-	// Check if the README has a GIF
-	const hasGif = await page.evaluate(() => {
-		const domPath = 'div.profile-readme > div.Box-body > article.markdown-body img';
-		let nodeList = document.querySelectorAll(domPath);
-		return [].slice.apply(nodeList).some((node) => node.src.includes('.gif'));
-	});
-
 	// Take screenshot of README and save as JPEG
 	const buffer = await page.screenshot({
 		clip: {
 			width: windowWidth,
-			height: windowHeight - 20,
+			height: windowHeight - 54,
 			x: 0,
-			y: 92 // remove navbar
+			y: 83 // remove navbar
 		}
 	});
 
-	// If the README has a gif, save the screenshot as a webp with animation enabled
-	let result;
-	if (hasGif) {
-		result = await sharp(buffer)
-			.resize(800)
-			.webp({
-				quality: 50,
-				animation: true
-			})
-			.toFile(`${path}/${userName}.webp`);
-	} else {
-		result = await sharp(buffer)
-			.resize(800)
-			.webp({
-				quality: 50
-			})
-			.toFile(`${path}/${userName}.webp`);
-	}
+	// Save the screenshot as a webp file
+	let result = await sharp(buffer)
+		.resize(800)
+		.webp({
+			quality: 50
+		})
+		.toFile(`${path}/${userName}.webp`);
 
 	// wait 2s before closing the browser
 	await new Promise((resolve) => setTimeout(resolve, 2000));
