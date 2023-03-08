@@ -1,6 +1,6 @@
 <script>
 	import { formatNumber } from '$lib/utility/ui-utils.js';
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 
 	// Export the props
 	export let screenshot, username, category, starCount, loadStarCount;
@@ -11,32 +11,46 @@
 	// Keep track of the number of images that are still loading
 	let waiting = 0;
 
-	// Run the following code when the image finishes loading
-	const onload = (el) => {
-		waiting++;
-		el.addEventListener('load', () => {
-			waiting--;
-			if (waiting === 0) {
-				// Calculate the height of the card, card footer, and image
-				const totalCardHeight = cardRef.offsetHeight;
-				const cardFooterHeight = cardFooterRef.offsetHeight;
-				const imageHeight = imageRef.height;
+	// Calculate and set the --image-translateY CSS variable
+	const setImageTranslateY = () => {
+		// Calculate the height of the card, card footer, and image
+		const totalCardHeight = cardRef.offsetHeight;
+		const cardFooterHeight = cardFooterRef.offsetHeight;
+		const imageHeight = imageRef.height;
+		const calc = totalCardHeight - cardFooterHeight - imageHeight;
 
-				// Set the --image-translateY CSS variable to position the image
-				const calc = totalCardHeight - cardFooterHeight - imageHeight;
-				if (calc < 0) {
-					imageRef.style.setProperty('--image-translateY', `${calc}px`);
-				} else {
-					imageRef.style.setProperty('--image-translateY', `0px`);
+		// Set the --image-translateY CSS variable to position the image
+		if (calc < 0) {
+			imageRef.style.setProperty('--image-translateY', `${calc}px`);
+		} else {
+			imageRef.style.setProperty('--image-translateY', `0px`);
+		}
+	};
+
+	// Run the following code when the image finishes loading
+	const handleImageLoad = (el) => {
+		waiting++;
+		el.addEventListener(
+			'load',
+			() => {
+				waiting--;
+				if (waiting === 0) {
+					setImageTranslateY();
 				}
-			}
-		});
+			},
+			{ once: true }
+		);
 	};
 
 	// Run the following code when the component is mounted
 	onMount(() => {
 		// Call the loadStarCount function
 		loadStarCount();
+	});
+
+	// Run the following code after the component is updated
+	afterUpdate(() => {
+		setImageTranslateY();
 	});
 </script>
 
@@ -46,9 +60,8 @@
 			src={screenshot}
 			loading="lazy"
 			alt={`${username}'s Github profile screenshot`}
-			style={`--image-translateY: 0;`}
 			bind:this={imageRef}
-			use:onload
+			use:handleImageLoad
 		/>
 	</div>
 	<div class="footer" bind:this={cardFooterRef}>
