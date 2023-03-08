@@ -1,9 +1,9 @@
 <script>
 	import { formatNumber } from '$lib/utility/ui-utils.js';
-	import { onMount, afterUpdate } from 'svelte';
+	import { afterUpdate } from 'svelte';
 
 	// Export the props
-	export let screenshot, username, category, starCount, loadStarCount;
+	export let screenshot, username, category, starCount;
 
 	// Destructure properties from $$props
 	let { cardRef, cardFooterRef, imageRef } = $$props;
@@ -41,12 +41,6 @@
 			{ once: true }
 		);
 	};
-
-	// Run the following code when the component is mounted
-	onMount(() => {
-		// Call the loadStarCount function
-		loadStarCount();
-	});
 
 	// Run the following code after the component is updated
 	afterUpdate(() => {

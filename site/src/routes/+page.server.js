@@ -1,5 +1,6 @@
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import fetchRepoStar from '$lib/utility/fetch-repo-stars';
 
 export const load = async () => {
 	try {
@@ -20,7 +21,8 @@ export const load = async () => {
 						if (!username) return null;
 						return {
 							username,
-							category: categoryName
+							category: categoryName,
+							starCount: 0
 						};
 					})
 					.filter(Boolean);
@@ -35,6 +37,9 @@ export const load = async () => {
 			}
 		}
 		categories.unshift({ categoryTitle: 'All', totalProfileCount: profiles.length });
+		for (const profile of profiles) {
+			profile.starCount = await fetchRepoStar(profile.username);
+		}
 		profiles.sort((a, b) => a.username.localeCompare(b.username));
 		return {
 			lastModified,

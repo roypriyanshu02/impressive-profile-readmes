@@ -30,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"@dimerapp/markdown": "^3.2.2",
+		"dotenv": "^16.0.3",
 		"puppeteer": "^19.6.2",
 		"sharp": "^0.31.3"
 	}

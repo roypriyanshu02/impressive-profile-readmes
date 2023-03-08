@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 /**
  * A function that fetches the total count of stargazers for a given GitHub user's repository
  * @param {String} username - The GitHub username of the user whose stargazer count to fetch
@@ -10,7 +13,7 @@ const fetchRepoStar = async (username) => {
 	const request = {
 		method: 'POST',
 		headers: {
-			Authorization: `Bearer ${import.meta.env.VITE_GH_TOKEN}`, // use the provided API token for authentication
+			Authorization: `Bearer ${process.env.GITHUB_TOKEN}`, // use the provided API token for authentication
 			'Content-Type': 'application/json' // set the content type to JSON
 		},
 		body: JSON.stringify({ query }) // stringify the query

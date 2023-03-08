@@ -4,7 +4,6 @@
 	import CardSection from '$lib/components/card-section.svelte';
 	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
 	import Card from '$lib/components/card.svelte';
-	import fetchRepoStar from '$lib/utility/fetch-repo-stars.js';
 
 	export let data;
 
@@ -24,20 +23,6 @@
 			);
 		}
 		filteredData.totalCount = filteredData.profiles.length;
-	};
-
-	const fetchStarCount = async (username) => {
-		const starCount = await fetchRepoStar(username);
-		return starCount;
-	};
-
-	const onCardVisible = (profile, index) => {
-		if ('starCount' in profile && profile.starCount !== null) {
-			return;
-		}
-		fetchStarCount(profile.username).then((count) => {
-			filteredData.profiles[index].starCount = count;
-		});
 	};
 
 	onMount(() => {
@@ -61,7 +46,6 @@
 					username={profile.username}
 					category={profile.category}
 					starCount={profile.starCount}
-					loadStarCount={() => onCardVisible(profile, index)}
 				/>
 			{/if}
 		</IntersectionObserver>
