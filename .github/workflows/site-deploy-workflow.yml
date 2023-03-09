@@ -1,0 +1,69 @@
+name: Site Deployment Workflow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "site/**"
+      - "!README.md"
+      - "!screenshots/**"
+  pull_request:
+    branches: [main]
+    types: [closed]
+    paths:
+      - "site/**"
+      - "!README.md"
+      - "!screenshots/**"
+    condition: github.event.pull_request.merged == true
+
+jobs:
+  # This job builds and deploys the site
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: site/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Clean Install npm packages
+      - name: Install npm packages
+        run: npm ci
+        working-directory: site/
+
+      # Build the site
+      - name: Build the site
+        run: |
+          npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
+          git config user.name "github-actions[bot]"
+          npm run deploy -- -m "Deploy changes to site (${{ github.sha }})"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
