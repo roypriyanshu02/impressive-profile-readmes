@@ -19,6 +19,7 @@
 </script>
 
 {#if visibility}
+	<!-- svelte-ignore a11y-invalid-attribute -->
 	<a href="#" class="back-to-top-container" transition:fly={{ y: 50, duration: 300 }}>
 		<div class="back-to-top">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

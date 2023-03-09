@@ -37,6 +37,7 @@
 
 <header class="header" bind:this={header}>
 	<div>
+		<!-- svelte-ignore a11y-invalid-attribute -->
 		<a href="#" class="brand">
 			<span class="highlight">Impressive</span><br />
 			Profile READMEs
