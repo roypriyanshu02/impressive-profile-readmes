@@ -14,7 +14,8 @@ const captureScreenshot = async (path, userName) => {
 	});
 	const url = `https://github.com/${userName}`;
 	const windowWidth = 1400;
-	const minWindowHeight = 800;
+	const minWindowHeight = 1000;
+	const maxWindowHeight = 5000;
 
 	// Create new page and navigate to the user's GitHub profile
 	const page = await browser.newPage();
@@ -28,7 +29,7 @@ const captureScreenshot = async (path, userName) => {
 	// Set the viewport height
 	await page.setViewport({
 		width: windowWidth,
-		height: 5000
+		height: maxWindowHeight
 	});
 
 	// Get the README DOM height
@@ -38,8 +39,8 @@ const captureScreenshot = async (path, userName) => {
 		return readme ? readme.getBoundingClientRect().bottom : 0;
 	});
 
-	// If the DOM height is higher than minWindowHeight, use that for the viewport height
-	const windowHeight = domHeight > minWindowHeight ? domHeight : minWindowHeight;
+	// Ensure window height captures entire README, without exceeding maximum or falling below minimum
+	const windowHeight = Math.min(Math.max(domHeight, minWindowHeight), maxWindowHeight);
 
 	// Take screenshot of README and save as JPEG
 	const buffer = await page.screenshot({
