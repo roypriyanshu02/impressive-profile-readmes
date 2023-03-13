@@ -15,6 +15,18 @@ Remember to give a ⭐ if you found this helpful.
 ## Table of content:
 
 - [Categories](#categories)
+  - [A Little Bit of Everything](#a-little-bit-of-everything)
+  - [Animation](#animation)
+  - [Badges/Icons](#badgesicons)
+  - [Code](#code)
+  - [Descriptive](#descriptive)
+  - [Dynamic](#dynamic)
+  - [Fancy Fonts](#fancy-fonts)
+  - [Game](#game)
+  - [Image](#image)
+  - [Innovative](#innovative)
+  - [Interactive](#interactive)
+  - [Minimalistic](#minimalistic)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -24,6 +36,7 @@ Remember to give a ⭐ if you found this helpful.
 
 - [AbhishekMaira10](https://github.com/AbhishekMaira10)
 - [aemmadi](https://github.com/aemmadi)
+- [Ahmad-Sawalqeh](https://github.com/Ahmad-Sawalqeh)
 - [anmol098](https://github.com/anmol098)
 - [apoorvtyagi](https://github.com/apoorvtyagi)
 - [claytonjhamilton](https://github.com/claytonjhamilton)
@@ -38,7 +51,6 @@ Remember to give a ⭐ if you found this helpful.
 - [Jackyu-1999](https://github.com/Jackyu-1999)
 - [KasRoudra](https://github.com/KasRoudra)
 - [keshavsingh4522](https://github.com/keshavsingh4522)
-- [lowlighter](https://github.com/lowlighter)
 - [MarikIshtar007](https://github.com/MarikIshtar007)
 - [MartinHeinz](https://github.com/MartinHeinz)
 - [mayhemantt](https://github.com/mayhemantt)
@@ -104,7 +116,6 @@ Remember to give a ⭐ if you found this helpful.
 #### Code
 
 - [ashbakernz](https://github.com/ashbakernz)
-- [Ayon-SSP](https://github.com/Ayon-SSP)
 - [monkindey](https://github.com/monkindey)
 - [roypriyanshu02](https://github.com/roypriyanshu02)
 - [Thaiane](https://github.com/Thaiane)
@@ -112,7 +123,6 @@ Remember to give a ⭐ if you found this helpful.
 
 #### Descriptive
 
-- [Ahmad-Sawalqeh](https://github.com/Ahmad-Sawalqeh)
 - [amxchang](https://github.com/amxchang)
 - [AnzenKodo](https://github.com/AnzenKodo)
 - [ApurvShah007](https://github.com/ApurvShah007)
@@ -121,6 +131,7 @@ Remember to give a ⭐ if you found this helpful.
 - [dayyass](https://github.com/dayyass)
 - [DennisHartrampf](https://github.com/DennisHartrampf)
 - [dileepabandara](https://github.com/dileepabandara)
+- [ethomson](https://github.com/ethomson)
 - [f](https://github.com/f)
 - [filiptronicek](https://github.com/filiptronicek)
 - [garimasingh128](https://github.com/garimasingh128)
@@ -133,7 +144,6 @@ Remember to give a ⭐ if you found this helpful.
 - [roaldnefs](https://github.com/roaldnefs)
 - [snykk](https://github.com/snykk)
 - [SoupyzInc](https://github.com/SoupyzInc)
-- [thmsgbrt](https://github.com/thmsgbrt)
 - [vidursatija](https://github.com/vidursatija)
 - [xtenzQ](https://github.com/xtenzQ)
 
@@ -142,13 +152,16 @@ Remember to give a ⭐ if you found this helpful.
 - [abhijoshi2k](https://github.com/abhijoshi2k)
 - [abhisheknaiidu](https://github.com/abhisheknaiidu)
 - [Aveek-Saha](https://github.com/Aveek-Saha)
+- [Ayon-SSP](https://github.com/Ayon-SSP)
 - [blackcater](https://github.com/blackcater)
 - [codestackr](https://github.com/codestackr)
 - [cxyfreedom](https://github.com/cxyfreedom)
 - [dailyrandomphoto](https://github.com/dailyrandomphoto)
 - [FaberSanZ](https://github.com/FaberSanZ)
+- [Find-NICK](https://github.com/Find-NICK)
 - [formidablae](https://github.com/formidablae)
 - [kittinan](https://github.com/kittinan)
+- [lowlighter](https://github.com/lowlighter)
 - [Manobal-Singh-Bagady](https://github.com/Manobal-Singh-Bagady)
 - [maximousblk](https://github.com/maximousblk)
 - [moepoi](https://github.com/moepoi)
@@ -158,12 +171,10 @@ Remember to give a ⭐ if you found this helpful.
 - [ouuan](https://github.com/ouuan)
 - [RaoHai](https://github.com/RaoHai)
 - [simonw](https://github.com/simonw)
-- [simonw](https://github.com/simonw)
 - [sw-yx](https://github.com/sw-yx)
 - [tallguyjenks](https://github.com/tallguyjenks)
 - [teoxoy](https://github.com/teoxoy)
 - [thmsgbrt](https://github.com/thmsgbrt)
-- [Tynab](https://github.com/Tynab)
 
 #### Fancy Fonts
 
@@ -185,19 +196,17 @@ Remember to give a ⭐ if you found this helpful.
 
 - [afc163](https://github.com/afc163)
 - [edisonlee55](https://github.com/edisonlee55)
-- [Find-NICK](https://github.com/Find-NICK)
 - [innng](https://github.com/innng)
 - [oussamabouchikhi](https://github.com/oussamabouchikhi)
+- [Tynab](https://github.com/Tynab)
 - [vaaski](https://github.com/vaaski)
 - [Wrapperup](https://github.com/Wrapperup)
-- [YuzuZensai](https://github.com/YuzuZensai)
 - [zackkrida](https://github.com/zackkrida)
 
 #### Innovative
 
 - [AlexMartinFR](https://github.com/AlexMartinFR)
 - [andyruwruw](https://github.com/andyruwruw)
-- [ethomson](https://github.com/ethomson)
 - [HwangTaehyun](https://github.com/HwangTaehyun)
 - [ileriayo](https://github.com/ileriayo)
 - [jaywcjlove](https://github.com/jaywcjlove)
@@ -215,7 +224,6 @@ Remember to give a ⭐ if you found this helpful.
 
 #### Interactive
 
-- [andyruwruw](https://github.com/andyruwruw)
 - [DenverCoder1](https://github.com/DenverCoder1)
 
 #### Minimalistic
@@ -242,6 +250,7 @@ Remember to give a ⭐ if you found this helpful.
 - [sriharikapu](https://github.com/sriharikapu)
 - [vanshkapoor](https://github.com/vanshkapoor)
 - [xunzhuo](https://github.com/xunzhuo)
+- [YuzuZensai](https://github.com/YuzuZensai)
 - [Zheeeng](https://github.com/Zheeeng)
 
 ## Contribute
