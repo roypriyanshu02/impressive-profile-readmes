@@ -14,6 +14,20 @@
 	--border-radius: 0.5rem;
 	--border-size: 2px;
 }
+@media (prefers-color-scheme: dark) {
+  :root {
+        --color-primary: #676AF5;
+        --color-primary-hover: #818cf8;
+        --color-on-primary: #1E1E1E;
+        --color-on-primary-hover: #DDD6FE;
+        --color-background: #090A18;
+        --color-on-background: #8490A7;
+        --color-foreground: #191B2B;
+        --color-on-foreground: #E7E7E7;
+        --color-gray: #707070;
+        --color-white: #121212;
+       }
+}
 * {
 	box-sizing: border-box;
 	font-family: sans-serif;
