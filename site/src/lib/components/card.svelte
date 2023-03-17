@@ -91,7 +91,6 @@
 		height: 12.5rem;
 		object-fit: cover;
 		overflow: hidden;
-		overflow: hidden;
 		width: 100%;
 	}
 	@media (max-width: 480px) {
