@@ -44,6 +44,7 @@ Remember to give a ⭐ if you found this helpful.
 - [CyrisXD](https://github.com/CyrisXD)
 - [DavidsDvm](https://github.com/DavidsDvm)
 - [Defcon27](https://github.com/Defcon27)
+- [weshaan](https://github.com/weshaan)
 - [gkhan205](https://github.com/gkhan205)
 - [guilyx](https://github.com/guilyx)
 - [iampavangandhi](https://github.com/iampavangandhi)
