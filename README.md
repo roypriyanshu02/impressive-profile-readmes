@@ -262,6 +262,18 @@ Remember to give a ⭐ if you found this helpful.
 ## Article
 
 * [Creating a GitHub Profile README](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme) _- GitHub Docs_
+* [How to create a fancy Github profile with README](https://www.creative-tim.com/blog/educational-tech/how-to-create-github-profile/) _- Beniamin Marcu & Laza Andrei_
+* [How To Create A GitHub Profile README](https://www.aboutmonica.com/blog/how-to-create-a-github-profile-readme/) _- Monica Powell_
+* [Enrich your GitHub profile with these tips](https://towardsdatascience.com/enrich-your-github-profile-with-these-tips-272fa1eafe05) _- Zolzaya Luvsandorj_
+* [How to create an effective GitHub profile README?](https://blog.masaischool.com/how-to-create-an-impressive-github-profile-readme/) _- Nitish R Sonu_
+* [3 Ways to Add an Image to the GitHub README](https://www.seancdavis.com/posts/three-ways-to-add-image-to-github-readme/) _- Sean_
+* [OpenSource Widgets to Power GitHub Profile README](https://laxmena.com/posts/github-pofile-readme-part2) _- Lakshmanan Meiyappan_
+* [How to Make a Rockstar Github Profile README](https://hackernoon.com/how-to-make-a-rockstar-github-profile-readme) _- Sachin Malhotra_
+* [How to Create an Impressive GitHub Profile README](https://www.sitepoint.com/github-profile-readme/) _- Nida Khan_
+* [Water Waving Effect Using Html, Css and Svg](https://fantinel.dev/github-profile-readme) _- Matt Fantinel_
+* [Build a Stunning README For Your GitHub Profile](https://martinheinz.dev/blog/29) _- Martin Heinz_
+* [Tips and tricks to create an awesome GitHub profile README](https://codemaker2016.medium.com/tips-and-tricks-to-create-an-awesome-github-profile-readme-ce3825a355c7) _- Vishnu Sivan_
+* [Adding custom HTML and CSS to GitHub README](https://pragmaticpineapple.com/adding-custom-html-and-css-to-github-readme/) _- Nikola Đuza_
 
 ## Contribute
 
