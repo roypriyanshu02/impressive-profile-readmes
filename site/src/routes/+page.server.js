@@ -46,7 +46,8 @@ export const load = async () => {
 			}
 		}
 
-		// Add "All" category to categories list and fetch star count for each profile
+		// Add "Most starred" and "All" category to categories list and fetch star count for each profile
+		categories.unshift({ categoryTitle: 'Most starred', totalProfileCount: profiles.length });
 		categories.unshift({ categoryTitle: 'All', totalProfileCount: profiles.length });
 		for (const profile of profiles) {
 			profile.starCount = await fetchRepoStar(profile.username);
