@@ -16,7 +16,9 @@
 	const updateFilteredData = (selectedCategory) => {
 		filteredData.category = selectedCategory;
 		if (selectedCategory == 'All') {
-			filteredData.profiles = data.profiles;
+			filteredData.profiles = data.profiles.sort(() => Math.random() - 0.5);
+		} else if (selectedCategory == 'Most starred') {
+			filteredData.profiles = data.profiles.sort((a, b) => b.starCount - a.starCount);
 		} else {
 			filteredData.profiles = data.profiles.filter(
 				(profile) => profile.category === selectedCategory
