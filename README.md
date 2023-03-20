@@ -32,6 +32,7 @@ Remember to give a ⭐ if you found this helpful.
   - [Innovative](#innovative)
   - [Interactive](#interactive)
   - [Minimalistic](#minimalistic)
+- [Article](#article)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -257,6 +258,10 @@ Remember to give a ⭐ if you found this helpful.
 - [xunzhuo](https://github.com/xunzhuo)
 - [YuzuZensai](https://github.com/YuzuZensai)
 - [Zheeeng](https://github.com/Zheeeng)
+
+## Article
+
+* [Creating a GitHub Profile README](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme) _- GitHub Docs_
 
 ## Contribute
 
