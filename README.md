@@ -40,6 +40,7 @@ Remember to give a ⭐ if you found this helpful. Also, we invite you to join ou
 
 #### A Little Bit of Everything
 
+- [Husayn01](https://github.com/Husayn01)
 - [AbhishekMaira10](https://github.com/AbhishekMaira10)
 - [aemmadi](https://github.com/aemmadi)
 - [Ahmad-Sawalqeh](https://github.com/Ahmad-Sawalqeh)
