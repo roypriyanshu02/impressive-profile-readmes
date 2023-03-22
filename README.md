@@ -15,7 +15,7 @@ Get inspired to make your GitHub Profile stand out! Check out our gallery of Imp
   </picture>
 </a>
 
-Remember to give a ⭐ if you found this helpful.
+Remember to give a ⭐ if you found this helpful. Also, we invite you to join our [Telegram group](https://t.me/+ClkvicPF4D0xNzE1) to stay up-to-date about IPR and other exciting open-source projects.
 
 ## Table of content:
 
