@@ -40,8 +40,8 @@ Remember to give a ![Stars](https://img.shields.io/github/stars/roypriyanshu02/i
 
 #### A Little Bit of Everything
 
-- [oyepriyansh](https://github.com/oyepriyansh)
 - [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
+- [oyepriyansh](https://github.com/oyepriyansh)
 - [Husayn01](https://github.com/Husayn01)
 - [AbhishekMaira10](https://github.com/AbhishekMaira10)
 - [aemmadi](https://github.com/aemmadi)
