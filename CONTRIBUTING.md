@@ -24,7 +24,7 @@ We welcome impressive Github profile readmes.
 
 3. Add, remove, or update the profile.
 
-   - To add a profile, add it below the heading of the category that best fits it, alphabetically and following this format: `- [username] (link to your GitHub profile)`.
+   - To add a profile, add it below the heading of the category that best fits it, alphabetically and following this format: `- [username](link to your GitHub profile)`.
 
      Example: Adding profile of Aveek-Saha
 
