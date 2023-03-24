@@ -277,6 +277,12 @@ Remember to give a ![Stars](https://img.shields.io/github/stars/roypriyanshu02/i
 - [Build a Stunning README For Your GitHub Profile](https://martinheinz.dev/blog/29) _- Martin Heinz_
 - [Tips and tricks to create an awesome GitHub profile README](https://codemaker2016.medium.com/tips-and-tricks-to-create-an-awesome-github-profile-readme-ce3825a355c7) _- Vishnu Sivan_
 - [Adding custom HTML and CSS to GitHub README](https://pragmaticpineapple.com/adding-custom-html-and-css-to-github-readme/) _- Nikola Đuza_
+- [GitHub Profile README](https://happycoding.io/tutorials/html/github-profile-readme) _- Kevin_
+- [How to Stand Out on GitHub Using Profile READMEs](https://betterprogramming.pub/how-to-stand-out-on-github-with-profile-readmes-dfd2102a3490) _- Jessica Lim_
+- [Dynamically Generated Github Stats For Your Profile ReadMe](https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g) _- Anurag Hazra_
+- [Market Yourself With a Killer GitHub Readme](https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g) _- Sean Coughlin_
+- [How to add an awesome README to your GitHub Profile](https://dev.to/satvikchachra/how-to-add-an-awesome-readme-to-your-github-profile-361n) _- Satvik Chachra_
+- [Create a special repository in your GitHub Profile](https://torrocus.com/blog/special-github-repository/) _- Alex Malaszkiewicz_
 
 ## Contribute
 
