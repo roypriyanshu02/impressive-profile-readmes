@@ -40,9 +40,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 #### A Little Bit of Everything
 
-- [oyepriyansh](https://github.com/oyepriyansh)
-- [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
-- [Husayn01](https://github.com/Husayn01)
 - [AbhishekMaira10](https://github.com/AbhishekMaira10)
 - [aemmadi](https://github.com/aemmadi)
 - [Ahmad-Sawalqeh](https://github.com/Ahmad-Sawalqeh)
@@ -55,6 +52,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Defcon27](https://github.com/Defcon27)
 - [gkhan205](https://github.com/gkhan205)
 - [guilyx](https://github.com/guilyx)
+- [Husayn01](https://github.com/Husayn01)
 - [iampavangandhi](https://github.com/iampavangandhi)
 - [itgoyo](https://github.com/itgoyo)
 - [Jackyu-1999](https://github.com/Jackyu-1999)
@@ -66,6 +64,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [MrStanDu33](https://github.com/MrStanDu33)
 - [night0721](https://github.com/night0721)
 - [onimur](https://github.com/onimur)
+- [oyepriyansh](https://github.com/oyepriyansh)
 - [PluckyPrecious](https://github.com/PluckyPrecious)
 - [rahul-jha98](https://github.com/rahul-jha98)
 - [Raray-chuan](https://github.com/Raray-chuan)
@@ -79,6 +78,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Thomas-George-T](https://github.com/Thomas-George-T)
 - [ValentineFernandes](https://github.com/ValentineFernandes)
 - [VikashPR](https://github.com/VikashPR)
+- [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
 - [xiaoluoboding](https://github.com/xiaoluoboding)
 - [zumrudu-anka](https://github.com/zumrudu-anka)
 
