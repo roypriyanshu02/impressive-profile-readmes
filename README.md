@@ -291,6 +291,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [GitHub profile readme generator](https://github.com/arturssmirnovs/github-profile-readme-generator) - Create nice and simple GitHub profile readme files.
 - [GitHub profile readme generator](https://profilinator.rishav.dev/) - Generate creative GitHub profile readmes in a few clicks.
 - [Github Profile Readme Creator](https://github-profile-readme-creator.web.app/) -  Generate user-friendly, intuitive and dynamic markdown for your profile README
+- [GitHub readme generator](https://readme.so/) - Simple editor allows you to quickly add and customize all the sections you need for your readme.
 - [GitHub profile readme generator](https://www.profileme.dev/) - Build an amazing GitHub profile README in minutes
 - [GitHub activity](https://github.com/jamesgeorge007/github-activity-readme) - Updates README with your recent GitHub activity.
 - [Markdown badges](https://ileriayo.github.io/markdown-badges/) - Add badges to your Profile and Projects READMEs.
@@ -311,6 +312,12 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Profile Visit Count](https://visitcount.itsvg.in/) - Visit Count tracker for your README
 - [GitHub Action](https://github.com/marketplace/actions/profile-readme) - Add widgets to your profile readme with this Github Action
 - [Dev metrics](https://github.com/anmol098/waka-readme-stats) - Cool dev metrics for your Github profile Readme
+- [Markdown cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) - A quick reference markdown cheatsheet.
+- [Markdown syntax](https://quickref.me/markdown.html) - A quick reference cheat sheet to the Markdown syntax.
+- [Markdown cheatsheet](https://www.interviewbit.com/markdown-cheat-sheet/) - basics to advanced cheat sheet for markdown 
+- [Markdown editor](https://dillinger.io/) - A online live markdown editor 
+- [Markdown editor](https://codebeautify.org/markdown-editor) -  A online live markdown editor
+- [Markdown editor](https://markdownlivepreview.com/) - A online live markdown editor
 
 ## Contribute
 
