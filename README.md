@@ -15,7 +15,7 @@ Get inspired to make your GitHub Profile stand out! Check out our gallery of Imp
   </picture>
 </a>
 
-Remember to give a ![Stars](https://img.shields.io/github/stars/roypriyanshu02/impressive-profile-readmes?style=flat-square&color=gold&&logo=ApacheSpark&logoColor=gold) if you found this helpful. Also, We are excited at the prospect of building an impressive community together! Therefore, we would be delighted if you joined our [![Telegram](https://img.shields.io/badge/Telegram_Group-2CA5E0?style=flat-square&logo=telegram&logoColor=white)](https://t.me/+ClkvicPF4D0xNzE1) to stay up-to-date with the latest developments in IPR and other outstanding open-source projects.
+Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-square&logo=ApacheSpark&logoColor=black) if you found this helpful. Also, We are excited at the prospect of building an impressive community together! Therefore, we would be delighted if you joined our [![Telegram](https://img.shields.io/badge/Telegram_Group-2CA5E0?style=flat-square&logo=telegram&logoColor=white)](https://t.me/+ClkvicPF4D0xNzE1) to stay up-to-date with the latest developments in IPR and other outstanding open-source projects.
 
 ## Table of content:
 
