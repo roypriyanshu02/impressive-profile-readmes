@@ -33,6 +33,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
   - [Interactive](#interactive)
   - [Minimalistic](#minimalistic)
 - [Article](#article)
+- [Tools](#tools)
 - [Contribute](#contribute)
 - [License](#license)
 
@@ -283,6 +284,33 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Market Yourself With a Killer GitHub Readme](https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g) _- Sean Coughlin_
 - [How to add an awesome README to your GitHub Profile](https://dev.to/satvikchachra/how-to-add-an-awesome-readme-to-your-github-profile-361n) _- Satvik Chachra_
 - [Create a special repository in your GitHub Profile](https://torrocus.com/blog/special-github-repository/) _- Alex Malaszkiewicz_
+
+## Tools
+- [GitHub profile readme generator](https://rahuldkjain.github.io/gh-profile-readme-generator/) - Generates a amazing README file for your GitHub profile in few minutes.
+- [GitHub profile readme generator](https://gprm.itsvg.in/) - Generates a professional-looking GitHub profile readme.
+- [GitHub profile readme generator](https://github.com/arturssmirnovs/github-profile-readme-generator) - Create nice and simple GitHub profile readme files.
+- [GitHub profile readme generator](https://profilinator.rishav.dev/) - Generate creative GitHub profile readmes in a few clicks.
+- [Github Profile Readme Creator](https://github-profile-readme-creator.web.app/) -  Generate user-friendly, intuitive and dynamic markdown for your profile README
+- [GitHub profile readme generator](https://www.profileme.dev/) - Build an amazing GitHub profile README in minutes
+- [GitHub activity](https://github.com/jamesgeorge007/github-activity-readme) - Updates README with your recent GitHub activity.
+- [Markdown badges](https://ileriayo.github.io/markdown-badges/) - Add badges to your Profile and Projects READMEs.
+- [Funny jokes](https://github.com/ABSphreak/readme-jokes) - Add jokes into your GitHub README.
+- [GitHub stat trophies](https://github.com/ryo-ma/github-profile-trophy) - Add dynamically generated GitHub Stat Trophies.
+- [Badges](https://shields.io/) - Customizable badges and labels for your Github profile and project READMEs.
+- [Quotes](https://github.com/PiyushSuthar/github-readme-quotes) - Add Programming Quotes to your GitHub Readme.
+- [Blog posts](https://gautamkrishnar.github.io/blog-post-workflow/) - Show your latest blog posts from any sources to your GitHub Readme.
+- [Twitter posts](https://gtce.itsvg.in/) - Showcase your Twitter latest post on your Readme
+- [Readme typing animation](https://readme-typing-svg.demolab.com/demo/) - Dynamically generated, customizable SVG that gives the appearance of typing and deleting text.
+- [Medium article](https://github.com/omidnikrah/github-readme-medium) - Show your latest Medium article on your GitHub profile readme!
+- [Contribution stats generator](https://github.com/HwangTaehyun/github-repository-contribution-stats) - Dynamic Github Repository Contribution stats generator
+- [Steak stats](https://streak-stats.demolab.com/demo/) - Display your total contributions, current streak, and longest streak on your GitHub profile README
+- [Github Readme stats](https://github.com/anuraghazra/github-readme-stats) - Dynamically generated stats for your github readmes
+- [Dev Metrics in Readme](https://github.com/athul/waka-readme) - Weekly Metrics on your Profile Readme
+- [Github Readme Stats](https://github.com/anuraghazra/github-readme-stats) - Dynamically generated stats for your github readmes
+- [SVG icons](https://simpleicons.org/) - Over 2400 Free SVG icons of popular brands
+- [Profile Visit Count](https://visitcount.itsvg.in/) - Visit Count tracker for your README
+- [GitHub Action](https://github.com/marketplace/actions/profile-readme) - Add widgets to your profile readme with this Github Action
+- [Dev metrics](https://github.com/anmol098/waka-readme-stats) - Cool dev metrics for your Github profile Readme
 
 ## Contribute
 
