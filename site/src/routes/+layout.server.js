@@ -9,16 +9,7 @@ export const load = async () => {
 		const result = JSON.parse(fileContents);
 
 		// Extract relevant information from README.json
-		const lastModified = new Date(result.lastModified)
-			.toLocaleString('en-GB', {
-				day: '2-digit',
-				month: 'short',
-				year: 'numeric',
-				hour: '2-digit',
-				minute: '2-digit',
-				hour12: false
-			})
-			.toUpperCase();
+		const lastModified = result.lastModified;
 
 		// Return extracted information
 		return {
@@ -26,16 +17,7 @@ export const load = async () => {
 		};
 	} catch (error) {
 		// If an error occurs, log it and return an error object
-		const lastModified = new Date(Date.now())
-			.toLocaleString('en-GB', {
-				day: '2-digit',
-				month: 'short',
-				year: 'numeric',
-				hour: '2-digit',
-				minute: '2-digit',
-				hour12: false
-			})
-			.toUpperCase();
+		const lastModified = Date.now();
 		console.error(error);
 		return {
 			lastModified: lastModified,
