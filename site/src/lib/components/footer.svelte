@@ -68,6 +68,12 @@
 		display: flex;
 		padding: 1rem;
 	}
+	@media (max-width: 480px) {
+		footer .links {
+			flex-direction: column;
+			gap: 0.25rem;
+		}
+	}
 	footer .links .link {
 		text-decoration: none;
 		color: var(--color-primary);

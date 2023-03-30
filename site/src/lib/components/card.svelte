@@ -19,8 +19,12 @@
 		const imageHeight = imageRef.height;
 		const calc = totalCardHeight - cardFooterHeight - imageHeight;
 
+		imageRef.addEventListener('contextmenu', function (e) {
+			e.preventDefault();
+		});
+
 		// Set the --image-translateY CSS variable to position the image
-		if (calc < 0) {
+		if (calc < -20) {
 			imageRef.style.setProperty('--image-translateY', `${calc}px`);
 		} else {
 			imageRef.style.setProperty('--image-translateY', `0px`);
@@ -59,9 +63,9 @@
 		/>
 	</div>
 	<div class="footer" bind:this={cardFooterRef}>
-		<a href={`#${category}`} class="category">{category}</a>
+		<span class="category">{category}</span>
 		<div class="details">
-			<a class="name" href={`https://github.com/${username}`}>
+			<a class="username" href={`https://github.com/${username}`}>
 				{username}
 			</a>
 			<div class="star">
@@ -88,6 +92,7 @@
 	}
 	.card .image-container {
 		background-size: contain;
+		background-color: white;
 		height: 12.5rem;
 		object-fit: cover;
 		overflow: hidden;
@@ -101,6 +106,7 @@
 	.card .image-container img {
 		transition: transform 1.75s;
 		width: 100%;
+		user-select: none;
 	}
 	.card .image-container:hover img {
 		transform: translateY(var(--image-translateY));
@@ -118,9 +124,6 @@
 		font-size: 0.875rem;
 		width: 100%;
 	}
-	.card .footer .category:hover {
-		color: var(--color-primary);
-	}
 	.card .footer .details {
 		align-items: center;
 		display: flex;
@@ -130,7 +133,7 @@
 		padding: 0.375rem 0;
 		width: 100%;
 	}
-	.card .footer .name {
+	.card .footer .username {
 		color: var(--color-on-foreground);
 		font-size: 1rem;
 		font-weight: 500;
@@ -139,7 +142,7 @@
 		width: 75%;
 		word-wrap: break-word;
 	}
-	.card .footer .name:hover {
+	.card:hover .footer .username {
 		color: var(--color-primary-hover);
 	}
 	.card:hover {

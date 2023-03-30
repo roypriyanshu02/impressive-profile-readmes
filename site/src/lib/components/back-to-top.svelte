@@ -12,8 +12,22 @@
 			// Get the current scroll position
 			let currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
 
-			// Set the visibility state based on the current scroll position
-			visibility = currentScroll > 250;
+			// Get the total height of the document
+			let totalHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+
+			// Get the height of the viewport
+			let viewportHeight = document.documentElement.clientHeight || window.innerHeight;
+
+			// Calculate the distance from the bottom of the viewport to the bottom of the document
+			let distanceToBottom = totalHeight - (currentScroll + viewportHeight);
+
+			// Check if the distance to the bottom is less than 90 pixels
+			if (distanceToBottom < 80) {
+				visibility = false;
+			} else {
+				// Set the visibility state based on the current scroll position
+				visibility = currentScroll > 250;
+			}
 		});
 	});
 </script>
@@ -43,7 +57,7 @@
 	}
 	.back-to-top {
 		background-color: var(--color-foreground);
-		border: var(--border-size) solid var(--color-foreground);
+		border: var(--border-size) solid var(--color-gray);
 		border-radius: var(--border-radius);
 		color: var(--color-on-foreground);
 		cursor: pointer;

@@ -14,7 +14,7 @@ const captureScreenshot = async (path, userName) => {
 	});
 	const url = `https://github.com/${userName}`;
 	const windowWidth = 1400;
-	const minWindowHeight = 1000;
+	const minWindowHeight = 1200;
 	const maxWindowHeight = 5000;
 
 	// Create new page and navigate to the user's GitHub profile

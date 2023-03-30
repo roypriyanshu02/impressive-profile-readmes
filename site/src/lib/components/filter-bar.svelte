@@ -42,7 +42,7 @@
 						<li>
 							<a
 								href={`#${item.categoryTitle.replace(/\s+/g, '-').toLowerCase()}`}
-								class="filter-item"
+								class="filter-item {selectedFilter === item.categoryTitle ? 'active' : ''}"
 								on:click|preventDefault={handleFilterClick(item.categoryTitle)}
 							>
 								{item.categoryTitle}
@@ -90,7 +90,7 @@
 	.total-cards-count {
 		background-color: var(--color-foreground);
 		border-radius: var(--border-radius);
-		color: var(--color-on-foreground);
+		color: var(--color-on-background);
 		display: inline-block;
 		font-size: 0.75rem;
 		font-weight: 600;
@@ -170,6 +170,11 @@
 		color: var(--color-on-foreground);
 		font-size: 1rem;
 		text-decoration: none;
+		border: var(--border-size) solid transparent;
+	}
+
+	.filter-list .filter-item.active {
+		color: var(--color-primary);
 	}
 
 	.filter-list .filter-item:hover {
@@ -180,6 +185,7 @@
 	.filter-item span {
 		background-color: var(--color-background);
 		border-radius: var(--border-radius);
+		margin-left: 0.75rem;
 		padding: 0.25rem 0.5rem;
 		color: var(--color-on-background);
 		font-size: 0.75rem;
