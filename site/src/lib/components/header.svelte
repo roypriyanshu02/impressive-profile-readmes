@@ -68,7 +68,6 @@
 		width: 100%;
 		z-index: 10;
 	}
-
 	.header .brand {
 		color: var(--color-on-background);
 		font-size: 1rem;
@@ -76,23 +75,19 @@
 		line-height: 1.5rem;
 		text-decoration: none;
 	}
-
 	.header .brand:hover .highlight {
 		color: var(--color-primary-hover);
 	}
-
 	.header .brand .highlight {
 		color: var(--color-primary);
 		font-size: 1.5rem;
 		font-weight: 700;
 	}
-
 	.github-icon {
 		fill: var(--color-primary);
 		height: 1.5rem;
 		width: 1.5rem;
 	}
-
 	.github-icon:hover {
 		cursor: pointer;
 		fill: var(--color-primary-hover);

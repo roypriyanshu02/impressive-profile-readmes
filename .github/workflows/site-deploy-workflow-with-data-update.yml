@@ -58,6 +58,11 @@ jobs:
         run: CHROME_BIN=$(which chromium-browser) npm run generate
         working-directory: site/
 
+      # Format and lint code
+      - name: Format and lint code
+        run: npm run format && npm run lint
+        working-directory: site/
+
       # Commit and Push the generated data
       - name: Commit and Push generated data
         uses: EndBug/add-and-commit@v9

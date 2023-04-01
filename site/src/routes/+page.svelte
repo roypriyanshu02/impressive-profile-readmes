@@ -59,7 +59,7 @@
 	<title>Impressive Profile READMEs</title>
 	<meta
 		name="description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of impressive profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
 	/>
 	<link rel="canonical" href="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
 	<meta name="author" content="Contributors" />
@@ -69,7 +69,7 @@
 	<meta property="og:title" content="Impressive Profile READMEs" />
 	<meta
 		property="og:description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of impressive profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
 	/>
 	<meta property="og:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
 	<meta
@@ -81,7 +81,7 @@
 	<meta name="twitter:title" content="Impressive Profile READMEs" />
 	<meta
 		name="twitter:description"
-		content="Get inspired to make your GitHub profile stand out! Browse our collection of impressive profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub profile stand out! Browse our collection of Impressive Profile READMEs and take your profile to the next level."
 	/>
 	<meta name="twitter:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
 	<meta

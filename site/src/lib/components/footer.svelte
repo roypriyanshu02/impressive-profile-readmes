@@ -65,17 +65,17 @@
 
 <style>
 	footer .container {
-		display: grid;
-		grid-template-columns: 10fr 2fr;
-		grid-gap: 1rem;
 		align-items: center;
+		display: grid;
+		grid-gap: 1rem;
+		grid-template-columns: 10fr 2fr;
 	}
 	footer .links {
-		justify-content: flex-start;
-		font-size: 1rem;
-		line-height: 1.5rem;
-		gap: 1.25rem;
 		display: flex;
+		font-size: 1rem;
+		gap: 1.25rem;
+		justify-content: flex-start;
+		line-height: 1.5rem;
 		padding: 1rem;
 	}
 	@media (max-width: 480px) {
@@ -85,8 +85,8 @@
 		}
 	}
 	footer .links .link {
-		text-decoration: none;
 		color: var(--color-primary);
+		text-decoration: none;
 	}
 	footer .links .link::marker {
 		color: var(--color-on-background);
@@ -95,28 +95,28 @@
 		color: var(--color-primary-hover);
 	}
 	footer .icons {
+		align-items: center;
 		display: flex;
-		padding: 1rem;
+		gap: 0.75rem;
 		grid-column: 2 / -1;
 		justify-content: flex-end;
-		align-items: center;
-		gap: 0.75rem;
+		padding: 1rem;
 	}
 	footer .icons .icon {
-		height: 1.5rem;
-		width: 1.5rem;
 		fill: var(--color-primary);
+		height: 1.5rem;
 		transition: fill 0.3s ease-out;
+		width: 1.5rem;
 	}
 	footer .icons .icon:hover {
 		cursor: pointer;
 		fill: var(--color-primary-hover);
 	}
 	footer .update-at {
-		font-size: 1rem;
 		color: var(--color-on-background);
-		text-align: center;
+		font-size: 1rem;
 		padding: 0.5rem 0;
+		text-align: center;
 	}
 	footer .update-at .highlight {
 		font-style: italic;

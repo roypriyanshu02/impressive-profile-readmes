@@ -1,5 +1,4 @@
 <script>
-	import { formatNumber } from '$lib/utility/ui-utils.js';
 	import { afterUpdate } from 'svelte';
 
 	// Export the props
@@ -44,6 +43,24 @@
 			},
 			{ once: true }
 		);
+	};
+
+	// JavaScript that converts a number to a shorter, human-readable format with suffixes 'k' (thousands), 'm' (millions), and 'b' (billions)
+	const formatNumber = (num) => {
+		// Check if the number is greater than or equal to 1 billion
+		if (num >= 1e9) {
+			return (num / 1e9).toFixed(1).replace(/\.0+$/, '') + 'B';
+		}
+		// Check if the number is greater than or equal to 1 million
+		if (num >= 1e6) {
+			return (num / 1e6).toFixed(1).replace(/\.0+$/, '') + 'M';
+		}
+		// Check if the number is greater than or equal to 1 thousand
+		if (num >= 1e3) {
+			return (num / 1e3).toFixed(1).replace(/\.0+$/, '') + 'K';
+		}
+		// Return the number rounded to zero decimal places
+		return Number(num).toFixed(0);
 	};
 
 	// Run the following code after the component is updated
@@ -91,8 +108,8 @@
 		width: 100%;
 	}
 	.card .image-container {
-		background-size: contain;
 		background-color: white;
+		background-size: contain;
 		height: 12.5rem;
 		object-fit: cover;
 		overflow: hidden;
@@ -105,8 +122,8 @@
 	}
 	.card .image-container img {
 		transition: transform 1.75s;
-		width: 100%;
 		user-select: none;
+		width: 100%;
 	}
 	.card .image-container:hover img {
 		transform: translateY(var(--image-translateY));

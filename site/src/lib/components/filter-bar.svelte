@@ -72,12 +72,10 @@
 		top: 0;
 		z-index: 10;
 	}
-
 	.filter-container {
 		align-items: center;
 		display: flex;
 	}
-
 	.total-result-container {
 		align-items: center;
 		color: var(--color-on-background);
@@ -86,7 +84,6 @@
 		font-weight: 500;
 		gap: 0.5rem;
 	}
-
 	.total-cards-count {
 		background-color: var(--color-foreground);
 		border-radius: var(--border-radius);
@@ -97,7 +94,6 @@
 		padding: 0.5rem 0.75rem;
 		white-space: nowrap;
 	}
-
 	.filter-dropdown {
 		align-items: center;
 		background: var(--color-foreground);
@@ -115,12 +111,10 @@
 		transition: background var(--transition-default);
 		user-select: none;
 	}
-
 	.filter-dropdown:hover {
 		background: var(--color-white);
 		border-color: var(--color-primary-hover);
 	}
-
 	.filter-dropdown svg {
 		fill: var(--color-on-foreground);
 		height: 1rem;
@@ -128,68 +122,59 @@
 		transition: transform var(--transition-default);
 		width: 1rem;
 	}
-
 	.filter-dropdown.active,
 	.filter-dropdown.active svg {
 		border-color: var(--color-on-primary-hover);
 		color: var(--color-gray);
 		fill: var(--color-gray);
 	}
-
 	.filter-dropdown.active svg {
 		transform: rotate(180deg);
 	}
-
 	.filter-list {
 		background: var(--color-foreground);
 		border: var(--border-size) solid var(--color-primary-hover);
 		border-radius: var(--border-radius);
+		list-style-type: none;
 		margin-top: 0.5rem;
 		min-width: 12rem;
-		list-style-type: none;
 		overflow: auto;
 		padding: 0.5rem;
 		position: absolute;
 		z-index: 10;
 	}
-
 	.filter-list::-webkit-scrollsection {
 		display: none;
 	}
-
 	.filter-list .filter-item {
-		display: flex;
-		justify-content: space-between;
 		align-items: center;
+		border: var(--border-size) solid transparent;
 		border-radius: var(--border-radius);
+		color: var(--color-on-foreground);
 		cursor: pointer;
 		display: flex;
-		font-weight: 400;
-		padding: 0.75rem 1rem;
-		transition: background var(--transition-default);
-		color: var(--color-on-foreground);
 		font-size: 1rem;
+		font-weight: 400;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
 		text-decoration: none;
-		border: var(--border-size) solid transparent;
+		transition: background var(--transition-default);
 	}
-
 	.filter-list .filter-item.active {
 		color: var(--color-primary);
 	}
-
 	.filter-list .filter-item:hover {
 		background: var(--color-white);
 		color: var(--color-primary-hover);
 	}
-
 	.filter-item span {
 		background-color: var(--color-background);
 		border-radius: var(--border-radius);
-		margin-left: 0.75rem;
-		padding: 0.25rem 0.5rem;
 		color: var(--color-on-background);
 		font-size: 0.75rem;
 		font-weight: 600;
+		margin-left: 0.75rem;
+		padding: 0.25rem 0.5rem;
 		white-space: nowrap;
 	}
 </style>
