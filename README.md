@@ -44,6 +44,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [AbhishekMaira10](https://github.com/AbhishekMaira10)
 - [aemmadi](https://github.com/aemmadi)
 - [Ahmad-Sawalqeh](https://github.com/Ahmad-Sawalqeh)
+- [alicemist](https://github.com/alicemist)
 - [anmol098](https://github.com/anmol098)
 - [apoorvtyagi](https://github.com/apoorvtyagi)
 - [claytonjhamilton](https://github.com/claytonjhamilton)
