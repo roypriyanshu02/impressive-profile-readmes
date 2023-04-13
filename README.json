@@ -2035,6 +2035,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/seanpm2001" },
+								"children": [{ "type": "text", "value": "seanpm2001" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/snykk" },
 								"children": [{ "type": "text", "value": "snykk" }]
 							}
@@ -4501,5 +4514,5 @@
 			}
 		]
 	},
-	"lastModified": 1681397871661
+	"lastModified": 1681410086648
 }
