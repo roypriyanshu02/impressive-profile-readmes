@@ -714,6 +714,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/dfreilich" },
+								"children": [{ "type": "text", "value": "dfreilich" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/eagleanurag" },
 								"children": [{ "type": "text", "value": "eagleanurag" }]
 							}
@@ -4488,5 +4501,5 @@
 			}
 		]
 	},
-	"lastModified": 1681397462363
+	"lastModified": 1681397871661
 }
