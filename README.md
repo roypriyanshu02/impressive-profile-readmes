@@ -52,6 +52,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [CyrisXD](https://github.com/CyrisXD)
 - [DavidsDvm](https://github.com/DavidsDvm)
 - [Defcon27](https://github.com/Defcon27)
+- [dfreilich](https://github.com/dfreilich)
 - [gkhan205](https://github.com/gkhan205)
 - [guilyx](https://github.com/guilyx)
 - [Husayn01](https://github.com/Husayn01)
