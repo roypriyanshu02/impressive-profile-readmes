@@ -184,6 +184,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [nachoverdon](https://github.com/nachoverdon)
 - [natemoo-re](https://github.com/natemoo-re)
 - [ouuan](https://github.com/ouuan)
+- [probablykasper](https://github.com/probablykasper)
 - [RaoHai](https://github.com/RaoHai)
 - [simonw](https://github.com/simonw)
 - [sw-yx](https://github.com/sw-yx)
