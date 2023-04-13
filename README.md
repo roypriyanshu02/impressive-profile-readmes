@@ -80,6 +80,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Thomas-George-T](https://github.com/Thomas-George-T)
 - [ValentineFernandes](https://github.com/ValentineFernandes)
 - [VikashPR](https://github.com/VikashPR)
+- [warengonzaga](https://github.com/warengonzaga)
 - [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
 - [xiaoluoboding](https://github.com/xiaoluoboding)
 - [zumrudu-anka](https://github.com/zumrudu-anka)
