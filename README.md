@@ -157,6 +157,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [orhun](https://github.com/orhun)
 - [prathimacode-hub](https://github.com/prathimacode-hub)
 - [roaldnefs](https://github.com/roaldnefs)
+- [seanpm2001](https://github.com/seanpm2001)
 - [snykk](https://github.com/snykk)
 - [SoupyzInc](https://github.com/SoupyzInc)
 - [vidursatija](https://github.com/vidursatija)
