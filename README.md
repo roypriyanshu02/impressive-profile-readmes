@@ -194,6 +194,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [probablykasper](https://github.com/probablykasper)
 - [RaoHai](https://github.com/RaoHai)
 - [simonw](https://github.com/simonw)
+- [surajshende247](https://github.com/surajshende247)
 - [sw-yx](https://github.com/sw-yx)
 - [tallguyjenks](https://github.com/tallguyjenks)
 - [teoxoy](https://github.com/teoxoy)
