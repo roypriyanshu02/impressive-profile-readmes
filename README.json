@@ -1156,6 +1156,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/ysherqawi" },
+								"children": [{ "type": "text", "value": "ysherqawi" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/zumrudu-anka" },
 								"children": [{ "type": "text", "value": "zumrudu-anka" }]
 							}
@@ -4527,5 +4540,5 @@
 			}
 		]
 	},
-	"lastModified": 1681550382877
+	"lastModified": 1681555224200
 }
