@@ -112,6 +112,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [sindresorhus](https://github.com/sindresorhus)
 - [SuperSupeng](https://github.com/SuperSupeng)
 - [trinib](https://github.com/trinib)
+- [vladimirlukyanov](https://github.com/vladimirlukyanov)
 - [Xx-Ashutosh-xX](https://github.com/Xx-Ashutosh-xX)
 
 #### Badges/Icons
