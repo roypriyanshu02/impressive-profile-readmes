@@ -74,6 +74,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [rajaprerak](https://github.com/rajaprerak)
 - [Raray-chuan](https://github.com/Raray-chuan)
 - [sciencepal](https://github.com/sciencepal)
+- [sharannyobasu](https://github.com/sharannyobasu)
 - [somekindofwallflower](https://github.com/somekindofwallflower)
 - [SP-XD](https://github.com/SP-XD)
 - [Spiderpig86](https://github.com/Spiderpig86)
