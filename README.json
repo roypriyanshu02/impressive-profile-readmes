@@ -1734,6 +1734,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/CrazyChickenDev" },
+								"children": [{ "type": "text", "value": "CrazyChickenDev" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/monkindey" },
 								"children": [{ "type": "text", "value": "monkindey" }]
 							}
@@ -4553,5 +4566,5 @@
 			}
 		]
 	},
-	"lastModified": 1681556003029
+	"lastModified": 1681580863603
 }
