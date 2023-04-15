@@ -59,6 +59,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Husayn01](https://github.com/Husayn01)
 - [iampavangandhi](https://github.com/iampavangandhi)
 - [itgoyo](https://github.com/itgoyo)
+- [leander-dsouza](https://github.com/leander-dsouza)
 - [Jackyu-1999](https://github.com/Jackyu-1999)
 - [KasRoudra](https://github.com/KasRoudra)
 - [keshavsingh4522](https://github.com/keshavsingh4522)
