@@ -139,6 +139,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 #### Descriptive
 
+- [akshitagupta15june](https://github.com/akshitagupta15june)
 - [amxchang](https://github.com/amxchang)
 - [AnzenKodo](https://github.com/AnzenKodo)
 - [ApurvShah007](https://github.com/ApurvShah007)
