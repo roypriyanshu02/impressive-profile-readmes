@@ -3206,6 +3206,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/artogahr" },
+								"children": [{ "type": "text", "value": "artogahr" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/arturssmirnovs" },
 								"children": [{ "type": "text", "value": "arturssmirnovs" }]
 							}
@@ -4540,5 +4553,5 @@
 			}
 		]
 	},
-	"lastModified": 1681555224200
+	"lastModified": 1681556003029
 }
