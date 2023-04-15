@@ -92,6 +92,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 - [ari-hacks](https://github.com/ari-hacks)
 - [BrunnerLivio](https://github.com/BrunnerLivio)
+- [darshan-jain](https://github.com/darshan-jain)
 - [demartini](https://github.com/demartini)
 - [dephraiim](https://github.com/dephraiim)
 - [fnky](https://github.com/fnky)
