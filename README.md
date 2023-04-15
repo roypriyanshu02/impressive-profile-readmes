@@ -218,6 +218,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [edisonlee55](https://github.com/edisonlee55)
 - [innng](https://github.com/innng)
 - [oussamabouchikhi](https://github.com/oussamabouchikhi)
+- [SoorajSNBlaze333](https://github.com/SoorajSNBlaze333)
 - [Tynab](https://github.com/Tynab)
 - [vaaski](https://github.com/vaaski)
 - [Wrapperup](https://github.com/Wrapperup)
