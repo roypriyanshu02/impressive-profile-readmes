@@ -190,6 +190,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [ouuan](https://github.com/ouuan)
 - [probablykasper](https://github.com/probablykasper)
 - [RaoHai](https://github.com/RaoHai)
+- [Shing-Ho](https://github.com/Shing-Ho)
 - [simonw](https://github.com/simonw)
 - [sw-yx](https://github.com/sw-yx)
 - [tallguyjenks](https://github.com/tallguyjenks)
