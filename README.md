@@ -248,6 +248,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 #### Minimalistic
 
+- [achyutghosh](https://github.com/achyutghosh)
 - [akasrai](https://github.com/akasrai)
 - [alwinw](https://github.com/alwinw)
 - [anuraghazra](https://github.com/anuraghazra)
