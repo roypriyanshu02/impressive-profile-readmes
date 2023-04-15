@@ -251,6 +251,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [alwinw](https://github.com/alwinw)
 - [anuraghazra](https://github.com/anuraghazra)
 - [aralroca](https://github.com/aralroca)
+- [artogahr](https://github.com/artogahr)
 - [arturssmirnovs](https://github.com/arturssmirnovs)
 - [athul](https://github.com/athul)
 - [d-koppenhagen](https://github.com/d-koppenhagen)
