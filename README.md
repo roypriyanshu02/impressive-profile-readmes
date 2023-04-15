@@ -85,6 +85,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [warengonzaga](https://github.com/warengonzaga)
 - [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
 - [xiaoluoboding](https://github.com/xiaoluoboding)
+- [ysherqawi](https://github.com/ysherqawi)
 - [zumrudu-anka](https://github.com/zumrudu-anka)
 
 #### Animation
