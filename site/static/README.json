@@ -2635,8 +2635,8 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://github.com/yutakatay" },
-								"children": [{ "type": "text", "value": "yutakatay" }]
+								"props": { "href": "https://github.com/yutkat" },
+								"children": [{ "type": "text", "value": "yutkat" }]
 							}
 						]
 					}
@@ -4696,5 +4696,5 @@
 			}
 		]
 	},
-	"lastModified": 1681627911355
+	"lastModified": 1681638140192
 }
