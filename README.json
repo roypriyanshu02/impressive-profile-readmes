@@ -3228,6 +3228,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/Sumyak-Jain" },
+								"children": [{ "type": "text", "value": "Sumyak-Jain" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/thewhiteh4t" },
 								"children": [{ "type": "text", "value": "thewhiteh4t" }]
 							}
@@ -4735,5 +4748,5 @@
 			}
 		]
 	},
-	"lastModified": 1681641462751
+	"lastModified": 1681658567022
 }
