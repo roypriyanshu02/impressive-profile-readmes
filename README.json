@@ -1522,6 +1522,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/vladimirlukyanov" },
+								"children": [{ "type": "text", "value": "vladimirlukyanov" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/Xx-Ashutosh-xX" },
 								"children": [{ "type": "text", "value": "Xx-Ashutosh-xX" }]
 							}
@@ -4631,5 +4644,5 @@
 			}
 		]
 	},
-	"lastModified": 1681588238385
+	"lastModified": 1681626469145
 }
