@@ -204,7 +204,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [tallguyjenks](https://github.com/tallguyjenks)
 - [teoxoy](https://github.com/teoxoy)
 - [thmsgbrt](https://github.com/thmsgbrt)
-- [yutakatay](https://github.com/yutakatay)
+- [yutkat](https://github.com/yutkat)
 
 #### Fancy Fonts
 
