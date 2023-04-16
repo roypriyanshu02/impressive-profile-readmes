@@ -2600,6 +2600,19 @@
 								"children": [{ "type": "text", "value": "thmsgbrt" }]
 							}
 						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/yutakatay" },
+								"children": [{ "type": "text", "value": "yutakatay" }]
+							}
+						]
 					}
 				]
 			},
@@ -4644,5 +4657,5 @@
 			}
 		]
 	},
-	"lastModified": 1681626469145
+	"lastModified": 1681626913427
 }
