@@ -154,6 +154,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 - [ashbakernz](https://github.com/ashbakernz)
 - [CrazyChickenDev](https://github.com/CrazyChickenDev)
+- [KiSobral](https://github.com/KiSobral)
 - [laohanme](https://github.com/laohanme)
 - [monkindey](https://github.com/monkindey)
 - [nurofsun](https://github.com/nurofsun)
