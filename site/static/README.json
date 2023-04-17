@@ -3976,6 +3976,98 @@
 								"type": "element",
 								"tag": "a",
 								"props": {
+									"href": "https://www.seancdavis.com/posts/three-ways-to-add-image-to-github-readme/"
+								},
+								"children": [
+									{ "type": "text", "value": "3 Ways to Add an Image to the GitHub README" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Sean" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
+									"href": "https://pragmaticpineapple.com/adding-custom-html-and-css-to-github-readme/"
+								},
+								"children": [
+									{ "type": "text", "value": "Adding custom HTML and CSS to GitHub README" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Nikola Đuza" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://martinheinz.dev/blog/29" },
+								"children": [
+									{ "type": "text", "value": "Build a Stunning README For Your GitHub Profile" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Martin Heinz" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://torrocus.com/blog/special-github-repository/" },
+								"children": [
+									{ "type": "text", "value": "Create a special repository in your GitHub Profile" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Alex Malaszkiewicz" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
 									"href": "https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-your-github-profile/managing-your-profile-readme"
 								},
 								"children": [{ "type": "text", "value": "Creating a GitHub Profile README" }]
@@ -3986,6 +4078,101 @@
 								"tag": "em",
 								"props": {},
 								"children": [{ "type": "text", "value": "- GitHub Docs" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
+									"href": "https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g"
+								},
+								"children": [
+									{
+										"type": "text",
+										"value": "Dynamically Generated Github Stats For Your Profile ReadMe"
+									}
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Anurag Hazra" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
+									"href": "https://towardsdatascience.com/enrich-your-github-profile-with-these-tips-272fa1eafe05"
+								},
+								"children": [
+									{ "type": "text", "value": "Enrich your GitHub profile with these tips" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Zolzaya Luvsandorj" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://happycoding.io/tutorials/html/github-profile-readme" },
+								"children": [{ "type": "text", "value": "GitHub Profile README" }]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Kevin" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
+									"href": "https://dev.to/satvikchachra/how-to-add-an-awesome-readme-to-your-github-profile-361n"
+								},
+								"children": [
+									{ "type": "text", "value": "How to add an awesome README to your GitHub Profile" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Satvik Chachra" }]
 							}
 						]
 					},
@@ -4044,30 +4231,6 @@
 								"type": "element",
 								"tag": "a",
 								"props": {
-									"href": "https://towardsdatascience.com/enrich-your-github-profile-with-these-tips-272fa1eafe05"
-								},
-								"children": [
-									{ "type": "text", "value": "Enrich your GitHub profile with these tips" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Zolzaya Luvsandorj" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
 									"href": "https://blog.masaischool.com/how-to-create-an-impressive-github-profile-readme/"
 								},
 								"children": [
@@ -4080,76 +4243,6 @@
 								"tag": "em",
 								"props": {},
 								"children": [{ "type": "text", "value": "- Nitish R Sonu" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
-									"href": "https://www.seancdavis.com/posts/three-ways-to-add-image-to-github-readme/"
-								},
-								"children": [
-									{ "type": "text", "value": "3 Ways to Add an Image to the GitHub README" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Sean" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://laxmena.com/posts/github-pofile-readme-part2" },
-								"children": [
-									{ "type": "text", "value": "OpenSource Widgets to Power GitHub Profile README" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Lakshmanan Meiyappan" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
-									"href": "https://hackernoon.com/how-to-make-a-rockstar-github-profile-readme"
-								},
-								"children": [
-									{ "type": "text", "value": "How to Make a Rockstar Github Profile README" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Sachin Malhotra" }]
 							}
 						]
 					},
@@ -4183,58 +4276,11 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://fantinel.dev/github-profile-readme" },
-								"children": [
-									{ "type": "text", "value": "Water Waving Effect Using Html, Css and Svg" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Matt Fantinel" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://martinheinz.dev/blog/29" },
-								"children": [
-									{ "type": "text", "value": "Build a Stunning README For Your GitHub Profile" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Martin Heinz" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
 								"props": {
-									"href": "https://codemaker2016.medium.com/tips-and-tricks-to-create-an-awesome-github-profile-readme-ce3825a355c7"
+									"href": "https://hackernoon.com/how-to-make-a-rockstar-github-profile-readme"
 								},
 								"children": [
-									{
-										"type": "text",
-										"value": "Tips and tricks to create an awesome GitHub profile README"
-									}
+									{ "type": "text", "value": "How to Make a Rockstar Github Profile README" }
 								]
 							},
 							{ "type": "text", "value": " " },
@@ -4242,51 +4288,7 @@
 								"type": "element",
 								"tag": "em",
 								"props": {},
-								"children": [{ "type": "text", "value": "- Vishnu Sivan" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
-									"href": "https://pragmaticpineapple.com/adding-custom-html-and-css-to-github-readme/"
-								},
-								"children": [
-									{ "type": "text", "value": "Adding custom HTML and CSS to GitHub README" }
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Nikola Đuza" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://happycoding.io/tutorials/html/github-profile-readme" },
-								"children": [{ "type": "text", "value": "GitHub Profile README" }]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Kevin" }]
+								"children": [{ "type": "text", "value": "- Sachin Malhotra" }]
 							}
 						]
 					},
@@ -4326,33 +4328,6 @@
 									"href": "https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g"
 								},
 								"children": [
-									{
-										"type": "text",
-										"value": "Dynamically Generated Github Stats For Your Profile ReadMe"
-									}
-								]
-							},
-							{ "type": "text", "value": " " },
-							{
-								"type": "element",
-								"tag": "em",
-								"props": {},
-								"children": [{ "type": "text", "value": "- Anurag Hazra" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
-									"href": "https://dev.to/anuraghazra/dynamically-generated-github-stats-for-your-profile-readme-o4g"
-								},
-								"children": [
 									{ "type": "text", "value": "Market Yourself With a Killer GitHub Readme" }
 								]
 							},
@@ -4373,11 +4348,9 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": {
-									"href": "https://dev.to/satvikchachra/how-to-add-an-awesome-readme-to-your-github-profile-361n"
-								},
+								"props": { "href": "https://laxmena.com/posts/github-pofile-readme-part2" },
 								"children": [
-									{ "type": "text", "value": "How to add an awesome README to your GitHub Profile" }
+									{ "type": "text", "value": "OpenSource Widgets to Power GitHub Profile README" }
 								]
 							},
 							{ "type": "text", "value": " " },
@@ -4385,7 +4358,7 @@
 								"type": "element",
 								"tag": "em",
 								"props": {},
-								"children": [{ "type": "text", "value": "- Satvik Chachra" }]
+								"children": [{ "type": "text", "value": "- Lakshmanan Meiyappan" }]
 							}
 						]
 					},
@@ -4397,9 +4370,14 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://torrocus.com/blog/special-github-repository/" },
+								"props": {
+									"href": "https://codemaker2016.medium.com/tips-and-tricks-to-create-an-awesome-github-profile-readme-ce3825a355c7"
+								},
 								"children": [
-									{ "type": "text", "value": "Create a special repository in your GitHub Profile" }
+									{
+										"type": "text",
+										"value": "Tips and tricks to create an awesome GitHub profile README"
+									}
 								]
 							},
 							{ "type": "text", "value": " " },
@@ -4407,7 +4385,29 @@
 								"type": "element",
 								"tag": "em",
 								"props": {},
-								"children": [{ "type": "text", "value": "- Alex Malaszkiewicz" }]
+								"children": [{ "type": "text", "value": "- Vishnu Sivan" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://fantinel.dev/github-profile-readme" },
+								"children": [
+									{ "type": "text", "value": "Water Waving Effect Using Html, Css and Svg" }
+								]
+							},
+							{ "type": "text", "value": " " },
+							{
+								"type": "element",
+								"tag": "em",
+								"props": {},
+								"children": [{ "type": "text", "value": "- Matt Fantinel" }]
 							}
 						]
 					}
@@ -4439,6 +4439,149 @@
 				"tag": "ul",
 				"props": {},
 				"children": [
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://shields.io/" },
+								"children": [{ "type": "text", "value": "Badges" }]
+							},
+							{
+								"type": "text",
+								"value": " - Customizable badges and labels for your Github profile and project READMEs."
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://gautamkrishnar.github.io/blog-post-workflow/" },
+								"children": [{ "type": "text", "value": "Blog posts" }]
+							},
+							{
+								"type": "text",
+								"value": " - Show your latest blog posts from any sources to your GitHub Readme."
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": {
+									"href": "https://github.com/HwangTaehyun/github-repository-contribution-stats"
+								},
+								"children": [{ "type": "text", "value": "Contribution stats generator" }]
+							},
+							{
+								"type": "text",
+								"value": " - Dynamic Github Repository Contribution stats generator"
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/anmol098/waka-readme-stats" },
+								"children": [{ "type": "text", "value": "Dev metrics" }]
+							},
+							{ "type": "text", "value": " - Cool dev metrics for your Github profile Readme" }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/athul/waka-readme" },
+								"children": [{ "type": "text", "value": "Dev Metrics in Readme" }]
+							},
+							{ "type": "text", "value": " - Weekly Metrics on your Profile Readme" }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/ABSphreak/readme-jokes" },
+								"children": [{ "type": "text", "value": "Funny jokes" }]
+							},
+							{ "type": "text", "value": " - Add jokes into your GitHub README." }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/marketplace/actions/profile-readme" },
+								"children": [{ "type": "text", "value": "GitHub Action" }]
+							},
+							{
+								"type": "text",
+								"value": " - Add widgets to your profile readme with this Github Action"
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/jamesgeorge007/github-activity-readme" },
+								"children": [{ "type": "text", "value": "GitHub activity" }]
+							},
+							{ "type": "text", "value": " - Updates README with your recent GitHub activity." }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github-profile-readme-creator.web.app/" },
+								"children": [{ "type": "text", "value": "Github Profile Readme Creator" }]
+							},
+							{
+								"type": "text",
+								"value": " - Generate user-friendly, intuitive and dynamic markdown for your profile README"
+							}
+						]
+					},
 					{
 						"type": "element",
 						"tag": "li",
@@ -4514,13 +4657,10 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://github-profile-readme-creator.web.app/" },
-								"children": [{ "type": "text", "value": "Github Profile Readme Creator" }]
+								"props": { "href": "https://www.profileme.dev/" },
+								"children": [{ "type": "text", "value": "GitHub profile readme generator" }]
 							},
-							{
-								"type": "text",
-								"value": " - Generate user-friendly, intuitive and dynamic markdown for your profile README"
-							}
+							{ "type": "text", "value": " - Build an amazing GitHub profile README in minutes" }
 						]
 					},
 					{
@@ -4548,226 +4688,10 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://www.profileme.dev/" },
-								"children": [{ "type": "text", "value": "GitHub profile readme generator" }]
-							},
-							{ "type": "text", "value": " - Build an amazing GitHub profile README in minutes" }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/jamesgeorge007/github-activity-readme" },
-								"children": [{ "type": "text", "value": "GitHub activity" }]
-							},
-							{ "type": "text", "value": " - Updates README with your recent GitHub activity." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://ileriayo.github.io/markdown-badges/" },
-								"children": [{ "type": "text", "value": "Markdown badges" }]
-							},
-							{ "type": "text", "value": " - Add badges to your Profile and Projects READMEs." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/ABSphreak/readme-jokes" },
-								"children": [{ "type": "text", "value": "Funny jokes" }]
-							},
-							{ "type": "text", "value": " - Add jokes into your GitHub README." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/ryo-ma/github-profile-trophy" },
-								"children": [{ "type": "text", "value": "GitHub stat trophies" }]
-							},
-							{ "type": "text", "value": " - Add dynamically generated GitHub Stat Trophies." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://shields.io/" },
-								"children": [{ "type": "text", "value": "Badges" }]
-							},
-							{
-								"type": "text",
-								"value": " - Customizable badges and labels for your Github profile and project READMEs."
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/PiyushSuthar/github-readme-quotes" },
-								"children": [{ "type": "text", "value": "Quotes" }]
-							},
-							{ "type": "text", "value": " - Add Programming Quotes to your GitHub Readme." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://gautamkrishnar.github.io/blog-post-workflow/" },
-								"children": [{ "type": "text", "value": "Blog posts" }]
-							},
-							{
-								"type": "text",
-								"value": " - Show your latest blog posts from any sources to your GitHub Readme."
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://gtce.itsvg.in/" },
-								"children": [{ "type": "text", "value": "Twitter posts" }]
-							},
-							{ "type": "text", "value": " - Showcase your Twitter latest post on your Readme" }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://readme-typing-svg.demolab.com/demo/" },
-								"children": [{ "type": "text", "value": "Readme typing animation" }]
-							},
-							{
-								"type": "text",
-								"value": " - Dynamically generated, customizable SVG that gives the appearance of typing and deleting text."
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/omidnikrah/github-readme-medium" },
-								"children": [{ "type": "text", "value": "Medium article" }]
-							},
-							{
-								"type": "text",
-								"value": " - Show your latest Medium article on your GitHub profile readme!"
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": {
-									"href": "https://github.com/HwangTaehyun/github-repository-contribution-stats"
-								},
-								"children": [{ "type": "text", "value": "Contribution stats generator" }]
-							},
-							{
-								"type": "text",
-								"value": " - Dynamic Github Repository Contribution stats generator"
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://streak-stats.demolab.com/demo/" },
-								"children": [{ "type": "text", "value": "Steak stats" }]
-							},
-							{
-								"type": "text",
-								"value": " - Display your total contributions, current streak, and longest streak on your GitHub profile README"
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
 								"props": { "href": "https://github.com/anuraghazra/github-readme-stats" },
 								"children": [{ "type": "text", "value": "Github Readme stats" }]
 							},
 							{ "type": "text", "value": " - Dynamically generated stats for your github readmes" }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/athul/waka-readme" },
-								"children": [{ "type": "text", "value": "Dev Metrics in Readme" }]
-							},
-							{ "type": "text", "value": " - Weekly Metrics on your Profile Readme" }
 						]
 					},
 					{
@@ -4792,10 +4716,10 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://simpleicons.org/" },
-								"children": [{ "type": "text", "value": "SVG icons" }]
+								"props": { "href": "https://github.com/ryo-ma/github-profile-trophy" },
+								"children": [{ "type": "text", "value": "GitHub stat trophies" }]
 							},
-							{ "type": "text", "value": " - Over 2400 Free SVG icons of popular brands" }
+							{ "type": "text", "value": " - Add dynamically generated GitHub Stat Trophies." }
 						]
 					},
 					{
@@ -4806,41 +4730,10 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://visitcount.itsvg.in/" },
-								"children": [{ "type": "text", "value": "Profile Visit Count" }]
+								"props": { "href": "https://ileriayo.github.io/markdown-badges/" },
+								"children": [{ "type": "text", "value": "Markdown badges" }]
 							},
-							{ "type": "text", "value": " - Visit Count tracker for your README" }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/marketplace/actions/profile-readme" },
-								"children": [{ "type": "text", "value": "GitHub Action" }]
-							},
-							{
-								"type": "text",
-								"value": " - Add widgets to your profile readme with this Github Action"
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/anmol098/waka-readme-stats" },
-								"children": [{ "type": "text", "value": "Dev metrics" }]
-							},
-							{ "type": "text", "value": " - Cool dev metrics for your Github profile Readme" }
+							{ "type": "text", "value": " - Add badges to your Profile and Projects READMEs." }
 						]
 					},
 					{
@@ -4857,23 +4750,6 @@
 								"children": [{ "type": "text", "value": "Markdown cheatsheet" }]
 							},
 							{ "type": "text", "value": " - A quick reference markdown cheatsheet." }
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://quickref.me/markdown.html" },
-								"children": [{ "type": "text", "value": "Markdown syntax" }]
-							},
-							{
-								"type": "text",
-								"value": " - A quick reference cheat sheet to the Markdown syntax."
-							}
 						]
 					},
 					{
@@ -4930,6 +4806,130 @@
 								"children": [{ "type": "text", "value": "Markdown editor" }]
 							},
 							{ "type": "text", "value": " - A online live markdown editor" }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://quickref.me/markdown.html" },
+								"children": [{ "type": "text", "value": "Markdown syntax" }]
+							},
+							{
+								"type": "text",
+								"value": " - A quick reference cheat sheet to the Markdown syntax."
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/omidnikrah/github-readme-medium" },
+								"children": [{ "type": "text", "value": "Medium article" }]
+							},
+							{
+								"type": "text",
+								"value": " - Show your latest Medium article on your GitHub profile readme!"
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://visitcount.itsvg.in/" },
+								"children": [{ "type": "text", "value": "Profile Visit Count" }]
+							},
+							{ "type": "text", "value": " - Visit Count tracker for your README" }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://github.com/PiyushSuthar/github-readme-quotes" },
+								"children": [{ "type": "text", "value": "Quotes" }]
+							},
+							{ "type": "text", "value": " - Add Programming Quotes to your GitHub Readme." }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://readme-typing-svg.demolab.com/demo/" },
+								"children": [{ "type": "text", "value": "Readme typing animation" }]
+							},
+							{
+								"type": "text",
+								"value": " - Dynamically generated, customizable SVG that gives the appearance of typing and deleting text."
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://streak-stats.demolab.com/demo/" },
+								"children": [{ "type": "text", "value": "Steak stats" }]
+							},
+							{
+								"type": "text",
+								"value": " - Display your total contributions, current streak, and longest streak on your GitHub profile README"
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://simpleicons.org/" },
+								"children": [{ "type": "text", "value": "SVG icons" }]
+							},
+							{ "type": "text", "value": " - Over 2400 Free SVG icons of popular brands" }
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
+								"props": { "href": "https://gtce.itsvg.in/" },
+								"children": [{ "type": "text", "value": "Twitter posts" }]
+							},
+							{ "type": "text", "value": " - Showcase your Twitter latest post on your Readme" }
 						]
 					}
 				]
@@ -5021,5 +5021,5 @@
 			}
 		]
 	},
-	"lastModified": 1681754081268
+	"lastModified": 1681754572509
 }
