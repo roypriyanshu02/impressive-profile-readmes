@@ -264,6 +264,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [samujjwaal](https://github.com/samujjwaal)
 - [ShahriarShafin](https://github.com/ShahriarShafin)
 - [Sumyak-Jain](https://github.com/Sumyak-Jain)
+- [thedoodler](https://github.com/thedoodler)
 - [thewhiteh4t](https://github.com/thewhiteh4t)
 - [WaylonWalker](https://github.com/WaylonWalker)
 
