@@ -102,6 +102,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 #### Animation
 
 - [ari-hacks](https://github.com/ari-hacks)
+- [Amchuz](https://github.com/Amchuz)
 - [BrunnerLivio](https://github.com/BrunnerLivio)
 - [darshan-jain](https://github.com/darshan-jain)
 - [demartini](https://github.com/demartini)
