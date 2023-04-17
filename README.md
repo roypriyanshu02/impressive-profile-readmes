@@ -87,6 +87,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Spiderpig86](https://github.com/Spiderpig86)
 - [Sumanth-Talluri](https://github.com/Sumanth-Talluri)
 - [syrashid](https://github.com/syrashid)
+- [syedareehaquasar](https://github.com/syedareehaquasar)
 - [Terabyte17](https://github.com/Terabyte17)
 - [theabbie](https://github.com/theabbie)
 - [theyounglord](https://github.com/theyounglord)
