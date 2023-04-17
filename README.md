@@ -289,6 +289,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [pr2tik1](https://github.com/pr2tik1)
 - [rafaballerini](https://github.com/rafaballerini)
 - [sagar-viradiya](https://github.com/sagar-viradiya)
+- [ShaanCoding](https://github.com/ShaanCoding)
 - [sriharikapu](https://github.com/sriharikapu)
 - [vanshkapoor](https://github.com/vanshkapoor)
 - [xunzhuo](https://github.com/xunzhuo)
