@@ -165,6 +165,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [filiptronicek](https://github.com/filiptronicek)
 - [garimasingh128](https://github.com/garimasingh128)
 - [gautamkrishnar](https://github.com/gautamkrishnar)
+- [harshkumarkhatri](https://github.com/harshkumarkhatri)
 - [halfrost](https://github.com/halfrost)
 - [harshkumarkhatri](https://github.com/harshkumarkhatri)
 - [Nanra](https://github.com/Nanra)
