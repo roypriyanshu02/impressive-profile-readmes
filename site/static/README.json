@@ -3332,6 +3332,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/metalim" },
+								"children": [{ "type": "text", "value": "metalim" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/rafnixg" },
 								"children": [{ "type": "text", "value": "rafnixg" }]
 							}
@@ -4956,5 +4969,5 @@
 			}
 		]
 	},
-	"lastModified": 1681751980180
+	"lastModified": 1681752149616
 }
