@@ -67,6 +67,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [MarikIshtar007](https://github.com/MarikIshtar007)
 - [MartinHeinz](https://github.com/MartinHeinz)
 - [matteobaccan](https://github.com/matteobaccan)
+- [MayMeow](https://github.com/MayMeow)
 - [mayhemantt](https://github.com/mayhemantt)
 - [MrStanDu33](https://github.com/MrStanDu33)
 - [night0721](https://github.com/night0721)
