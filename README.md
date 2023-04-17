@@ -130,6 +130,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 #### Badges/Icons
 
 - [adamalston](https://github.com/adamalston)
+- [adnanazmee](https://github.com/adnanazmee)
 - [ashleymavericks](https://github.com/ashleymavericks)
 - [br3ndonland](https://github.com/br3ndonland)
 - [dereknguyen269](https://github.com/dereknguyen269)
