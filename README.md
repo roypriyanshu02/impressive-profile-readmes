@@ -49,6 +49,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [anmol098](https://github.com/anmol098)
 - [anushkawakankar](https://github.com/anushkawakankar)
 - [apoorvtyagi](https://github.com/apoorvtyagi)
+- [aromalanil](https://github.com/aromalanil)
 - [claytonjhamilton](https://github.com/claytonjhamilton)
 - [CodeWhiteWeb](https://github.com/CodeWhiteWeb)
 - [CyrisXD](https://github.com/CyrisXD)
