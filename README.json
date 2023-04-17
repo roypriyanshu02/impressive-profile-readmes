@@ -675,6 +675,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/aromalanil" },
+								"children": [{ "type": "text", "value": "aromalanil" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/claytonjhamilton" },
 								"children": [{ "type": "text", "value": "claytonjhamilton" }]
 							}
@@ -4995,5 +5008,5 @@
 			}
 		]
 	},
-	"lastModified": 1681752446420
+	"lastModified": 1681752793314
 }
