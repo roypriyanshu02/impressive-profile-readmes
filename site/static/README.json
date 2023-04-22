@@ -922,6 +922,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/kztera" },
+								"children": [{ "type": "text", "value": "kztera" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/leander-dsouza" },
 								"children": [{ "type": "text", "value": "leander-dsouza" }]
 							}
@@ -5034,5 +5047,5 @@
 			}
 		]
 	},
-	"lastModified": 1682160722726
+	"lastModified": 1682174963014
 }
