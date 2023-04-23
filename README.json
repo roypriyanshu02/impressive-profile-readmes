@@ -227,30 +227,7 @@
 						},
 						"children": []
 					},
-					{
-						"type": "text",
-						"value": " if you found this helpful. Also, We are excited at the prospect of building an impressive community together! Therefore, we would be delighted if you joined our "
-					},
-					{
-						"type": "element",
-						"tag": "a",
-						"props": { "href": "https://t.me/+ClkvicPF4D0xNzE1" },
-						"children": [
-							{
-								"type": "element",
-								"tag": "img",
-								"props": {
-									"src": "https://img.shields.io/badge/Telegram_Group-2CA5E0?style=flat-square&logo=telegram&logoColor=white",
-									"alt": "Telegram"
-								},
-								"children": []
-							}
-						]
-					},
-					{
-						"type": "text",
-						"value": " to stay up-to-date with the latest developments in IPR and other outstanding open-source projects."
-					}
+					{ "type": "text", "value": " if you found this helpful." }
 				]
 			},
 			{
@@ -5047,5 +5024,5 @@
 			}
 		]
 	},
-	"lastModified": 1682174963014
+	"lastModified": 1682257328541
 }
