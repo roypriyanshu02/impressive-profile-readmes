@@ -101,8 +101,8 @@ const clearScreenshotDirectory = async () => {
 				console.log(`Successfully deleted the ${file} file`);
 			}
 		}
-	} catch (err) {
-		console.log(`Failed to delete ${file}: ${error.message}`);
+	} catch (error) {
+		console.log(`Failed to delete : ${error.message}`);
 	}
 };
 

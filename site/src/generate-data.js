@@ -38,10 +38,8 @@ const readScreenshotFiles = async () => {
 // Extract the list of profile names from the JSON structure produced by the markdownToJSONConverter
 const readProfilesList = async (json) => {
 	try {
-		const { contents } = json;
-		const children = contents.children;
+		const { children } = json.contents;
 		const profilesList = [];
-
 		for (let i = 0; i < children.length; i++) {
 			const item = children[i];
 			if (item.tag === 'h4') {
@@ -54,7 +52,6 @@ const readProfilesList = async (json) => {
 				i++;
 			}
 		}
-
 		console.log('Successfully extracted the list of profiles');
 		return profilesList;
 	} catch (error) {
