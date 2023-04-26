@@ -10,6 +10,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write .",
+		"refresh": "node src/refresh-data.js",
 		"generate": "node src/generate-data.js",
 		"deploy": "touch build/.nojekyll && gh-pages -d build -t true"
 	},

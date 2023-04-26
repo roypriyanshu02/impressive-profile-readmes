@@ -1,0 +1,132 @@
+name: Auto Refresh Data Workflow
+
+on:
+  schedule:
+    # triggers the workflow every 15 days
+    - cron: "0 0 1 * *"
+
+jobs:
+  # This job refresh data
+  refresh-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: site/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Install Chromium for puppeteer
+      - name: Install Chromium
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser
+
+      # Clean Install npm packages
+      - name: Install npm packages
+        run: npm ci
+        working-directory: site/
+
+      # Refresh data
+      - name: Refresh data
+        run: npm run refresh
+        working-directory: site/
+
+      # Generate README.json and Screenshots
+      - name: Generate data
+        run: CHROME_BIN=$(which chromium-browser) npm run generate
+        working-directory: site/
+
+      # Format and lint code
+      - name: Format and lint code
+        run: npm run format && npm run lint
+        working-directory: site/
+
+      # Commit and Push the refresh data
+      - name: Commit and Push refresh data
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: "github-actions[bot]"
+          author_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          message: "Refresh data"
+          add: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # This job wait for 60 seconds to make sure the data is updated
+  wait:
+    needs: refresh-data
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for 60 seconds
+        run: sleep 60
+
+  # This job builds and deploys the site
+  build-and-deploy:
+    needs: wait
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Cache node modules for faster builds
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: site/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      # Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Clean Install npm packages
+      - name: Install npm packages
+        run: npm ci
+        working-directory: site/
+
+      # Build the site
+      - name: Build the site
+        run: |
+          npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+        working-directory: site/
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
+          git config user.name "github-actions[bot]"
+          npm run deploy -- -m "Deploy refresh data to site (${{ github.sha }})"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
