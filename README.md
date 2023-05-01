@@ -302,6 +302,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [lucasvazq](https://github.com/lucasvazq)
 - [M0nica](https://github.com/M0nica)
 - [moertel](https://github.com/moertel)
+- [n3rd3x3](https://github.com/n3rd3x3)
 - [novatorem](https://github.com/novatorem)
 - [peterthehan](https://github.com/peterthehan)
 - [pr2tik1](https://github.com/pr2tik1)
