@@ -3820,6 +3820,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/n3rd3x3" },
+								"children": [{ "type": "text", "value": "n3rd3x3" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/novatorem" },
 								"children": [{ "type": "text", "value": "novatorem" }]
 							}
@@ -5037,5 +5050,5 @@
 			}
 		]
 	},
-	"lastModified": 1682901088065
+	"lastModified": 1683017987254
 }
