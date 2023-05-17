@@ -9,8 +9,7 @@
 
 	let filteredData = {
 		category: '',
-		profiles: [],
-		totalCount: 0
+		profiles: []
 	};
 
 	const updateFilteredData = (selectedCategory) => {
@@ -24,7 +23,6 @@
 				(profile) => profile.category === selectedCategory
 			);
 		}
-		filteredData.totalCount = filteredData.profiles.length;
 	};
 
 	onMount(() => {
@@ -35,7 +33,6 @@
 <FilterBar
 	filterItems={data.categories}
 	selectedFilter={filteredData.category}
-	totalCardsCount={filteredData.totalCount}
 	updateFilteredDataCallback={updateFilteredData}
 />
 

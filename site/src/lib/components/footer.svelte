@@ -60,23 +60,23 @@
 			</a>
 		</div>
 	</div>
-	<div class="update-at">Updated at <span class="highlight">{updateAt}</span></div>
+	<div class="update-at">Updated at {updateAt}</div>
 </footer>
 
 <style>
+	footer {
+		padding: 1rem 0;
+	}
 	footer .container {
-		align-items: center;
-		display: grid;
-		grid-gap: 1rem;
-		grid-template-columns: 10fr 2fr;
+		display: flex;
+		justify-content: space-between;
 	}
 	footer .links {
 		display: flex;
-		font-size: 1rem;
 		gap: 1.25rem;
-		justify-content: flex-start;
-		line-height: 1.5rem;
 		padding: 1rem;
+		font-size: 1rem;
+		line-height: 1.5rem;
 	}
 	@media (max-width: 480px) {
 		footer .links {
@@ -84,41 +84,33 @@
 			gap: 0.25rem;
 		}
 	}
-	footer .links .link {
+	footer .link {
 		color: var(--color-primary);
-		text-decoration: none;
 	}
-	footer .links .link::marker {
+	footer .link::marker {
 		color: var(--color-on-background);
 	}
-	footer .links .link:hover {
+	footer .link:hover {
 		color: var(--color-primary-hover);
 	}
 	footer .icons {
-		align-items: center;
 		display: flex;
 		gap: 0.75rem;
-		grid-column: 2 / -1;
-		justify-content: flex-end;
 		padding: 1rem;
 	}
-	footer .icons .icon {
+	footer .icon {
 		fill: var(--color-primary);
 		height: 1.5rem;
-		transition: fill 0.3s ease-out;
 		width: 1.5rem;
 	}
-	footer .icons .icon:hover {
-		cursor: pointer;
+	footer .icon:hover {
 		fill: var(--color-primary-hover);
 	}
 	footer .update-at {
 		color: var(--color-on-background);
-		font-size: 1rem;
 		padding: 0.5rem 0;
+		font-size: 1rem;
+		font-weight: 600;
 		text-align: center;
-	}
-	footer .update-at .highlight {
-		font-style: italic;
 	}
 </style>

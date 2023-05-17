@@ -1,12 +1,13 @@
-<div class="card-container">
+<section class="card-container">
 	<slot />
-</div>
+</section>
 
 <style>
 	.card-container {
 		display: grid;
+		grid-template-columns: repeat(3, 1fr);
 		grid-gap: 1rem;
-		grid-template-columns: repeat(4, 1fr);
+		min-height: calc(75vh - 100px);
 	}
 	@media (max-width: 1024px) {
 		.card-container {
