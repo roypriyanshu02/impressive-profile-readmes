@@ -78,6 +78,7 @@
 		padding-top: 1rem;
 		margin-bottom: 1rem;
 		background-color: var(--color-background);
+		overflow: hidden;
 		z-index: 10;
 	}
 	.filter-list {

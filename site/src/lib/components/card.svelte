@@ -152,8 +152,8 @@
 		align-items: center;
 		justify-content: center;
 		column-gap: 0.25rem;
-		fill: var(--color-primary-hover);
-		color: var(--color-primary-hover);
+		fill: var(--color-primary);
+		color: var(--color-primary);
 		font-size: 0.75rem;
 		font-weight: 600;
 	}

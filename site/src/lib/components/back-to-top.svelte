@@ -53,22 +53,19 @@
 		width: 2.75rem;
 		bottom: 2rem;
 		right: 2rem;
-		background-color: var(--color-foreground);
-		border: var(--border-size) solid var(--color-gray);
+		background-color: var(--color-primary);
 		border-radius: 0.5rem;
 		user-select: none;
 		cursor: pointer;
+		opacity: 0.8;
 		z-index: 5;
 	}
 	.back-to-top svg {
 		height: 0.75rem;
 		width: 0.75rem;
-		fill: var(--color-on-background);
+		fill: #fff;
 	}
 	.back-to-top:hover {
-		border-color: var(--color-primary-hover);
-	}
-	.back-to-top:hover svg {
-		fill: var(--color-primary-hover);
+		opacity: 1;
 	}
 </style>

@@ -6,9 +6,8 @@
 	--color-on-background: hsl(215, 25%, 27%);
 	--color-on-foreground: hsl(217, 33%, 17%);
 	--color-on-primary: hsl(250, 100%, 98%);
-	--color-on-primary-hover: hsl(251, 95%, 92%);
-	--color-primary: hsl(230, 100%, 30%);
-	--color-primary-hover: hsl(230, 55%, 45%);
+	--color-primary: hsl(240, 100%, 60%);
+	--color-primary-hover: hsl(240, 100%, 50%);
 	--transition-default: 0.3s;
 	--border-size: 2px;
 }
@@ -22,9 +21,8 @@
 		--color-on-background: hsl(219, 17%, 59%);
 		--color-on-foreground: hsl(0, 0%, 91%);
 		--color-on-primary: hsl(0, 0%, 12%);
-		--color-on-primary-hover: hsl(235, 15%, 31%);
-		--color-primary: hsl(230, 100%, 70%);
-		--color-primary-hover: hsl(230, 100%, 85%);
+		--color-primary: hsl(200, 100%, 50%);
+		--color-primary-hover: hsl(200, 100%, 40%);
 	}
 }
 
@@ -63,4 +61,10 @@ a {
 
 a:hover {
 	color: var(--color-primary-hover);
+}
+
+@media (max-width: 480px) {
+	body {
+		padding: 0 1rem;
+	}
 }
