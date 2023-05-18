@@ -5,6 +5,7 @@
 	export let filterItems;
 	export let selectedFilter;
 	export let updateFilteredDataCallback;
+	let filterBar, isArrowVisible;
 
 	// Define click event handler
 	let handleFilterClick = (newSelectedFilter) => {
@@ -16,7 +17,6 @@
 	};
 
 	// Arrow btns: filterBar scroll function
-	let filterBar, isArrowVisible;
 	let scroll = (move) => {
 		let scrollDistance = (document.documentElement.clientWidth || window.innerWidth) / 3; // Calculate the scroll distance
 		if (move === 'left') filterBar.scrollLeft -= scrollDistance;
@@ -24,16 +24,10 @@
 	};
 
 	onMount(() => {
-		function checkWindow() {
-			// Get width of the window
-			isArrowVisible = document.documentElement.clientWidth >= 480 ? true : false;
-		}
-
-		// Attaching the event listener function to window's resize event
-		window.addEventListener('resize', checkWindow);
-
-		// Check window for the first time
-		checkWindow();
+		// Arrow btns: Detect small screens. Useful for hiding the arrows on small screens
+		let checkWindowSize = () => (isArrowVisible = document.documentElement.clientWidth >= 480); // Detect small screens and return boolean data
+		window.addEventListener('resize', checkWindowSize); // Window resize event
+		checkWindowSize(); // checkWindowSize (onLoad)
 	});
 </script>
 

@@ -1,19 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
 	import NavLinks from './nav-links.svelte';
-	let windowMob = false;
+	let isMobNavVisible;
 
 	onMount(() => {
-		function checkWindow() {
-			// Get width of the window
-			windowMob = document.documentElement.clientWidth <= 480 ? true : false;
-		}
-
-		// Attaching the event listener function to window's resize event
-		window.addEventListener('resize', checkWindow);
-
-		// Check window for the first time
-		checkWindow();
+		let checkWindowSize= () => isMobNavVisible = document.documentElement.clientWidth <= 480; // Detect small screens and return boolean data
+		window.addEventListener('resize', checkWindowSize); // Window resize event
+		checkWindowSize(); // checkWindowSize (onLoad)
 	});
 </script>
 
@@ -27,7 +20,7 @@
 			</a>
 		</div>
 		<nav>
-			{#if !windowMob}
+			{#if !isMobNavVisible}
 				<NavLinks />
 			{/if}
 			<div class="icons">
@@ -51,7 +44,7 @@
 		</nav>
 	</div>
 
-	{#if windowMob}
+	{#if isMobNavVisible}
 		<nav class="mob-nav-links">
 			<NavLinks />
 		</nav>
