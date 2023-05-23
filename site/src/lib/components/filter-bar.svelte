@@ -1,8 +1,11 @@
 <script>
+	import { onMount } from 'svelte';
+
 	// Export component props
 	export let filterItems;
 	export let selectedFilter;
 	export let updateFilteredDataCallback;
+	let filterBar, isArrowVisible;
 
 	// Define click event handler
 	let handleFilterClick = (newSelectedFilter) => {
@@ -14,22 +17,30 @@
 	};
 
 	// Arrow btns: filterBar scroll function
-	let filterBar;
 	let scroll = (move) => {
 		let scrollDistance = (document.documentElement.clientWidth || window.innerWidth) / 3; // Calculate the scroll distance
 		if (move === 'left') filterBar.scrollLeft -= scrollDistance;
 		if (move === 'right') filterBar.scrollLeft += scrollDistance;
 	};
+
+	onMount(() => {
+		// Arrow btns: Detect small screens. Useful for hiding the arrows on small screens
+		let checkWindowSize = () => (isArrowVisible = document.documentElement.clientWidth >= 480); // Detect small screens and return boolean data
+		window.addEventListener('resize', checkWindowSize); // Window resize event
+		checkWindowSize(); // checkWindowSize (onLoad)
+	});
 </script>
 
-<section class="filter-bar">
-	<button on:click={() => scroll('left')}>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-			><path
-				d="M4.83594 12.0001L11.043 18.2072L12.4573 16.793L7.66436 12.0001L12.4573 7.20718L11.043 5.79297L4.83594 12.0001ZM10.4858 12.0001L16.6929 18.2072L18.1072 16.793L13.3143 12.0001L18.1072 7.20718L16.6929 5.79297L10.4858 12.0001Z"
-			/></svg
-		>
-	</button>
+<section id="category" class="filter-bar">
+	{#if isArrowVisible}
+		<button on:click={() => scroll('left')}>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+				><path
+					d="M4.83594 12.0001L11.043 18.2072L12.4573 16.793L7.66436 12.0001L12.4573 7.20718L11.043 5.79297L4.83594 12.0001ZM10.4858 12.0001L16.6929 18.2072L18.1072 16.793L13.3143 12.0001L18.1072 7.20718L16.6929 5.79297L10.4858 12.0001Z"
+				/></svg
+			>
+		</button>
+	{/if}
 	<ul class="filter-list" bind:this={filterBar}>
 		{#each filterItems as item}
 			<li>
@@ -46,13 +57,15 @@
 			</li>
 		{/each}
 	</ul>
-	<button on:click={() => scroll('right')}>
-		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-			><path
-				d="M19.1643 12.0001L12.9572 5.79297L11.543 7.20718L16.3359 12.0001L11.543 16.793L12.9572 18.2072L19.1643 12.0001ZM13.5144 12.0001L7.30728 5.79297L5.89307 7.20718L10.686 12.0001L5.89307 16.793L7.30728 18.2072L13.5144 12.0001Z"
-			/></svg
-		>
-	</button>
+	{#if isArrowVisible}
+		<button on:click={() => scroll('right')}>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+				><path
+					d="M19.1643 12.0001L12.9572 5.79297L11.543 7.20718L16.3359 12.0001L11.543 16.793L12.9572 18.2072L19.1643 12.0001ZM13.5144 12.0001L7.30728 5.79297L5.89307 7.20718L10.686 12.0001L5.89307 16.793L7.30728 18.2072L13.5144 12.0001Z"
+				/></svg
+			>
+		</button>
+	{/if}
 </section>
 
 <style>
@@ -62,9 +75,9 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding-top: 1rem;
-		margin-bottom: 1rem;
-		background-color: var(--color-background);
+		margin: 1rem 0;
+		padding: 0.5rem 1rem;
+		overflow: hidden;
 		z-index: 10;
 	}
 	.filter-list {
@@ -82,7 +95,7 @@
 		display: block;
 		padding: 0.75rem 1.5rem;
 		color: var(--color-on-foreground);
-		border-bottom: 2px solid var(--color-gray);
+		/* border-bottom: 2px solid var(--color-gray); */
 		font-size: 1rem;
 		font-weight: 500;
 		text-decoration: none;
@@ -97,7 +110,7 @@
 		}
 	}
 	.filter-list .filter-item:active {
-		color: var(--color-primary-hover); /* visible on small screen devices */
+		color: var(--color-primary-active); /* visible on small screen devices */
 	}
 	.filter-list .filter-item.active {
 		color: var(--color-primary);
@@ -128,5 +141,8 @@
 		width: 1.5rem;
 		height: 1.5rem;
 		fill: var(--color-on-foreground);
+	}
+	.filter-bar button:active svg {
+		fill: var(--color-primary-active);
 	}
 </style>

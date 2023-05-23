@@ -1,30 +1,30 @@
 :root {
-	--color-theme: hsl(210, 40%, 98%);
-	--color-background: hsl(252, 100%, 98%);
-	--color-foreground: hsl(254, 100%, 96%);
-	--color-gray: hsla(0, 0%, 0%, 0.1);
-	--color-on-background: hsl(215, 25%, 27%);
-	--color-on-foreground: hsl(217, 33%, 17%);
-	--color-on-primary: hsl(250, 100%, 98%);
-	--color-on-primary-hover: hsl(251, 95%, 92%);
-	--color-primary: hsl(230, 100%, 30%);
-	--color-primary-hover: hsl(230, 55%, 45%);
+	--color-theme: #f8fafc;
+	--color-background: #ede9fe;
+	--color-foreground: #f5f3ff;
+	--color-gray: #0000001a;
+	--color-on-background: #334155;
+	--color-on-foreground: #1e293b;
+	--color-on-primary: #f5f3ff;
+	--color-primary: #6366f1;
+	--color-primary-hover: #818cf8;
+	--color-primary-active: #1c1fdb;
 	--transition-default: 0.3s;
 	--border-size: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--color-theme: hsl(0, 0%, 7%);
-		--color-background: hsl(236, 45%, 6%);
-		--color-foreground: hsl(235, 22%, 21%);
-		--color-gray: hsla(0, 0%, 100%, 0.1);
-		--color-on-background: hsl(219, 17%, 59%);
-		--color-on-foreground: hsl(0, 0%, 91%);
-		--color-on-primary: hsl(0, 0%, 12%);
-		--color-on-primary-hover: hsl(235, 15%, 31%);
-		--color-primary: hsl(230, 100%, 70%);
-		--color-primary-hover: hsl(230, 100%, 85%);
+		--color-theme: #121212;
+		--color-background: #090a18;
+		--color-foreground: #292b40;
+		--color-gray: #ffffff1a;
+		--color-on-background: #8490a7;
+		--color-on-foreground: #e7e7e7;
+		--color-on-primary: #1e1e1e;
+		--color-primary: #676af5;
+		--color-primary-hover: #818cf8;
+		--color-primary-active: #3437ca;
 	}
 }
 
@@ -63,4 +63,14 @@ a {
 
 a:hover {
 	color: var(--color-primary-hover);
+}
+
+a:active {
+	color: var(--color-primary-active);
+}
+
+@media (max-width: 480px) {
+	body {
+		padding: 0 1rem;
+	}
 }

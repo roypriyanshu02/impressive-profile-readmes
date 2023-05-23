@@ -1,23 +1,31 @@
 <script>
 	import { onMount } from 'svelte';
 	import NavLinks from './nav-links.svelte';
-	let windowMob = false;
+	let isMobNavVisible;
+	let headerHeight;
 
 	onMount(() => {
-		function checkWindow() {
-			// Get width of the window
-			windowMob = document.documentElement.clientWidth <= 480 ? true : false;
-		}
+		let checkWindowSize = () => (isMobNavVisible = document.documentElement.clientWidth <= 480); // Detect small screens and return boolean data
+		window.addEventListener('resize', checkWindowSize); // Window resize event
+		checkWindowSize(); // checkWindowSize (onLoad)
 
-		// Attaching the event listener function to window's resize event
-		window.addEventListener('resize', checkWindow);
-
-		// Check window for the first time
-		checkWindow();
+		// onScroll add solid background in filter-bar
+		window.onscroll = () => {
+			if (
+				document.body.scrollTop > headerHeight ||
+				document.documentElement.scrollTop > headerHeight
+			) {
+				document.getElementById('category').style.backgroundColor = 'var(--color-background';
+			} else {
+				document.getElementById('category').style.backgroundColor = 'transparent';
+			}
+		};
 	});
 </script>
 
-<header class="header">
+<header bind:clientHeight={headerHeight} class="header">
+	<div class="gradient" />
+
 	<div class="header-container">
 		<div>
 			<!-- svelte-ignore a11y-invalid-attribute -->
@@ -27,7 +35,7 @@
 			</a>
 		</div>
 		<nav>
-			{#if !windowMob}
+			{#if !isMobNavVisible}
 				<NavLinks />
 			{/if}
 			<div class="icons">
@@ -51,7 +59,7 @@
 		</nav>
 	</div>
 
-	{#if windowMob}
+	{#if isMobNavVisible}
 		<nav class="mob-nav-links">
 			<NavLinks />
 		</nav>
@@ -84,6 +92,9 @@
 	.header .brand:hover .highlight {
 		color: var(--color-primary-hover);
 	}
+	.header .brand:active .highlight {
+		color: var(--color-primary-active);
+	}
 	nav {
 		display: flex;
 		justify-content: space-between;
@@ -105,10 +116,29 @@
 		cursor: pointer;
 		fill: var(--color-primary-hover);
 	}
+	.icons > a:active {
+		fill: var(--color-primary-active);
+	}
 	@media (max-width: 480px) {
 		.mob-nav-links {
 			display: block;
 			margin: 1.5rem 0 0.5rem;
+		}
+	}
+	.gradient {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 60%;
+		height: 200px;
+		background-color: var(--color-primary-active);
+		filter: blur(100px);
+		opacity: 0.6;
+		z-index: -5;
+	}
+	@media (prefers-color-scheme: light) {
+		.gradient {
+			opacity: 0;
 		}
 	}
 </style>
