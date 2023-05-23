@@ -83,6 +83,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [PluckyPrecious](https://github.com/PluckyPrecious)
 - [poudyalanil](https://github.com/poudyalanil)
 - [proghead00](https://github.com/proghead00)
+- [Ragdata](https://github.com/Ragdata)
 - [rahul-jha98](https://github.com/rahul-jha98)
 - [rajaprerak](https://github.com/rajaprerak)
 - [Raray-chuan](https://github.com/Raray-chuan)
