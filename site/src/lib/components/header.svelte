@@ -2,15 +2,30 @@
 	import { onMount } from 'svelte';
 	import NavLinks from './nav-links.svelte';
 	let isMobNavVisible;
+	let headerHeight;
 
 	onMount(() => {
-		let checkWindowSize= () => isMobNavVisible = document.documentElement.clientWidth <= 480; // Detect small screens and return boolean data
+		let checkWindowSize = () => (isMobNavVisible = document.documentElement.clientWidth <= 480); // Detect small screens and return boolean data
 		window.addEventListener('resize', checkWindowSize); // Window resize event
 		checkWindowSize(); // checkWindowSize (onLoad)
+
+		// onScroll add solid background in filter-bar
+		window.onscroll = () => {
+			if (
+				document.body.scrollTop > headerHeight ||
+				document.documentElement.scrollTop > headerHeight
+			) {
+				document.getElementById('category').style.backgroundColor = 'var(--color-background';
+			} else {
+				document.getElementById('category').style.backgroundColor = 'transparent';
+			}
+		};
 	});
 </script>
 
-<header class="header">
+<header bind:clientHeight={headerHeight} class="header">
+	<div class="gradient" />
+
 	<div class="header-container">
 		<div>
 			<!-- svelte-ignore a11y-invalid-attribute -->
@@ -77,6 +92,9 @@
 	.header .brand:hover .highlight {
 		color: var(--color-primary-hover);
 	}
+	.header .brand:active .highlight {
+		color: var(--color-primary-active);
+	}
 	nav {
 		display: flex;
 		justify-content: space-between;
@@ -98,10 +116,24 @@
 		cursor: pointer;
 		fill: var(--color-primary-hover);
 	}
+	.icons > a:active {
+		fill: var(--color-primary-active);
+	}
 	@media (max-width: 480px) {
 		.mob-nav-links {
 			display: block;
 			margin: 1.5rem 0 0.5rem;
 		}
+	}
+	.gradient {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 60%;
+		height: 200px;
+		background-color: var(--color-primary-active);
+		filter: blur(100px);
+		opacity: 0.6;
+		z-index: -5;
 	}
 </style>

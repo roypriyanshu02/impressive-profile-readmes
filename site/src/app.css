@@ -8,6 +8,7 @@
 	--color-on-primary: #f5f3ff;
 	--color-primary: #6366f1;
 	--color-primary-hover: #818cf8;
+	--color-primary-active: #1c1fdb;
 	--transition-default: 0.3s;
 	--border-size: 2px;
 }
@@ -23,6 +24,7 @@
 		--color-on-primary: #1e1e1e;
 		--color-primary: #676af5;
 		--color-primary-hover: #818cf8;
+		--color-primary-active: #3437ca;
 	}
 }
 
@@ -61,6 +63,10 @@ a {
 
 a:hover {
 	color: var(--color-primary-hover);
+}
+
+a:active {
+	color: var(--color-primary-active);
 }
 
 @media (max-width: 480px) {

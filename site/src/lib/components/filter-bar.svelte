@@ -31,7 +31,7 @@
 	});
 </script>
 
-<section class="filter-bar">
+<section id="category" class="filter-bar">
 	{#if isArrowVisible}
 		<button on:click={() => scroll('left')}>
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -75,9 +75,8 @@
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding-top: 1rem;
-		margin-bottom: 1rem;
-		background-color: var(--color-background);
+		margin: 1rem 0;
+		padding: 0.5rem 1rem;
 		overflow: hidden;
 		z-index: 10;
 	}
@@ -96,7 +95,7 @@
 		display: block;
 		padding: 0.75rem 1.5rem;
 		color: var(--color-on-foreground);
-		border-bottom: 2px solid var(--color-gray);
+		/* border-bottom: 2px solid var(--color-gray); */
 		font-size: 1rem;
 		font-weight: 500;
 		text-decoration: none;
@@ -111,7 +110,7 @@
 		}
 	}
 	.filter-list .filter-item:active {
-		color: var(--color-primary-hover); /* visible on small screen devices */
+		color: var(--color-primary-active); /* visible on small screen devices */
 	}
 	.filter-list .filter-item.active {
 		color: var(--color-primary);
@@ -142,5 +141,8 @@
 		width: 1.5rem;
 		height: 1.5rem;
 		fill: var(--color-on-foreground);
+	}
+	.filter-bar button:active svg {
+		fill: var(--color-primary-active);
 	}
 </style>

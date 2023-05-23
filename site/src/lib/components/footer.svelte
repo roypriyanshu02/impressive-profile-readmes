@@ -106,6 +106,9 @@
 	footer .icon:hover {
 		fill: var(--color-primary-hover);
 	}
+	footer .icon:active {
+		fill: var(--color-primary-active);
+	}
 	footer .update-at {
 		color: var(--color-on-background);
 		padding: 0.5rem 0;

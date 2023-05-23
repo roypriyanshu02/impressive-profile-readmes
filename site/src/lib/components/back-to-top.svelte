@@ -68,4 +68,7 @@
 	.back-to-top:hover {
 		opacity: 1;
 	}
+	.back-to-top:active {
+		background-color: var(--color-primary-active);
+	}
 </style>
