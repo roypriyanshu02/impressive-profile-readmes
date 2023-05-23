@@ -136,4 +136,9 @@
 		opacity: 0.6;
 		z-index: -5;
 	}
+	@media (prefers-color-scheme: light) {
+		.gradient {
+			opacity: 0;
+		}
+	}
 </style>
