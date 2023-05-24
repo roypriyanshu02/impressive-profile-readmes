@@ -69,12 +69,12 @@
 	});
 </script>
 
-<a class="card" href={`https://github.com/${username}`} bind:this={cardRef}>
+<div class="card" bind:this={cardRef}>
 	<div class="image-container">
 		<img
 			src={screenshot}
 			loading="lazy"
-			alt={`${username}'s Github profile`}
+			alt={`${username}'s Github profile screenshot`}
 			bind:this={imageRef}
 			use:handleImageLoad
 		/>
@@ -95,69 +95,89 @@
 			</div>
 		</div>
 	</div>
-</a>
+</div>
 
 <style>
 	.card {
-		display: block;
+		background: var(--color-foreground);
+		border: var(--border-size) solid var(--color-foreground);
+		border-radius: 0.5rem;
 		height: auto;
 		overflow: hidden;
-		background: var(--color-foreground);
-		border: var(--border-size) solid transparent;
-		border-radius: 1rem;
-	}
-	.card:hover {
-		background: var(--color-theme);
-		border-color: var(--color-primary-hover);
+		user-select: none;
+		width: 100%;
 	}
 	.card .image-container {
 		background-color: white;
+		background-size: contain;
+		height: 12.5rem;
+		object-fit: cover;
 		overflow: hidden;
-		aspect-ratio: 16 / 9;
-	}
-	.card img {
 		width: 100%;
+	}
+	@media (max-width: 480px) {
+		.card .image-container {
+			height: 12rem;
+		}
+	}
+	.card .image-container img {
+		transition: transform 1.75s;
 		user-select: none;
-		transition: transform 1.5s ease-in-out;
+		width: 100%;
 	}
 	.card .image-container:hover img {
 		transform: translateY(var(--image-translateY));
+		transition-delay: var(--transition-default);
+		transition-timing-function: ease-in-out;
 	}
 	.card .footer {
+		box-sizing: border-box;
+		display: flex;
+		flex-direction: column;
 		padding: 0.75rem 1rem;
 	}
-	.card .category {
-		display: block;
-		font-size: 0.875rem;
+	.card .footer .category {
 		color: var(--color-on-background);
-	}
-	.card .details {
-		display: flex;
-		justify-content: space-between;
+		font-size: 0.875rem;
 		width: 100%;
-		padding: 0.375rem 0;
 	}
-	.card .username {
+	.card .footer .details {
+		align-items: center;
+		display: flex;
+		flex: auto;
+		height: auto;
+		justify-content: space-between;
+		padding: 0.375rem 0;
+		width: 100%;
+	}
+	.card .footer .username {
 		color: var(--color-on-foreground);
-		font-size: 1.1rem;
-		font-weight: 600;
+		font-size: 1rem;
+		font-weight: 500;
+		height: auto;
 		line-height: 1.5rem;
+		width: 75%;
 		word-wrap: break-word;
 	}
-	.card:hover .username {
+	.card:hover .footer .username {
 		color: var(--color-primary-hover);
 	}
-	.card .star {
-		display: flex;
+	.card:hover {
+		background: var(--color-white);
+		border-color: var(--color-primary-hover);
+	}
+	.card .footer .star {
 		align-items: center;
-		justify-content: center;
+		color: var(--color-primary-hover);
 		column-gap: 0.25rem;
-		fill: var(--color-primary);
-		color: var(--color-primary);
+		display: flex;
+		fill: var(--color-primary-hover);
+		flex-direction: row;
 		font-size: 0.75rem;
 		font-weight: 600;
+		justify-content: center;
 	}
-	.card svg {
+	.card .footer .star svg {
 		height: 1rem;
 	}
 </style>

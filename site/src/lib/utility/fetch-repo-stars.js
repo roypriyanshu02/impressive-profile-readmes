@@ -23,8 +23,7 @@ const fetchRepoStar = async (username) => {
 		const response = await fetch('https://api.github.com/graphql', request);
 		const result = await response.json();
 		// Extract the total count of stargazers from the response
-		const starCount = result.data.repository.stargazers.totalCount || 0;
-		console.log(JSON.stringify(result), `username ${username} -> starCount`);
+		const starCount = result.data.repository.stargazers.totalCount;
 		return starCount;
 	} catch (error) {
 		// In case of error, return null

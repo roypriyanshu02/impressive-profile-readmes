@@ -5,6 +5,7 @@
 	import Footer from '$lib/components/footer.svelte';
 	export let data;
 	const updateAt = data.lastModified;
+	export const prerender = true;
 </script>
 
 <Header />

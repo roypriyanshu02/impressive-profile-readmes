@@ -1,148 +1,180 @@
 <script>
-	import { onMount } from 'svelte';
+	import { fly } from 'svelte/transition';
 
 	// Export component props
 	export let filterItems;
+	export let totalCardsCount;
 	export let selectedFilter;
 	export let updateFilteredDataCallback;
-	let filterBar, isArrowVisible;
+
+	// Define internal component state
+	let isDropdownVisible = false;
 
 	// Define click event handler
 	let handleFilterClick = (newSelectedFilter) => {
+		isDropdownVisible = false;
 		if (newSelectedFilter === selectedFilter) {
 			return;
 		}
 		selectedFilter = newSelectedFilter;
 		updateFilteredDataCallback(newSelectedFilter);
 	};
-
-	// Arrow btns: filterBar scroll function
-	let scroll = (move) => {
-		let scrollDistance = (document.documentElement.clientWidth || window.innerWidth) / 3; // Calculate the scroll distance
-		if (move === 'left') filterBar.scrollLeft -= scrollDistance;
-		if (move === 'right') filterBar.scrollLeft += scrollDistance;
-	};
-
-	onMount(() => {
-		// Arrow btns: Detect small screens. Useful for hiding the arrows on small screens
-		let checkWindowSize = () => (isArrowVisible = document.documentElement.clientWidth >= 480); // Detect small screens and return boolean data
-		window.addEventListener('resize', checkWindowSize); // Window resize event
-		checkWindowSize(); // checkWindowSize (onLoad)
-	});
 </script>
 
-<section id="category" class="filter-bar">
-	{#if isArrowVisible}
-		<button on:click={() => scroll('left')}>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-				><path
-					d="M4.83594 12.0001L11.043 18.2072L12.4573 16.793L7.66436 12.0001L12.4573 7.20718L11.043 5.79297L4.83594 12.0001ZM10.4858 12.0001L16.6929 18.2072L18.1072 16.793L13.3143 12.0001L18.1072 7.20718L16.6929 5.79297L10.4858 12.0001Z"
-				/></svg
+<section class="filter-bar">
+	<div class="filter-container">
+		<div class="dropdown-menu">
+			<button
+				class="filter-dropdown"
+				class:active={isDropdownVisible}
+				on:click={() => (isDropdownVisible = !isDropdownVisible)}
 			>
-		</button>
-	{/if}
-	<ul class="filter-list" bind:this={filterBar}>
-		{#each filterItems as item}
-			<li>
-				<a
-					href={`#${item.categoryTitle.replace(/\s+/g, '-').toLowerCase()}`}
-					class="filter-item {selectedFilter === item.categoryTitle ? 'active' : ''}"
-					on:click|preventDefault={handleFilterClick(item.categoryTitle)}
-				>
-					{item.categoryTitle}
-					<span>
-						{item.totalProfileCount}
-					</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-	{#if isArrowVisible}
-		<button on:click={() => scroll('right')}>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-				><path
-					d="M19.1643 12.0001L12.9572 5.79297L11.543 7.20718L16.3359 12.0001L11.543 16.793L12.9572 18.2072L19.1643 12.0001ZM13.5144 12.0001L7.30728 5.79297L5.89307 7.20718L10.686 12.0001L5.89307 16.793L7.30728 18.2072L13.5144 12.0001Z"
-				/></svg
-			>
-		</button>
-	{/if}
+				<span>{selectedFilter}</span>
+				<svg role="img" viewBox="0 0 512 512">
+					<path
+						d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+					/>
+				</svg>
+			</button>
+			{#if isDropdownVisible}
+				<ul class="filter-list" transition:fly={{ y: -50, duration: 200 }}>
+					{#each filterItems as item}
+						<li>
+							<a
+								href={`#${item.categoryTitle.replace(/\s+/g, '-').toLowerCase()}`}
+								class="filter-item {selectedFilter === item.categoryTitle ? 'active' : ''}"
+								on:click|preventDefault={handleFilterClick(item.categoryTitle)}
+							>
+								{item.categoryTitle}
+								<span>
+									{item.totalProfileCount}
+								</span>
+							</a>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
+	</div>
+	<div class="total-result-container">
+		Results
+		<span class="total-cards-count">{totalCardsCount}</span>
+	</div>
 </section>
 
 <style>
 	.filter-bar {
-		position: sticky;
-		top: 0;
-		display: flex;
 		align-items: center;
-		gap: 0.5rem;
-		margin: 1rem 0;
-		padding: 0.5rem 1rem;
-		overflow: hidden;
+		background-color: var(--color-background);
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 1.25rem;
+		top: 0;
 		z-index: 10;
 	}
-	.filter-list {
-		position: relative;
+	.filter-container {
+		align-items: center;
 		display: flex;
-		list-style-type: none;
-		overflow-y: hidden;
-		scrollbar-width: none;
 	}
-	.filter-list::-webkit-scrollbar {
+	.total-result-container {
+		align-items: center;
+		color: var(--color-on-background);
+		display: flex;
+		font-size: 0.75rem;
+		font-weight: 500;
+		gap: 0.5rem;
+	}
+	.total-cards-count {
+		background-color: var(--color-foreground);
+		border-radius: var(--border-radius);
+		color: var(--color-on-background);
+		display: inline-block;
+		font-size: 0.75rem;
+		font-weight: 600;
+		padding: 0.5rem 0.75rem;
+		white-space: nowrap;
+	}
+	.filter-dropdown {
+		align-items: center;
+		background: var(--color-foreground);
+		border: var(--border-size) solid var(--color-foreground);
+		border-radius: var(--border-radius);
+		color: var(--color-on-foreground);
+		cursor: pointer;
+		display: flex;
+		font-size: 1rem;
+		font-weight: 400;
+		justify-content: space-between;
+		min-width: 12rem;
+		overflow: hidden;
+		padding: 0.75rem 1.5rem;
+		transition: background var(--transition-default);
+		user-select: none;
+	}
+	.filter-dropdown:hover {
+		background: var(--color-white);
+		border-color: var(--color-primary-hover);
+	}
+	.filter-dropdown svg {
+		fill: var(--color-on-foreground);
+		height: 1rem;
+		margin-left: 0.75rem;
+		transition: transform var(--transition-default);
+		width: 1rem;
+	}
+	.filter-dropdown.active,
+	.filter-dropdown.active svg {
+		border-color: var(--color-on-primary-hover);
+		color: var(--color-gray);
+		fill: var(--color-gray);
+	}
+	.filter-dropdown.active svg {
+		transform: rotate(180deg);
+	}
+	.filter-list {
+		background: var(--color-foreground);
+		border: var(--border-size) solid var(--color-primary-hover);
+		border-radius: var(--border-radius);
+		list-style-type: none;
+		margin-top: 0.5rem;
+		min-width: 12rem;
+		overflow: auto;
+		padding: 0.5rem;
+		position: absolute;
+		z-index: 10;
+	}
+	.filter-list::-webkit-scrollsection {
 		display: none;
 	}
 	.filter-list .filter-item {
-		position: relative;
-		display: block;
-		padding: 0.75rem 1.5rem;
+		align-items: center;
+		border: var(--border-size) solid transparent;
+		border-radius: var(--border-radius);
 		color: var(--color-on-foreground);
-		/* border-bottom: 2px solid var(--color-gray); */
-		font-size: 1rem;
-		font-weight: 500;
-		text-decoration: none;
 		cursor: pointer;
-		white-space: nowrap;
-	}
-	@media (min-width: 480px) {
-		.filter-list .filter-item:hover {
-			color: var(--color-primary-hover);
-			padding-right: 2rem;
-			border-bottom: 2px solid var(--color-primary-hover);
-		}
-	}
-	.filter-list .filter-item:active {
-		color: var(--color-primary-active); /* visible on small screen devices */
+		display: flex;
+		font-size: 1rem;
+		font-weight: 400;
+		justify-content: space-between;
+		padding: 0.75rem 1rem;
+		text-decoration: none;
+		transition: background var(--transition-default);
 	}
 	.filter-list .filter-item.active {
 		color: var(--color-primary);
-		padding-right: 2rem;
-		border-bottom: 2px solid var(--color-primary);
 	}
-	.filter-list .filter-item.active:hover {
-		pointer-events: none;
+	.filter-list .filter-item:hover {
+		background: var(--color-white);
+		color: var(--color-primary-hover);
 	}
 	.filter-item span {
-		display: none;
-		margin-left: 0.25rem;
+		background-color: var(--color-background);
+		border-radius: var(--border-radius);
 		color: var(--color-on-background);
 		font-size: 0.75rem;
 		font-weight: 600;
+		margin-left: 0.75rem;
+		padding: 0.25rem 0.5rem;
 		white-space: nowrap;
-	}
-	.filter-list .filter-item.active span {
-		display: inline-block;
-		position: absolute;
-		top: 0.75rem;
-	}
-	.filter-bar button {
-		all: unset;
-	}
-	.filter-bar svg {
-		display: block;
-		width: 1.5rem;
-		height: 1.5rem;
-		fill: var(--color-on-foreground);
-	}
-	.filter-bar button:active svg {
-		fill: var(--color-primary-active);
 	}
 </style>
