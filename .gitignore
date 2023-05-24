@@ -1,6 +1,6 @@
 # Custom
 .DS_Store
-.svelte-kit
+/.svelte-kit
 /build
 /package
 .env
@@ -9,8 +9,6 @@
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 static/screenshots
-package-lock.json
-yarn.lock
 
 # Logs
 logs
