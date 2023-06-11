@@ -225,7 +225,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Shing-Ho](https://github.com/Shing-Ho)
 - [simonw](https://github.com/simonw)
 - [surajshende247](https://github.com/surajshende247)
-- [sw-yx](https://github.com/sw-yx)
+- [swyxio](https://github.com/swyxio)
 - [tallguyjenks](https://github.com/tallguyjenks)
 - [teoxoy](https://github.com/teoxoy)
 - [thmsgbrt](https://github.com/thmsgbrt)
