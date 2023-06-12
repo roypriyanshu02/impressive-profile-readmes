@@ -80,7 +80,6 @@ declare module '$env/static/private' {
 	export const GITHUB_WORKFLOW: string;
 	export const _: string;
 	export const npm_config_prefix: string;
-	export const RUNNER_DEBUG: string;
 	export const GITHUB_RUN_ID: string;
 	export const npm_config_cache: string;
 	export const GITHUB_REF_TYPE: string;
@@ -122,6 +121,7 @@ declare module '$env/static/private' {
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
+	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -157,11 +157,13 @@ declare module '$env/static/private' {
 	export const GITHUB_OUTPUT: string;
 	export const npm_config_global_prefix: string;
 	export const EDGEWEBDRIVER: string;
+	export const STATS_EXT: string;
 	export const npm_command: string;
 	export const ANDROID_NDK: string;
 	export const SGX_AESM_ADDR: string;
 	export const CHROME_BIN: string;
 	export const SELENIUM_JAR_PATH: string;
+	export const STATS_EXTP: string;
 	export const ANDROID_NDK_HOME: string;
 	export const GITHUB_STEP_SUMMARY: string;
 	export const INIT_CWD: string;
@@ -249,7 +251,6 @@ declare module '$env/dynamic/private' {
 		GITHUB_WORKFLOW: string;
 		_: string;
 		npm_config_prefix: string;
-		RUNNER_DEBUG: string;
 		GITHUB_RUN_ID: string;
 		npm_config_cache: string;
 		GITHUB_REF_TYPE: string;
@@ -291,6 +292,7 @@ declare module '$env/dynamic/private' {
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
+		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
@@ -326,11 +328,13 @@ declare module '$env/dynamic/private' {
 		GITHUB_OUTPUT: string;
 		npm_config_global_prefix: string;
 		EDGEWEBDRIVER: string;
+		STATS_EXT: string;
 		npm_command: string;
 		ANDROID_NDK: string;
 		SGX_AESM_ADDR: string;
 		CHROME_BIN: string;
 		SELENIUM_JAR_PATH: string;
+		STATS_EXTP: string;
 		ANDROID_NDK_HOME: string;
 		GITHUB_STEP_SUMMARY: string;
 		INIT_CWD: string;
