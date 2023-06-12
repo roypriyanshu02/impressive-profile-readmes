@@ -2885,8 +2885,8 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://github.com/sw-yx" },
-								"children": [{ "type": "text", "value": "sw-yx" }]
+								"props": { "href": "https://github.com/swyxio" },
+								"children": [{ "type": "text", "value": "swyxio" }]
 							}
 						]
 					},
@@ -5063,5 +5063,5 @@
 			}
 		]
 	},
-	"lastModified": 1685609200610
+	"lastModified": 1686604440236
 }
