@@ -34,6 +34,7 @@ declare module '$env/static/private' {
 	export const USER: string;
 	export const npm_config_user_agent: string;
 	export const CI: string;
+	export const RUNNER_ENVIRONMENT: string;
 	export const GITHUB_ENV: string;
 	export const PIPX_HOME: string;
 	export const npm_node_execpath: string;
@@ -75,6 +76,7 @@ declare module '$env/static/private' {
 	export const GITHUB_API_URL: string;
 	export const SWIFT_PATH: string;
 	export const RUNNER_USER: string;
+	export const STATS_V3PS: string;
 	export const CHROMEWEBDRIVER: string;
 	export const JOURNAL_STREAM: string;
 	export const GITHUB_WORKFLOW: string;
@@ -205,6 +207,7 @@ declare module '$env/dynamic/private' {
 		USER: string;
 		npm_config_user_agent: string;
 		CI: string;
+		RUNNER_ENVIRONMENT: string;
 		GITHUB_ENV: string;
 		PIPX_HOME: string;
 		npm_node_execpath: string;
@@ -246,6 +249,7 @@ declare module '$env/dynamic/private' {
 		GITHUB_API_URL: string;
 		SWIFT_PATH: string;
 		RUNNER_USER: string;
+		STATS_V3PS: string;
 		CHROMEWEBDRIVER: string;
 		JOURNAL_STREAM: string;
 		GITHUB_WORKFLOW: string;
