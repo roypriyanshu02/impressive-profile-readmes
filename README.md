@@ -76,6 +76,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [matteobaccan](https://github.com/matteobaccan)
 - [mayhemantt](https://github.com/mayhemantt)
 - [MayMeow](https://github.com/MayMeow)
+- [montasim](https://github.com/montasim)
 - [MrStanDu33](https://github.com/MrStanDu33)
 - [night0721](https://github.com/night0721)
 - [onimur](https://github.com/onimur)
@@ -109,7 +110,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [ysherqawi](https://github.com/ysherqawi)
 - [zephyrus21](https://github.com/zephyrus21)
 - [zumrudu-anka](https://github.com/zumrudu-anka)
-- [montasim](https://github.com/montasim)
 
 #### Animation
 
