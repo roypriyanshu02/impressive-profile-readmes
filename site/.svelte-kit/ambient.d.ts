@@ -118,12 +118,12 @@ declare module '$env/static/private' {
 	export const GITHUB_REF_NAME: string;
 	export const GITHUB_REPOSITORY: string;
 	export const npm_lifecycle_script: string;
+	export const STATS_UE: string;
 	export const ANDROID_NDK_ROOT: string;
 	export const GITHUB_ACTION_REF: string;
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
-	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -291,12 +291,12 @@ declare module '$env/dynamic/private' {
 		GITHUB_REF_NAME: string;
 		GITHUB_REPOSITORY: string;
 		npm_lifecycle_script: string;
+		STATS_UE: string;
 		ANDROID_NDK_ROOT: string;
 		GITHUB_ACTION_REF: string;
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
-		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
