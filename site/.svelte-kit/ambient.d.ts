@@ -5,7 +5,7 @@
 /// <reference types="@sveltejs/kit" />
 
 /**
- * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), this module cannot be imported into client-side code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env).
+ * Environment variables [loaded by Vite](https://vitejs.dev/guide/env-and-mode.html#env-files) from `.env` files and `process.env`. Like [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), this module cannot be imported into client-side code. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
  * 
  * _Unlike_ [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), the values exported from this module are statically injected into your bundle at build time, enabling optimisations like dead code elimination.
  * 
@@ -118,12 +118,12 @@ declare module '$env/static/private' {
 	export const GITHUB_REF_NAME: string;
 	export const GITHUB_REPOSITORY: string;
 	export const npm_lifecycle_script: string;
-	export const STATS_UE: string;
 	export const ANDROID_NDK_ROOT: string;
 	export const GITHUB_ACTION_REF: string;
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
+	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -186,7 +186,7 @@ declare module '$env/static/public' {
 }
 
 /**
- * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env).
+ * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#env) _and do_ start with [`config.kit.env.privatePrefix`](https://kit.svelte.dev/docs/configuration#env) (if configured).
  * 
  * This module cannot be imported into client-side code.
  * 
@@ -291,12 +291,12 @@ declare module '$env/dynamic/private' {
 		GITHUB_REF_NAME: string;
 		GITHUB_REPOSITORY: string;
 		npm_lifecycle_script: string;
-		STATS_UE: string;
 		ANDROID_NDK_ROOT: string;
 		GITHUB_ACTION_REF: string;
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
+		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
@@ -344,7 +344,7 @@ declare module '$env/dynamic/private' {
 		INIT_CWD: string;
 		EDITOR: string;
 		[key: `PUBLIC_${string}`]: undefined;
-		[key: string]: string | undefined;
+		[key: `${string}`]: string | undefined;
 	}
 }
 
