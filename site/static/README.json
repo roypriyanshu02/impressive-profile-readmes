@@ -1577,6 +1577,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/jarvisx17" },
+								"children": [{ "type": "text", "value": "jarvisx17" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/jh3y" },
 								"children": [{ "type": "text", "value": "jh3y" }]
 							}
@@ -5102,5 +5115,5 @@
 			}
 		]
 	},
-	"lastModified": 1690850187778
+	"lastModified": 1691328026951
 }
