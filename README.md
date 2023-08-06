@@ -121,6 +121,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [dephraiim](https://github.com/dephraiim)
 - [fnky](https://github.com/fnky)
 - [imthaghost](https://github.com/imthaghost)
+- [jarvisx17](https://github.com/jarvisx17)
 - [jh3y](https://github.com/jh3y)
 - [KelviNosse](https://github.com/KelviNosse)
 - [KevCui](https://github.com/KevCui)
