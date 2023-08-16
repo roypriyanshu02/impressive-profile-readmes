@@ -2545,6 +2545,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/XanderRubio" },
+								"children": [{ "type": "text", "value": "XanderRubio" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/xtenzQ" },
 								"children": [{ "type": "text", "value": "xtenzQ" }]
 							}
@@ -5115,5 +5128,5 @@
 			}
 		]
 	},
-	"lastModified": 1691328026951
+	"lastModified": 1692191972366
 }
