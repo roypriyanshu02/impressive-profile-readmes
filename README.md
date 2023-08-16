@@ -198,7 +198,9 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [SoupyzInc](https://github.com/SoupyzInc)
 - [tomoayan](https://github.com/tomoayan)
 - [vidursatija](https://github.com/vidursatija)
+- [XanderRubio](https://github.com/XanderRubio)
 - [xtenzQ](https://github.com/xtenzQ)
+
 
 #### Dynamic
 
