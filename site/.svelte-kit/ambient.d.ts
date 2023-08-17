@@ -70,7 +70,6 @@ declare module '$env/static/private' {
 	export const NVM_DIR: string;
 	export const npm_config_metrics_registry: string;
 	export const DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
-	export const GOROOT_1_21_X64: string;
 	export const JAVA_HOME_17_X64: string;
 	export const ImageVersion: string;
 	export const RUNNER_OS: string;
@@ -125,7 +124,6 @@ declare module '$env/static/private' {
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
-	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -245,7 +243,6 @@ declare module '$env/dynamic/private' {
 		NVM_DIR: string;
 		npm_config_metrics_registry: string;
 		DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
-		GOROOT_1_21_X64: string;
 		JAVA_HOME_17_X64: string;
 		ImageVersion: string;
 		RUNNER_OS: string;
@@ -300,7 +297,6 @@ declare module '$env/dynamic/private' {
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
-		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
