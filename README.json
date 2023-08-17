@@ -3268,6 +3268,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/luizakuze" },
+								"children": [{ "type": "text", "value": "luizakuze" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/oussamabouchikhi" },
 								"children": [{ "type": "text", "value": "oussamabouchikhi" }]
 							}
@@ -5128,5 +5141,5 @@
 			}
 		]
 	},
-	"lastModified": 1692191972366
+	"lastModified": 1692239528361
 }
