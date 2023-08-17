@@ -124,6 +124,7 @@ declare module '$env/static/private' {
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
+	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -297,6 +298,7 @@ declare module '$env/dynamic/private' {
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
+		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
