@@ -70,6 +70,7 @@ declare module '$env/static/private' {
 	export const NVM_DIR: string;
 	export const npm_config_metrics_registry: string;
 	export const DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
+	export const GOROOT_1_21_X64: string;
 	export const JAVA_HOME_17_X64: string;
 	export const ImageVersion: string;
 	export const RUNNER_OS: string;
@@ -244,6 +245,7 @@ declare module '$env/dynamic/private' {
 		NVM_DIR: string;
 		npm_config_metrics_registry: string;
 		DOTNET_SKIP_FIRST_TIME_EXPERIENCE: string;
+		GOROOT_1_21_X64: string;
 		JAVA_HOME_17_X64: string;
 		ImageVersion: string;
 		RUNNER_OS: string;
