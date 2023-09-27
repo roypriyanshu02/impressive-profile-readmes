@@ -92,7 +92,6 @@ declare module '$env/static/private' {
 	export const ImageOS: string;
 	export const GITHUB_WORKFLOW_REF: string;
 	export const PERFLOG_LOCATION_SETTING: string;
-	export const GOROOT_1_18_X64: string;
 	export const GITHUB_ACTION_REPOSITORY: string;
 	export const npm_config_node_gyp: string;
 	export const PATH: string;
@@ -125,7 +124,6 @@ declare module '$env/static/private' {
 	export const DEBIAN_FRONTEND: string;
 	export const GITHUB_REPOSITORY_ID: string;
 	export const GITHUB_ACTIONS: string;
-	export const STATS_NM: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
 	export const GITHUB_REF_PROTECTED: string;
@@ -267,7 +265,6 @@ declare module '$env/dynamic/private' {
 		ImageOS: string;
 		GITHUB_WORKFLOW_REF: string;
 		PERFLOG_LOCATION_SETTING: string;
-		GOROOT_1_18_X64: string;
 		GITHUB_ACTION_REPOSITORY: string;
 		npm_config_node_gyp: string;
 		PATH: string;
@@ -300,7 +297,6 @@ declare module '$env/dynamic/private' {
 		DEBIAN_FRONTEND: string;
 		GITHUB_REPOSITORY_ID: string;
 		GITHUB_ACTIONS: string;
-		STATS_NM: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
 		GITHUB_REF_PROTECTED: string;
