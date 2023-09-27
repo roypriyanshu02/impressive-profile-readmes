@@ -239,6 +239,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [thmsgbrt](https://github.com/thmsgbrt)
 - [tuanductran](https://github.com/tuanductran)
 - [yutkat](https://github.com/yutkat)
+- [centrumek](https://github.com/centrumek)
 
 #### Fancy Fonts
 
