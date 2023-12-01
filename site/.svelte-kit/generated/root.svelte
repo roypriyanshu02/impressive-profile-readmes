@@ -6,7 +6,7 @@
 	// stores
 	export let stores;
 	export let page;
-
+	
 	export let constructors;
 	export let components = [];
 	export let form;
