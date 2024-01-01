@@ -106,7 +106,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [VikashPR](https://github.com/VikashPR)
 - [warengonzaga](https://github.com/warengonzaga)
 - [walleeva2018](https://github.com/walleeva2018)
-- [WilliamDavidHarrison](https://github.com/WilliamDavidHarrison)
+- [wdhdev](https://github.com/wdhdev)
 - [xiaoluoboding](https://github.com/xiaoluoboding)
 - [ysherqawi](https://github.com/ysherqawi)
 - [zephyrus21](https://github.com/zephyrus21)
