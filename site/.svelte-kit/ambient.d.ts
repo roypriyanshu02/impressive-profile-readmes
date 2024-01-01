@@ -92,7 +92,6 @@ declare module '$env/static/private' {
 	export const GITHUB_WORKFLOW_SHA: string;
 	export const GITHUB_BASE_REF: string;
 	export const ImageOS: string;
-	export const STATS_BLT: string;
 	export const GITHUB_WORKFLOW_REF: string;
 	export const PERFLOG_LOCATION_SETTING: string;
 	export const GITHUB_ACTION_REPOSITORY: string;
@@ -268,7 +267,6 @@ declare module '$env/dynamic/private' {
 		GITHUB_WORKFLOW_SHA: string;
 		GITHUB_BASE_REF: string;
 		ImageOS: string;
-		STATS_BLT: string;
 		GITHUB_WORKFLOW_REF: string;
 		PERFLOG_LOCATION_SETTING: string;
 		GITHUB_ACTION_REPOSITORY: string;
