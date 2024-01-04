@@ -240,6 +240,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [tuanductran](https://github.com/tuanductran)
 - [yutkat](https://github.com/yutkat)
 - [centrumek](https://github.com/centrumek)
+- [natainditama](https://github.com/natainditama)
 
 #### Fancy Fonts
 
