@@ -69,7 +69,7 @@
 	});
 </script>
 
-<a href={`https://github.com/${username}`} class="card" bind:this={cardRef}>
+<a href={`https://github.com/${username}`} class="card" bind:this={cardRef} target="_blank" rel="noopener noreferrer">
 	<div class="image-container">
 		<img
 			src={screenshot}
