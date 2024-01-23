@@ -43,7 +43,6 @@ declare module '$env/static/private' {
 	export const LOGNAME: string;
 	export const LSCOLORS: string;
 	export const LS_COLORS: string;
-	export const MOTD_SHOWN: string;
 	export const NAME: string;
 	export const NODE: string;
 	export const OLDPWD: string;
@@ -101,16 +100,10 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_event: string;
 	export const npm_lifecycle_script: string;
 	export const npm_node_execpath: string;
-	export const npm_package_dev: string;
-	export const npm_package_dev_optional: string;
-	export const npm_package_engines_node: string;
-	export const npm_package_integrity: string;
 	export const npm_package_json: string;
 	export const npm_package_name: string;
-	export const npm_package_optional: string;
-	export const npm_package_peer: string;
-	export const npm_package_resolved: string;
 	export const npm_package_version: string;
+	export const NODE_ENV: string;
 }
 
 /**
@@ -157,7 +150,6 @@ declare module '$env/dynamic/private' {
 		LOGNAME: string;
 		LSCOLORS: string;
 		LS_COLORS: string;
-		MOTD_SHOWN: string;
 		NAME: string;
 		NODE: string;
 		OLDPWD: string;
@@ -215,16 +207,10 @@ declare module '$env/dynamic/private' {
 		npm_lifecycle_event: string;
 		npm_lifecycle_script: string;
 		npm_node_execpath: string;
-		npm_package_dev: string;
-		npm_package_dev_optional: string;
-		npm_package_engines_node: string;
-		npm_package_integrity: string;
 		npm_package_json: string;
 		npm_package_name: string;
-		npm_package_optional: string;
-		npm_package_peer: string;
-		npm_package_resolved: string;
 		npm_package_version: string;
+		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}
