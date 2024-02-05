@@ -2768,6 +2768,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/hoangsvit" },
+								"children": [{ "type": "text", "value": "hoangsvit" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/karl-zschiebsch" },
 								"children": [{ "type": "text", "value": "karl-zschiebsch" }]
 							}
@@ -5206,5 +5219,5 @@
 			}
 		]
 	},
-	"lastModified": 1706747369948
+	"lastModified": 1707165726090
 }
