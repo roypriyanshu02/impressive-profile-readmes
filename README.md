@@ -217,6 +217,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [FaberSanZ](https://github.com/FaberSanZ)
 - [Find-NICK](https://github.com/Find-NICK)
 - [formidablae](https://github.com/formidablae)
+- [hoangsvit](https://github.com/hoangsvit)
 - [karl-zschiebsch](https://github.com/karl-zschiebsch)
 - [kittinan](https://github.com/kittinan)
 - [lowlighter](https://github.com/lowlighter)
