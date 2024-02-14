@@ -86,10 +86,10 @@
 		/>
 	</div>
 	<div class="footer" bind:this={cardFooterRef}>
-		<span class="category">{category}</span>
+		<span class="category">#{category}</span>
 		<div class="details">
 			<span class="username">
-				{username}
+				@{username}
 			</span>
 			<div class="star">
 				<svg role="img" viewBox="0 0 576 512">
