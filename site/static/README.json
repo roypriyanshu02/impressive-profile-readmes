@@ -2311,19 +2311,6 @@
 							{
 								"type": "element",
 								"tag": "a",
-								"props": { "href": "https://github.com/dileepabandara" },
-								"children": [{ "type": "text", "value": "dileepabandara" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
 								"props": { "href": "https://github.com/ethomson" },
 								"children": [{ "type": "text", "value": "ethomson" }]
 							}
@@ -2770,19 +2757,6 @@
 								"tag": "a",
 								"props": { "href": "https://github.com/hoangsvit" },
 								"children": [{ "type": "text", "value": "hoangsvit" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/karl-zschiebsch" },
-								"children": [{ "type": "text", "value": "karl-zschiebsch" }]
 							}
 						]
 					},
@@ -3662,19 +3636,6 @@
 								"tag": "a",
 								"props": { "href": "https://github.com/Sumyak-Jain" },
 								"children": [{ "type": "text", "value": "Sumyak-Jain" }]
-							}
-						]
-					},
-					{
-						"type": "element",
-						"tag": "li",
-						"props": {},
-						"children": [
-							{
-								"type": "element",
-								"tag": "a",
-								"props": { "href": "https://github.com/thedoodler" },
-								"children": [{ "type": "text", "value": "thedoodler" }]
 							}
 						]
 					},
@@ -5219,5 +5180,5 @@
 			}
 		]
 	},
-	"lastModified": 1707165726090
+	"lastModified": 1707924587566
 }
