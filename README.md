@@ -180,7 +180,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [cheesits456](https://github.com/cheesits456)
 - [dayyass](https://github.com/dayyass)
 - [DennisHartrampf](https://github.com/DennisHartrampf)
-- [dileepabandara](https://github.com/dileepabandara)
 - [ethomson](https://github.com/ethomson)
 - [f](https://github.com/f)
 - [filiptronicek](https://github.com/filiptronicek)
@@ -202,7 +201,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [XanderRubio](https://github.com/XanderRubio)
 - [xtenzQ](https://github.com/xtenzQ)
 
-
 #### Dynamic
 
 - [abhijoshi2k](https://github.com/abhijoshi2k)
@@ -218,7 +216,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Find-NICK](https://github.com/Find-NICK)
 - [formidablae](https://github.com/formidablae)
 - [hoangsvit](https://github.com/hoangsvit)
-- [karl-zschiebsch](https://github.com/karl-zschiebsch)
 - [kittinan](https://github.com/kittinan)
 - [lowlighter](https://github.com/lowlighter)
 - [Manobal-Singh-Bagady](https://github.com/Manobal-Singh-Bagady)
@@ -290,7 +287,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [samujjwaal](https://github.com/samujjwaal)
 - [ShahriarShafin](https://github.com/ShahriarShafin)
 - [Sumyak-Jain](https://github.com/Sumyak-Jain)
-- [thedoodler](https://github.com/thedoodler)
 - [thewhiteh4t](https://github.com/thewhiteh4t)
 - [WaylonWalker](https://github.com/WaylonWalker)
 
