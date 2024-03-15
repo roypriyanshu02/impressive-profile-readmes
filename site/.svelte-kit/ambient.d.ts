@@ -86,6 +86,7 @@ declare module '$env/static/private' {
 	export const _: string;
 	export const npm_config_prefix: string;
 	export const ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE: string;
+	export const STATS_D: string;
 	export const GITHUB_RUN_ID: string;
 	export const npm_config_cache: string;
 	export const GITHUB_REF_TYPE: string;
@@ -104,7 +105,6 @@ declare module '$env/static/private' {
 	export const RUNNER_TRACKING_ID: string;
 	export const INVOCATION_ID: string;
 	export const RUNNER_TOOL_CACHE: string;
-	export const GOROOT_1_19_X64: string;
 	export const NODE: string;
 	export const npm_package_name: string;
 	export const GITHUB_ACTION: string;
@@ -121,6 +121,7 @@ declare module '$env/static/private' {
 	export const STATS_VMD: string;
 	export const GITHUB_REF_NAME: string;
 	export const GITHUB_REPOSITORY: string;
+	export const STATS_D_D: string;
 	export const npm_lifecycle_script: string;
 	export const STATS_UE: string;
 	export const ANDROID_NDK_ROOT: string;
@@ -263,6 +264,7 @@ declare module '$env/dynamic/private' {
 		_: string;
 		npm_config_prefix: string;
 		ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE: string;
+		STATS_D: string;
 		GITHUB_RUN_ID: string;
 		npm_config_cache: string;
 		GITHUB_REF_TYPE: string;
@@ -281,7 +283,6 @@ declare module '$env/dynamic/private' {
 		RUNNER_TRACKING_ID: string;
 		INVOCATION_ID: string;
 		RUNNER_TOOL_CACHE: string;
-		GOROOT_1_19_X64: string;
 		NODE: string;
 		npm_package_name: string;
 		GITHUB_ACTION: string;
@@ -298,6 +299,7 @@ declare module '$env/dynamic/private' {
 		STATS_VMD: string;
 		GITHUB_REF_NAME: string;
 		GITHUB_REPOSITORY: string;
+		STATS_D_D: string;
 		npm_lifecycle_script: string;
 		STATS_UE: string;
 		ANDROID_NDK_ROOT: string;
