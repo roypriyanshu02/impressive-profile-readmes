@@ -10,6 +10,7 @@ import puppeteer from 'puppeteer';
 const captureScreenshot = async (path, userName) => {
 	// Define browser and page variables
 	const browser = await puppeteer.launch({
+		headless: 'new', // run in headless mode
 		args: ['--no-sandbox'] // disable sandboxing for safety
 	});
 	const url = `https://github.com/${userName}`;
