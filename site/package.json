@@ -26,7 +26,7 @@
 		"svelte": "^3.54.0",
 		"svelte-check": "^3.0.1",
 		"typescript": "^4.9.3",
-		"vite": "^4.5.2",
+		"vite": "^4.5.3",
 		"@dimerapp/markdown": "^3.2.2",
 		"dotenv": "^16.0.3",
 		"puppeteer": "^19.6.2",
