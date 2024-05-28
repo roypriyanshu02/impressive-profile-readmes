@@ -27,6 +27,7 @@
  */
 declare module '$env/static/private' {
 	export const GITHUB_STATE: string;
+	export const GIT_CLONE_PROTECTION_ACTIVE: string;
 	export const STATS_TRP: string;
 	export const DEPLOYMENT_BASEPATH: string;
 	export const DOTNET_NOLOGO: string;
@@ -204,6 +205,7 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		GITHUB_STATE: string;
+		GIT_CLONE_PROTECTION_ACTIVE: string;
 		STATS_TRP: string;
 		DEPLOYMENT_BASEPATH: string;
 		DOTNET_NOLOGO: string;
