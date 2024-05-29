@@ -218,6 +218,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Find-NICK](https://github.com/Find-NICK)
 - [formidablae](https://github.com/formidablae)
 - [hoangsvit](https://github.com/hoangsvit)
+- [jgphilpott](https://github.com/jgphilpott)
 - [kittinan](https://github.com/kittinan)
 - [lowlighter](https://github.com/lowlighter)
 - [Manobal-Singh-Bagady](https://github.com/Manobal-Singh-Bagady)
