@@ -2794,6 +2794,19 @@
 							{
 								"type": "element",
 								"tag": "a",
+								"props": { "href": "https://github.com/jgphilpott" },
+								"children": [{ "type": "text", "value": "jgphilpott" }]
+							}
+						]
+					},
+					{
+						"type": "element",
+						"tag": "li",
+						"props": {},
+						"children": [
+							{
+								"type": "element",
+								"tag": "a",
 								"props": { "href": "https://github.com/kittinan" },
 								"children": [{ "type": "text", "value": "kittinan" }]
 							}
@@ -5219,5 +5232,5 @@
 			}
 		]
 	},
-	"lastModified": 1716907332125
+	"lastModified": 1716968795554
 }
