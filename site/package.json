@@ -29,7 +29,7 @@
 		"vite": "^4.5.3",
 		"@dimerapp/markdown": "^3.2.2",
 		"dotenv": "^16.0.3",
-		"puppeteer": "^19.6.2",
+		"puppeteer": "^23.2.1",
 		"sharp": "^0.32.6"
 	},
 	"type": "module",
