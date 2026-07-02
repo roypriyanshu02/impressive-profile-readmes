@@ -8,30 +8,41 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
 		"refresh": "node src/refresh-data.js",
 		"generate": "node src/generate-data.js",
 		"deploy": "touch build/.nojekyll && gh-pages -d build -t true"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^2.0.1",
-		"@sveltejs/kit": "^1.27.6",
-		"eslint": "^8.28.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"gh-pages": "^5.0.0",
-		"prettier": "^2.8.0",
-		"prettier-plugin-svelte": "^2.8.1",
-		"svelte": "^3.54.0",
-		"svelte-check": "^3.0.1",
-		"typescript": "^4.9.3",
-		"vite": "^4.5.3",
-		"@dimerapp/markdown": "^3.2.2",
-		"dotenv": "^16.0.3",
-		"puppeteer": "^19.6.2",
-		"sharp": "^0.32.6"
+		"@dimerapp/markdown": "latest",
+		"@eslint/js": "latest",
+		"@sveltejs/adapter-static": "latest",
+		"@sveltejs/kit": "latest",
+		"@sveltejs/vite-plugin-svelte": "latest",
+		"@types/node": "latest",
+		"dotenv": "latest",
+		"eslint": "latest",
+		"eslint-config-prettier": "latest",
+		"eslint-plugin-svelte": "latest",
+		"gh-pages": "latest",
+		"globals": "latest",
+		"prettier": "latest",
+		"prettier-plugin-svelte": "latest",
+		"puppeteer": "latest",
+		"sharp": "latest",
+		"svelte": "latest",
+		"svelte-check": "latest",
+		"svelte-eslint-parser": "latest",
+		"typescript": "latest",
+		"vite": "latest"
 	},
 	"type": "module",
-	"dependencies": {}
+	"dependencies": {},
+	"overrides": {
+		"cookie": "^0.7.1"
+	},
+	"allowScripts": {
+		"puppeteer@25.3.0": true
+	}
 }
