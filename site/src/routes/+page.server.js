@@ -49,16 +49,19 @@ export const load = async () => {
 		categories.unshift({ categoryTitle: 'Most starred', totalProfileCount: profiles.length });
 		categories.unshift({ categoryTitle: 'All', totalProfileCount: profiles.length });
 
-		// If in production, fetch star count for each profile, else set star count to profile username length for demonstration purposes
-		if (process.env.NODE_ENV === 'production') {
-			for (const profile of profiles) {
-				profile.starCount = await fetchRepoStar(profile.username);
-			}
-		} else {
-			for (const profile of profiles) {
-				profile.starCount = profile.username.length;
-			}
-		}
+		// Fetch star counts for all profiles in parallel to avoid blocking
+		const starCountPromises = profiles.map((profile) =>
+			process.env.NODE_ENV === 'production'
+				? fetchRepoStar(profile.username).then((count) => ({ username: profile.username, count }))
+				: Promise.resolve({ username: profile.username, count: profile.username.length })
+		);
+
+		const starCounts = await Promise.all(starCountPromises);
+
+		starCounts.forEach(({ username, count }) => {
+			const profile = profiles.find((p) => p.username === username);
+			if (profile) profile.starCount = count;
+		});
 
 		// Sort profiles by username and return extracted information
 		profiles.sort((a, b) => a.username.localeCompare(b.username));
