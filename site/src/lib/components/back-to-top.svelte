@@ -33,8 +33,7 @@
 </script>
 
 {#if visibility}
-	<!-- svelte-ignore a11y-invalid-attribute -->
-	<a href="#" class="back-to-top-container" transition:fly={{ y: 50, duration: 300 }}>
+	<button class="back-to-top-container" transition:fly={{ y: 50, duration: 300 }} on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
 		<div class="back-to-top">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 				<title>Up arrow</title>
@@ -43,12 +42,17 @@
 				/>
 			</svg>
 		</div>
-	</a>
+	</button>
 {/if}
 
 <style>
 	.back-to-top-container {
+		background: none;
+		border: none;
 		bottom: 1rem;
+		cursor: pointer;
+		outline: none;
+		padding: 0;
 		position: fixed;
 		right: 1rem;
 		text-decoration: none;
