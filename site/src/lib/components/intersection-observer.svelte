@@ -11,6 +11,8 @@
 	let container;
 
 	onMount(() => {
+		let cleanup = () => {};
+
 		if (typeof IntersectionObserver !== 'undefined') {
 			const rootMargin = `${bottom}px ${left}px ${top}px ${right}px`;
 
@@ -27,24 +29,26 @@
 			);
 
 			observer.observe(container);
-			return () => observer.unobserve(container);
+			cleanup = () => observer.disconnect();
+		} else {
+			const handler = () => {
+				const bcr = container.getBoundingClientRect();
+				intersecting =
+					bcr.bottom + bottom > 0 &&
+					bcr.right + right > 0 &&
+					bcr.top - top < window.innerHeight &&
+					bcr.left - left < window.innerWidth;
+
+				if (intersecting && once) {
+					window.removeEventListener('scroll', handler);
+				}
+			};
+
+			window.addEventListener('scroll', handler);
+			cleanup = () => window.removeEventListener('scroll', handler);
 		}
 
-		function handler() {
-			const bcr = container.getBoundingClientRect();
-			intersecting =
-				bcr.bottom + bottom > 0 &&
-				bcr.right + right > 0 &&
-				bcr.top - top < window.innerHeight &&
-				bcr.left - left < window.innerWidth;
-
-			if (intersecting && once) {
-				window.removeEventListener('scroll', handler);
-			}
-		}
-
-		window.addEventListener('scroll', handler);
-		return () => window.removeEventListener('scroll', handler);
+		return cleanup;
 	});
 </script>
 

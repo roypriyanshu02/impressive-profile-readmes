@@ -4,11 +4,16 @@
 	// Export the props
 	export let screenshot, username, category, starCount;
 
-	// Destructure properties from $$props
-	let { cardRef, cardFooterRef, imageRef } = $$props;
+	// Refs to DOM elements
+	let cardRef;
+	let cardFooterRef;
+	let imageRef;
 
 	// Keep track of the number of images that are still loading
 	let waiting = 0;
+
+	// Flag to prevent duplicate event listeners
+	let contextMenuListenerAdded = false;
 
 	// Calculate and set the --image-translateY CSS variable
 	const setImageTranslateY = () => {
@@ -18,9 +23,13 @@
 		const imageHeight = imageRef.height;
 		const calc = totalCardHeight - cardFooterHeight - imageHeight;
 
-		imageRef.addEventListener('contextmenu', function (e) {
-			e.preventDefault();
-		});
+		// Prevent duplicate context menu listeners
+		if (!contextMenuListenerAdded) {
+			imageRef.addEventListener('contextmenu', function (e) {
+				e.preventDefault();
+			});
+			contextMenuListenerAdded = true;
+		}
 
 		// Set the --image-translateY CSS variable to position the image
 		if (calc < -20) {
@@ -117,15 +126,15 @@
 		background-color: white;
 		overflow: hidden;
 		aspect-ratio: 16 / 9;
-	}
+}
 	.card .image-container img {
-		transition: transform 1.75s;
+		transition: transform 1.5s ease-in-out;
 		user-select: none;
 		width: 100%;
 	}
 	.card .image-container:hover img {
 		transform: translateY(var(--image-translateY));
-		transition-delay: var(--transition-default);
+		transition-delay: 0.1s;
 		transition-timing-function: ease-in-out;
 	}
 	.card .footer {

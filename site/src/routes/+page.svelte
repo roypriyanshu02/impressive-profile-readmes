@@ -13,21 +13,35 @@
 		totalCount: 0
 	};
 
+	// Build category map for O(1) filtering
+	let categoryMap = new Map();
+
 	const updateFilteredData = (selectedCategory) => {
 		filteredData.category = selectedCategory;
-		if (selectedCategory == 'All') {
-			filteredData.profiles = data.profiles.sort(() => Math.random() - 0.5);
-		} else if (selectedCategory == 'Most starred') {
-			filteredData.profiles = data.profiles.sort((a, b) => b.starCount - a.starCount);
+
+		if (selectedCategory === 'All') {
+			// Create a copy and shuffle for randomness
+			filteredData.profiles = [...data.profiles].sort(() => Math.random() - 0.5);
+		} else if (selectedCategory === 'Most starred') {
+			// Sort by star count (descending)
+			filteredData.profiles = [...data.profiles].sort((a, b) => b.starCount - a.starCount);
 		} else {
-			filteredData.profiles = data.profiles.filter(
-				(profile) => profile.category === selectedCategory
-			);
+			// Use pre-computed category map for O(1) lookup
+			filteredData.profiles = categoryMap.get(selectedCategory) || [];
 		}
+
 		filteredData.totalCount = filteredData.profiles.length;
 	};
 
 	onMount(() => {
+		// Build category map once on mount
+		data.profiles.forEach((profile) => {
+			if (!categoryMap.has(profile.category)) {
+				categoryMap.set(profile.category, []);
+			}
+			categoryMap.get(profile.category).push(profile);
+		});
+
 		updateFilteredData('All');
 	});
 </script>
@@ -40,7 +54,7 @@
 />
 
 <CardSection>
-	{#each filteredData.profiles as profile, index}
+	{#each filteredData.profiles as profile (profile.username)}
 		<IntersectionObserver let:intersecting once>
 			{#if intersecting}
 				<Card

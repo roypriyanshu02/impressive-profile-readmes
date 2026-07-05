@@ -38,12 +38,12 @@
 			</button>
 			{#if isDropdownVisible}
 				<ul class="filter-list" transition:fly={{ y: -50, duration: 200 }}>
-					{#each filterItems as item}
+					{#each filterItems as item (item.categoryTitle)}
 						<li>
 							<a
 								href={`#${item.categoryTitle.replace(/\s+/g, '-').toLowerCase()}`}
 								class="filter-item {selectedFilter === item.categoryTitle ? 'active' : ''}"
-								on:click|preventDefault={handleFilterClick(item.categoryTitle)}
+								on:click|preventDefault={() => handleFilterClick(item.categoryTitle)}
 							>
 								{item.categoryTitle}
 								<span>
