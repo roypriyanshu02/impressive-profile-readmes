@@ -34,7 +34,7 @@ export const load = async () => {
 					.filter(Boolean);
 
 				// If there are profiles in this category, add them to profiles list and category information to categories list
-				if (profilesForCategory) {
+				if (profilesForCategory?.length) {
 					profiles.push(...profilesForCategory);
 					categories.push({
 						categoryTitle: categoryName,
@@ -49,6 +49,9 @@ export const load = async () => {
 		categories.unshift({ categoryTitle: 'Most starred', totalProfileCount: profiles.length });
 		categories.unshift({ categoryTitle: 'All', totalProfileCount: profiles.length });
 
+		// Create a map for faster lookups
+		const profileMap = new Map(profiles.map((p) => [p.username, p]));
+
 		// Fetch star counts for all profiles in parallel to avoid blocking
 		const starCountPromises = profiles.map((profile) =>
 			process.env.NODE_ENV === 'production'
@@ -58,8 +61,9 @@ export const load = async () => {
 
 		const starCounts = await Promise.all(starCountPromises);
 
+		// Update star counts using map for O(1) lookups
 		starCounts.forEach(({ username, count }) => {
-			const profile = profiles.find((p) => p.username === username);
+			const profile = profileMap.get(username);
 			if (profile) profile.starCount = count;
 		});
 
@@ -74,7 +78,7 @@ export const load = async () => {
 		console.error(error);
 		return {
 			categories: [{ categoryTitle: 'All', totalProfileCount: 0 }],
-			profiles: {},
+			profiles: [],
 			error: error
 		};
 	}
