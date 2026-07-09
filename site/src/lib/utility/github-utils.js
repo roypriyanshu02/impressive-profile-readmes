@@ -66,7 +66,6 @@ const detectGIFsInREADME = async (username) => {
 				? 'Profile contains animated content (GIFs)'
 				: 'Profile contains static content only'
 		};
-
 	} catch (error) {
 		console.error(`Error detecting animated content for ${username}:`, error.message);
 		return {
@@ -90,9 +89,9 @@ const detectAnimatedContent = (markdown) => {
 	// Patterns that indicate animated content
 	const animatedPatterns = [
 		// Image extensions that suggest animation
-		/\!\[.*?\]\((https?:\/\/.*?)\.(gif|gifv|webp|gifs?)\s*[)\s]/gi,
+		/!\[.*?\]\((https?:\/\/.*?)\.(gif|gifv|webp|gifs?)\s*[)\s]/gi,
 		// HTML img tags with animated extensions
-		/<img\s+[^>]*src=["'](https?:\/\/.*?\.(gif|gifv|webp|apng)["']\s*[^>]*>/gi,
+		/<img\s+[^>]*src=["'](https?:\/\/.*?\.(gif|gifv|webp|apng))["']\s*[^>]*>/gi,
 		// Base64 encoded GIFs
 		/data:image\/gif;base64,/gi,
 		// GIF-specific HTML5 video tags (rare in READMEs)
@@ -115,9 +114,9 @@ const detectAnimatedContent = (markdown) => {
 	}
 
 	// Look for multiple image patterns in sequence (indicative of animation)
-	const imageCount = (markdown.match(/\!\[.*?\]/g) || []).length;
+	const imageCount = (markdown.match(/!\[.*?\]/g) || []).length;
 	const htmlImageCount = (markdown.match(/<img\s+/g) || []).length;
-	
+
 	if (imageCount > 1 || htmlImageCount > 1) {
 		// Multiple images in same README suggest potential animation
 		return true;
@@ -142,7 +141,7 @@ const detectMultipleProfiles = async (usernames, delay = 1000) => {
 
 		// Add delay to avoid rate limiting (GitHub allows ~60 requests/hour)
 		if (i < usernames.length - 1) {
-			await new Promise(resolve => setTimeout(resolve, delay));
+			await new Promise((resolve) => setTimeout(resolve, delay));
 		}
 	}
 

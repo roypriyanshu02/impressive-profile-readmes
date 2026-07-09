@@ -48,7 +48,7 @@ const extractLinkList = async (json) => {
 
 					// Extract username from href (github.com/username)
 					const href = anchor.props.href;
-					const match = href.match(/https?:\/\/github\.com\/([^\/]+)/);
+					const match = href.match(/https?:\/\/github\.com\/([^/]+)/);
 					if (match) {
 						// Check if username is lowercase (consistent with our format)
 						if (match[1] === match[1].toLowerCase()) {
@@ -96,9 +96,7 @@ const checkLinkWithRetry = async (link, retries = CONFIG.maxRetries) => {
 			clearTimeout(timeoutId);
 
 			if (response.status >= 400 && response.status < 600) {
-				console.log(
-					`✗ Link "${link.title}" is broken (${response.status} ${response.statusText})`
-				);
+				console.log(`✗ Link "${link.title}" is broken (${response.status} ${response.statusText})`);
 				return { link, status: 'broken', statusCode: response.status };
 			} else {
 				console.log(`✓ Link "${link.title}" is working (${response.status})`);
@@ -106,9 +104,7 @@ const checkLinkWithRetry = async (link, retries = CONFIG.maxRetries) => {
 			}
 		} catch (error) {
 			if (attempt < retries) {
-				console.log(
-					`⚠ Retry ${attempt + 1}/${retries} for "${link.title}": ${error.message}`
-				);
+				console.log(`⚠ Retry ${attempt + 1}/${retries} for "${link.title}": ${error.message}`);
 				await sleep(CONFIG.retryDelay);
 			} else {
 				console.error(`✗ Failed to check link "${link.href}": ${error.message}`);
@@ -217,7 +213,7 @@ const removeBrokenLinks = async (brokenLinkTitles, data) => {
 		// Escape special regex characters in the title
 		const escapedTitle = linkTitle.replace(/[.*+?^${}()|[\]\\]/g, '\\\\$&');
 		// Match both with and without trailing newlines
-		const regex = new RegExp(`^- \\\[${escapedTitle}\\]\\\\([^)]*\\\\)\\\\s*\\\\n?`, 'gm');
+		const regex = new RegExp(`^- \\[${escapedTitle}\\]\\\\([^)]*\\\\)\\\\s*\\\\n?`, 'gm');
 		const matches = newData.match(regex);
 		if (matches) {
 			removedCount += matches.length;
@@ -288,17 +284,21 @@ const main = async () => {
 		}
 
 		// Separate profiles from regular links
-		const profileLinks = linkList.filter(item => item.type === 'profile');
-		const regularLinks = linkList.filter(item => item.type === 'link');
+		const profileLinks = linkList.filter((item) => item.type === 'profile');
+		const regularLinks = linkList.filter((item) => item.type === 'link');
 
 		// Step 4a: Check GitHub profiles
 		console.log('\\nStep 4a: Checking GitHub profiles...');
-		const profileResults = await Promise.all(profileLinks.map(link => checkGitHubProfile(link.username)));
-		
-		const notFoundProfiles = profileResults.filter(r => r.status === 'not-found');
-		const readmeNotFoundProfiles = profileResults.filter(r => r.status === 'readme-not-found');
-		const errorProfiles = profileResults.filter(r => r.status === 'error' || r.status === 'readme-error');
-		const existingProfiles = profileResults.filter(r => r.status === 'exists');
+		const profileResults = await Promise.all(
+			profileLinks.map((link) => checkGitHubProfile(link.username))
+		);
+
+		const notFoundProfiles = profileResults.filter((r) => r.status === 'not-found');
+		const readmeNotFoundProfiles = profileResults.filter((r) => r.status === 'readme-not-found');
+		const errorProfiles = profileResults.filter(
+			(r) => r.status === 'error' || r.status === 'readme-error'
+		);
+		const existingProfiles = profileResults.filter((r) => r.status === 'exists');
 
 		console.log(`\\n=== Profile Check Results ===`);
 		console.log(`✓ Valid profiles: ${existingProfiles.length}`);
@@ -311,23 +311,26 @@ const main = async () => {
 		const results = await handleLinks(regularLinks);
 
 		// Step 5: Remove invalid profiles and broken links if any
-		const hasInvalidItems = notFoundProfiles.length > 0 || readmeNotFoundProfiles.length > 0 || results.broken.length > 0;
+		const hasInvalidItems =
+			notFoundProfiles.length > 0 || readmeNotFoundProfiles.length > 0 || results.broken.length > 0;
 
 		if (hasInvalidItems) {
 			console.log('\\nStep 5: Removing invalid items...');
-			
+
 			// Remove not found profiles from README.md
 			const allInvalidTitles = [
-				...notFoundProfiles.map(p => `\\- [${p.username}](https://github.com/${p.username})`),
-				...readmeNotFoundProfiles.map(p => `\\- [${p.username}](https://github.com/${p.username})`)
+				...notFoundProfiles.map((p) => `\\- [${p.username}](https://github.com/${p.username})`),
+				...readmeNotFoundProfiles.map(
+					(p) => `\\- [${p.username}](https://github.com/${p.username})`
+				)
 			];
-			
+
 			if (allInvalidTitles.length > 0) {
 				const { newData, removedCount } = await removeBrokenLinks(allInvalidTitles, markdown);
 				console.log(`Removed ${removedCount} invalid profile entries`);
 				await rewriteReadmeFile(newData);
 			}
-			
+
 			// Remove broken links if any
 			if (results.broken.length > 0) {
 				const { newData } = await removeBrokenLinks(results.broken, markdown);
@@ -337,8 +340,12 @@ const main = async () => {
 			console.log('\\n=== Summary ===');
 			console.log(`Total profiles checked: ${profileLinks.length}`);
 			console.log(`Valid GitHub profiles: ${existingProfiles.length}`);
-			console.log(`Invalid profiles removed: ${notFoundProfiles.length + readmeNotFoundProfiles.length}`);
-			console.log(`External links checked: ${results.working.length + results.broken.length + results.errors.length}`);
+			console.log(
+				`Invalid profiles removed: ${notFoundProfiles.length + readmeNotFoundProfiles.length}`
+			);
+			console.log(
+				`External links checked: ${results.working.length + results.broken.length + results.errors.length}`
+			);
 			console.log(`Working external links: ${results.working.length}`);
 			console.log(`Broken external links removed: ${results.broken.length}`);
 			console.log(`Error external links: ${results.errors.length}`);
@@ -360,42 +367,3 @@ const main = async () => {
 
 // Execute main function
 main();
-
-// Check if a single link is working with retries
-const checkLinkWithRetry = async (link, retries = CONFIG.maxRetries) => {
-	for (let attempt = 0; attempt <= retries; attempt++) {
-		try {
-			const controller = new AbortController();
-			const timeoutId = setTimeout(() => controller.abort(), CONFIG.requestTimeout);
-
-			const response = await fetch(link.href, {
-				signal: controller.signal,
-				headers: {
-					'User-Agent': 'Mozilla/5.0 (compatible; RefreshDataBot/1.0)'
-				}
-			});
-
-			clearTimeout(timeoutId);
-
-			if (response.status >= 400 && response.status < 600) {
-				console.log(
-					`✗ Link "${link.title}" is broken (${response.status} ${response.statusText})`
-				);
-				return { link, status: 'broken', statusCode: response.status };
-			} else {
-				console.log(`✓ Link "${link.title}" is working (${response.status})`);
-				return { link, status: 'working', statusCode: response.status };
-			}
-		} catch (error) {
-			if (attempt < retries) {
-				console.log(
-					`⚠ Retry ${attempt + 1}/${retries} for "${link.title}": ${error.message}`
-				);
-				await sleep(CONFIG.retryDelay);
-			} else {
-				console.error(`✗ Failed to check link "${link.href}": ${error.message}`);
-				return { link, status: 'error', error: error.message };
-			}
-		}
-	}
-};
