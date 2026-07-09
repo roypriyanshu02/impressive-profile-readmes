@@ -44,115 +44,115 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 			};
 
 	// Create new page and navigate to the user's GitHub profile
-	const page = await browser.newPage();
+	let page;
 	try {
-		await page.goto(url, { waitUntil: 'networkidle0', timeout: config.captureTimeout });
+		page = await browser.newPage();
+		await page.goto(url, { waitUntil: 'networkidle2', timeout: config.captureTimeout });
+
+		// Set the viewport height
+		await page.setViewport({
+			width: config.viewportWidth,
+			height: config.viewportHeight
+		});
+
+		// For animated capture, take full page screenshot
+		let screenshotBuffer;
+		if (isAnimated) {
+			// Wait for animations to complete
+			await new Promise((resolve) => setTimeout(resolve, config.waitTime));
+
+			// Take full page screenshot using page.screenshot with fullPage option
+			screenshotBuffer = await page.screenshot({
+				fullPage: true,
+				type: 'png' // Use PNG for better animation quality
+			});
+		} else {
+			// For static capture, use optimized clip-based screenshot
+			// Get the README DOM height
+			let domHeight = await page.evaluate((selector) => {
+				const readme = document.querySelector(selector);
+				return readme ? readme.getBoundingClientRect().bottom : 0;
+			}, config.domSelector);
+
+			// Ensure window height captures entire README
+			const windowHeight = Math.min(
+				Math.max(domHeight, config.windowMinHeight),
+				config.windowMaxHeight
+			);
+
+			// Take screenshot of README
+			screenshotBuffer = await page.screenshot({
+				clip: {
+					width: config.windowWidth,
+					height: windowHeight - config.navbarOffset,
+					x: 0,
+					y: config.pageOffset
+				}
+			});
+		}
+
+		// Convert to webp with animated support
+		let result;
+		if (isAnimated) {
+			// For animated content, create animated WebP
+			result = await sharp(screenshotBuffer)
+				.resize(800, null, {
+					kernel: 'lanczos3',
+					fit: 'inside',
+					withoutEnlargement: true
+				})
+				.webp({
+					quality: 85,
+					effort: 6,
+					nearLossless: true,
+					alphaQuality: 80,
+					smartSubsample: true,
+					reductionEffort: 6,
+					animated: true // Enable animated WebP
+				})
+				.toFile(`${path}/${userName}.webp`);
+		} else {
+			// For static content, use existing optimized settings
+			result = await sharp(screenshotBuffer)
+				.resize(800, null, {
+					kernel: 'lanczos3',
+					fit: 'inside',
+					withoutEnlargement: true
+				})
+				.webp({
+					quality: 65,
+					effort: 6,
+					nearLossless: true,
+					alphaQuality: 80,
+					smartSubsample: true,
+					reductionEffort: 6
+				})
+				.toFile(`${path}/${userName}.webp`);
+		}
+
+		// Wait additional time based on animation type
+		await new Promise((resolve) => setTimeout(resolve, config.waitTime));
+
+		// Return enhanced result with metadata
+		return {
+			...result,
+			username: userName,
+			isAnimated,
+			screenshotPath: `${path}/${userName}.webp`,
+			captureMetadata: {
+				animated: isAnimated,
+				quality: isAnimated ? 85 : 65,
+				size: result.size,
+				format: result.format
+			}
+		};
 	} catch (error) {
 		console.error(error);
 		throw error;
+	} finally {
+		if (page) await page.close().catch(() => {});
+		if (browser) await browser.close().catch(() => {});
 	}
-
-	// Set the viewport height
-	await page.setViewport({
-		width: config.viewportWidth,
-		height: config.viewportHeight
-	});
-
-	// For animated capture, take full page screenshot
-	let screenshotBuffer;
-	if (isAnimated) {
-		// Wait for animations to complete
-		await new Promise((resolve) => setTimeout(resolve, config.waitTime));
-
-		// Take full page screenshot using page.screenshot with fullPage option
-		screenshotBuffer = await page.screenshot({
-			fullPage: true,
-			type: 'png' // Use PNG for better animation quality
-		});
-	} else {
-		// For static capture, use optimized clip-based screenshot
-		// Get the README DOM height
-		let domHeight = await page.evaluate(() => {
-			const readme = document.querySelector(config.domSelector);
-			return readme ? readme.getBoundingClientRect().bottom : 0;
-		});
-
-		// Ensure window height captures entire README
-		const windowHeight = Math.min(
-			Math.max(domHeight, config.windowMinHeight),
-			config.windowMaxHeight
-		);
-
-		// Take screenshot of README
-		screenshotBuffer = await page.screenshot({
-			clip: {
-				width: config.windowWidth,
-				height: windowHeight - config.navbarOffset,
-				x: 0,
-				y: config.pageOffset
-			}
-		});
-	}
-
-	// Convert to webp with animated support
-	let result;
-	if (isAnimated) {
-		// For animated content, create animated WebP
-		result = await sharp(screenshotBuffer)
-			.resize(800, null, {
-				kernel: 'lanczos3',
-				fit: 'inside',
-				withoutEnlargement: true
-			})
-			.webp({
-				quality: 85,
-				effort: 6,
-				nearLossless: true,
-				alphaQuality: 80,
-				smartSubsample: true,
-				reductionEffort: 6,
-				animated: true // Enable animated WebP
-			})
-			.toFile(`${path}/${userName}.webp`);
-	} else {
-		// For static content, use existing optimized settings
-		result = await sharp(screenshotBuffer)
-			.resize(800, null, {
-				kernel: 'lanczos3',
-				fit: 'inside',
-				withoutEnlargement: true
-			})
-			.webp({
-				quality: 65,
-				effort: 6,
-				nearLossless: true,
-				alphaQuality: 80,
-				smartSubsample: true,
-				reductionEffort: 6
-			})
-			.toFile(`${path}/${userName}.webp`);
-	}
-
-	// Wait additional time based on animation type
-	await new Promise((resolve) => setTimeout(resolve, config.waitTime));
-
-	// Close the page and browser
-	await page.close();
-	await browser.close();
-
-	// Return enhanced result with metadata
-	return {
-		...result,
-		username: userName,
-		isAnimated,
-		screenshotPath: `${path}/${userName}.webp`,
-		captureMetadata: {
-			animated: isAnimated,
-			quality: isAnimated ? 85 : 65,
-			size: result.size,
-			format: result.format
-		}
-	};
 };
 
 export default captureScreenshot;

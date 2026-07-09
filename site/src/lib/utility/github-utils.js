@@ -1,5 +1,3 @@
-import { AbortController } from 'node:abort-controller';
-
 /**
  * A function to detect if a GitHub user's profile README contains animated content (GIFs)
  * @param {String} username - The GitHub username to check

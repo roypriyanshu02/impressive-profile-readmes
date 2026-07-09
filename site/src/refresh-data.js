@@ -319,10 +319,8 @@ const main = async () => {
 
 			// Remove not found profiles from README.md
 			const allInvalidTitles = [
-				...notFoundProfiles.map((p) => `\\- [${p.username}](https://github.com/${p.username})`),
-				...readmeNotFoundProfiles.map(
-					(p) => `\\- [${p.username}](https://github.com/${p.username})`
-				)
+				...notFoundProfiles.map((p) => p.username),
+				...readmeNotFoundProfiles.map((p) => p.username)
 			];
 
 			if (allInvalidTitles.length > 0) {
