@@ -81,10 +81,11 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 	const added = [...profileSet].filter((profile) => !screenshotSet.has(profile));
 	const removed = [...screenshotSet].filter((profile) => !profileSet.has(profile));
 
+	let animatedDetectionResults = [];
 	if (added.length > 0) {
 		// Detect animated content for profiles to be added
 		console.log('Detecting animated content for profiles to be added...');
-		const animatedDetectionResults = await detectMultipleProfiles(added, 500);
+		animatedDetectionResults = await detectMultipleProfiles(added, 500);
 
 		for (let i = 0; i < added.length; i++) {
 			const profile = added[i];
@@ -94,38 +95,38 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 				console.warn(`Unexpected detection result for ${profile}, assuming static`);
 				console.log(`Capturing ${profile}'s profile screenshot...`);
 			} else {
-				console.log(`Capturing ${profile}'s profile screenshot${isAnimated ? ' (animated)' : ''}...`);
+				console.log(
+					`Capturing ${profile}'s profile screenshot${isAnimated ? ' (animated)' : ''}...`
+				);
 			}
 			try {
-				await captureScreenshot(
-					resolve(__dirname, '..', 'screenshots'),
-					profile,
-					isAnimated
+				await captureScreenshot(resolve(__dirname, '..', 'screenshots'), profile, isAnimated);
+				console.log(
+					`Successfully captured ${profile}'s profile ${isAnimated ? 'animated' : 'static'} screenshot`
 				);
-				console.log(`Successfully captured ${profile}'s profile ${isAnimated ? 'animated' : 'static'} screenshot`);
-				} catch (error) {
-					console.error(
-						`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
-					);
-					throw error;
-				}
+			} catch (error) {
+				console.error(
+					`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
+				);
+				throw error;
 			}
 		}
+	}
 
 	for (const profile of removed) {
 		if (profile === '.gitkeep') continue;
 		try {
 			await unlink(resolve(__dirname, '..', 'screenshots', `${profile}.webp`));
 			console.log(`Successfully deleted ${profile}'s profile screenshot`);
-			} catch (error) {
-				console.error(`Failed to delete ${profile}'s profile screenshot: ${error.message}`);
-				throw error;
-			}
+		} catch (error) {
+			console.error(`Failed to delete ${profile}'s profile screenshot: ${error.message}`);
+			throw error;
 		}
+	}
 
 	// Log summary of animated content detection
 	if (added.length > 0) {
-		const animatedCount = animatedDetectionResults.filter(r => r.isAnimated).length;
+		const animatedCount = animatedDetectionResults.filter((r) => r.isAnimated).length;
 		console.log(`\n=== Animated Content Detection Summary ===`);
 		console.log(`Total profiles detected: ${added.length}`);
 		console.log(`Animated profiles found: ${animatedCount}`);

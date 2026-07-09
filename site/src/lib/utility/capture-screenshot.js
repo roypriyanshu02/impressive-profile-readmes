@@ -15,33 +15,33 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 		args: ['--no-sandbox'] // disable sandboxing for safety
 	});
 	const url = `https://github.com/${userName}`;
-	
+
 	// Dynamic viewport and timing based on content type
 	const config = isAnimated
 		? {
-			viewportWidth: 1920,
-			viewportHeight: 8000, // Larger viewport for full page capture
-			windowWidth: 1920,
-			windowMinHeight: 2000,
-			windowMaxHeight: 15000,
-			captureTimeout: 90000, // 90 seconds for animations
-			waitTime: 5000, // 5 seconds for animations
-			domSelector: 'div.profile-readme', // Standard selector
-			navbarOffset: 83,
-			pageOffset: 0,
-		}
+				viewportWidth: 1920,
+				viewportHeight: 8000, // Larger viewport for full page capture
+				windowWidth: 1920,
+				windowMinHeight: 2000,
+				windowMaxHeight: 15000,
+				captureTimeout: 90000, // 90 seconds for animations
+				waitTime: 5000, // 5 seconds for animations
+				domSelector: 'div.profile-readme', // Standard selector
+				navbarOffset: 83,
+				pageOffset: 0
+			}
 		: {
-			viewportWidth: 1400,
-			viewportHeight: 5000,
-			windowWidth: 1400,
-			windowMinHeight: 1000,
-			windowMaxHeight: 5000,
-			captureTimeout: 60000,
-			waitTime: 2000,
-			domSelector: 'div.profile-readme',
-			navbarOffset: 54,
-			pageOffset: 54,
-		};
+				viewportWidth: 1400,
+				viewportHeight: 5000,
+				windowWidth: 1400,
+				windowMinHeight: 1000,
+				windowMaxHeight: 5000,
+				captureTimeout: 60000,
+				waitTime: 2000,
+				domSelector: 'div.profile-readme',
+				navbarOffset: 54,
+				pageOffset: 54
+			};
 
 	// Create new page and navigate to the user's GitHub profile
 	const page = await browser.newPage();
@@ -62,13 +62,12 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 	let screenshotBuffer;
 	if (isAnimated) {
 		// Wait for animations to complete
-		await new Promise(resolve => setTimeout(resolve, config.waitTime));
+		await new Promise((resolve) => setTimeout(resolve, config.waitTime));
 
 		// Take full page screenshot using page.screenshot with fullPage option
 		screenshotBuffer = await page.screenshot({
 			fullPage: true,
-			type: 'png', // Use PNG for better animation quality
-			quality: 100
+			type: 'png' // Use PNG for better animation quality
 		});
 	} else {
 		// For static capture, use optimized clip-based screenshot
@@ -79,7 +78,10 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 		});
 
 		// Ensure window height captures entire README
-		const windowHeight = Math.min(Math.max(domHeight, config.windowMinHeight), config.windowMaxHeight);
+		const windowHeight = Math.min(
+			Math.max(domHeight, config.windowMinHeight),
+			config.windowMaxHeight
+		);
 
 		// Take screenshot of README
 		screenshotBuffer = await page.screenshot({
