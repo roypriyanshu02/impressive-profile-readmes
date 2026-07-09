@@ -42,11 +42,10 @@ jobs:
         with:
           node-version: lts/*
 
-      # Install Chromium for puppeteer
-      - name: Install Chromium
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y chromium-browser
+      # Install Puppeteer Chrome
+      - name: Install Puppeteer Chrome
+        run: npx puppeteer browsers install chrome
+        working-directory: site/
 
       # Clean Install npm packages
       - name: Install npm packages
@@ -55,7 +54,7 @@ jobs:
 
       # Generate README.json and Screenshots
       - name: Generate data
-        run: CHROME_BIN=$(which chromium-browser) npm run generate
+        run: npm run generate
         working-directory: site/
 
       # Format and lint code
