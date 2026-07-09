@@ -53,7 +53,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [apoorvtyagi](https://github.com/apoorvtyagi)
 - [aromalanil](https://github.com/aromalanil)
 - [claytonjhamilton](https://github.com/claytonjhamilton)
-- [CodeWhiteWeb](https://github.com/CodeWhiteWeb)
 - [CyrisXD](https://github.com/CyrisXD)
 - [DavidsDvm](https://github.com/DavidsDvm)
 - [Defcon27](https://github.com/Defcon27)
@@ -68,7 +67,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [itgoyo](https://github.com/itgoyo)
 - [Jackyu-1999](https://github.com/Jackyu-1999)
 - [KasRoudra](https://github.com/KasRoudra)
-- [keshavsingh4522](https://github.com/keshavsingh4522)
 - [krishealty](https://github.com/krishealty)
 - [kztera](https://github.com/kztera)
 - [leander-dsouza](https://github.com/leander-dsouza)
@@ -162,7 +160,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 #### Code
 
-- [ashbakernz](https://github.com/ashbakernz)
 - [CrazyChickenDev](https://github.com/CrazyChickenDev)
 - [KiSobral](https://github.com/KiSobral)
 - [laohanme](https://github.com/laohanme)
@@ -188,7 +185,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [garimasingh128](https://github.com/garimasingh128)
 - [gautamkrishnar](https://github.com/gautamkrishnar)
 - [halfrost](https://github.com/halfrost)
-- [harshkumarkhatri](https://github.com/harshkumarkhatri)
 - [harshkumarkhatri](https://github.com/harshkumarkhatri)
 - [Nanra](https://github.com/Nanra)
 - [orhun](https://github.com/orhun)
@@ -231,7 +227,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [ouuan](https://github.com/ouuan)
 - [probablykasper](https://github.com/probablykasper)
 - [RaoHai](https://github.com/RaoHai)
-- [Shing-Ho](https://github.com/Shing-Ho)
 - [simonw](https://github.com/simonw)
 - [surajshende247](https://github.com/surajshende247)
 - [swyxio](https://github.com/swyxio)
@@ -262,7 +257,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 #### Image
 
 - [afc163](https://github.com/afc163)
-- [edisonlee55](https://github.com/edisonlee55)
 - [innng](https://github.com/innng)
 - [luizakuze](https://github.com/luizakuze)
 - [oussamabouchikhi](https://github.com/oussamabouchikhi)
