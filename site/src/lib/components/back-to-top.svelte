@@ -33,7 +33,11 @@
 </script>
 
 {#if visibility}
-	<button class="back-to-top-container" transition:fly={{ y: 50, duration: 300 }} on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+	<button
+		class="back-to-top-container"
+		transition:fly={{ y: 50, duration: 300 }}
+		on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+	>
 		<div class="back-to-top">
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
 				<title>Up arrow</title>

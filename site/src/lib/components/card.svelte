@@ -132,7 +132,7 @@
 		background-color: white;
 		overflow: hidden;
 		aspect-ratio: 16 / 9;
-}
+	}
 	.card .image-container img {
 		transition: transform 1.5s ease-in-out;
 		user-select: none;
