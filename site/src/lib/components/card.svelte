@@ -41,6 +41,10 @@
 
 	// Run the following code when the image finishes loading
 	const handleImageLoad = (el) => {
+		if (el.complete) {
+			setImageTranslateY();
+			return;
+		}
 		waiting++;
 		el.addEventListener(
 			'load',
@@ -86,13 +90,15 @@
 	rel="noopener noreferrer"
 >
 	<div class="image-container">
-		<img
-			src={screenshot}
-			loading="lazy"
-			alt={`${username}'s Github profile screenshot`}
-			bind:this={imageRef}
-			use:handleImageLoad
-		/>
+		{#if screenshot}
+			<enhanced:img
+				src={screenshot}
+				loading="lazy"
+				alt={`${username}'s Github profile screenshot`}
+				bind:this={imageRef}
+				use:handleImageLoad
+			/>
+		{/if}
 	</div>
 	<div class="footer" bind:this={cardFooterRef}>
 		<span class="category">#{category}</span>
