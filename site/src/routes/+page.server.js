@@ -52,14 +52,33 @@ export const load = async () => {
 		// Create a map for faster lookups
 		const profileMap = new Map(profiles.map((p) => [p.username, p]));
 
-		// Fetch star counts for all profiles in parallel to avoid blocking
-		const starCountPromises = profiles.map((profile) =>
-			process.env.NODE_ENV === 'production'
-				? fetchRepoStar(profile.username).then((count) => ({ username: profile.username, count }))
-				: Promise.resolve({ username: profile.username, count: profile.username.length })
-		);
+		// Helper to limit concurrency of async tasks to prevent rate limiting / abort errors
+		const limitConcurrency = async (tasks, limit) => {
+			const results = [];
+			const executing = new Set();
+			for (const task of tasks) {
+				const p = Promise.resolve().then(() => task());
+				results.push(p);
+				executing.add(p);
+				const clean = () => executing.delete(p);
+				p.then(clean, clean);
+				if (executing.size >= limit) {
+					await Promise.race(executing);
+				}
+			}
+			return Promise.all(results);
+		};
 
-		const starCounts = await Promise.all(starCountPromises);
+		const tasks = profiles.map((profile) => async () => {
+			if (process.env.NODE_ENV === 'production') {
+				const count = await fetchRepoStar(profile.username);
+				return { username: profile.username, count };
+			} else {
+				return { username: profile.username, count: profile.username.length };
+			}
+		});
+
+		const starCounts = await limitConcurrency(tasks, 10); // Limit to 10 concurrent requests
 
 		// Update star counts using map for O(1) lookups
 		starCounts.forEach(({ username, count }) => {

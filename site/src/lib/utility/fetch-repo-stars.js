@@ -16,6 +16,17 @@ const fetchRepoStar = async (username) => {
 		return starCountCache.get(username);
 	}
 
+	if (!process.env.GITHUB_TOKEN) {
+		// Log warning once if token is missing to avoid spamming the log
+		if (!global.__githubTokenWarningLogged) {
+			console.warn(
+				'⚠ GITHUB_TOKEN environment variable is not defined. GraphQL API calls will be skipped.'
+			);
+			global.__githubTokenWarningLogged = true;
+		}
+		return 0;
+	}
+
 	// Define the GraphQL query to fetch the stargazer count for the user's repository
 	const query = `query { repository(owner: "${username}", name: "${username}") { stargazers { totalCount } } }`;
 
