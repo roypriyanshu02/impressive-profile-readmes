@@ -11,7 +11,7 @@
 	let container;
 
 	onMount(() => {
-		let cleanup = () => {};
+		let cleanup;
 
 		if (typeof IntersectionObserver !== 'undefined') {
 			const rootMargin = `${bottom}px ${left}px ${top}px ${right}px`;
@@ -48,7 +48,9 @@
 			cleanup = () => window.removeEventListener('scroll', handler);
 		}
 
-		return cleanup;
+		return () => {
+			if (cleanup) cleanup();
+		};
 	});
 </script>
 
