@@ -1,0 +1,182 @@
+name: CI/CD
+
+on:
+  schedule:
+    - cron: "0 0 1 */6 *" # Runs every 6 months (semi-annually on Jan 1 and Jul 1) at 00:00 UTC
+  workflow_dispatch: # Allows manual trigger from GitHub Actions tab
+    inputs:
+      refresh_all:
+        description: 'Refresh all screenshots? (Warning: takes longer)'
+        required: false
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "screenshots/**"
+      - "site/**"
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - "README.md"
+      - "screenshots/**"
+      - "site/**"
+
+# Prevent concurrent deployments and cancel older in-progress runs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  validate:
+    # Run on active pull requests (opened, synchronize, reopened) to ensure PR quality
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: 'site/package-lock.json'
+
+      - name: Install npm packages
+        run: npm ci
+        working-directory: site/
+
+      - name: Format and lint check
+        run: npm run lint
+        working-directory: site/
+
+      - name: Build validation
+        run: npm run build
+        working-directory: site/
+
+  deploy:
+    # Run on push to main, schedule, manual trigger, or pull request merge
+    if: |
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          ref: main
+          fetch-depth: 0
+
+      # Check if we need to regenerate screenshots and README.json
+      - name: Check for README or screenshot changes
+        id: check-changes
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run_generate=true" >> $GITHUB_OUTPUT
+          else
+            BEFORE_SHA="${{ github.event.before }}"
+            if [ "${{ github.event_name }}" = "pull_request" ]; then
+              BEFORE_SHA="${{ github.event.pull_request.base.sha }}"
+            fi
+            if [ -z "$BEFORE_SHA" ] || [ "$BEFORE_SHA" = "0000000000000000000000000000000000000000" ]; then
+              BEFORE_SHA="HEAD~1"
+            fi
+            if git diff --name-only $BEFORE_SHA HEAD | grep -qE '^(README\.md|screenshots/)'; then
+              echo "run_generate=true" >> $GITHUB_OUTPUT
+            else
+              echo "run_generate=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      # Install Node.js with built-in npm caching
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: 'npm'
+          cache-dependency-path: 'site/package-lock.json'
+
+      # Clean Install npm packages (utilizes caches)
+      - name: Install npm packages
+        run: npm ci
+        working-directory: site/
+
+      # Cache Puppeteer Chrome Binary (saves ~150MB download per data run)
+      - name: Cache Puppeteer Chrome
+        if: steps.check-changes.outputs.run_generate == 'true'
+        uses: actions/cache@v6
+        id: puppeteer-cache
+        with:
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('site/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-puppeteer-
+
+      # Install Puppeteer Chrome (only if generating data and cache missed)
+      - name: Install Puppeteer Chrome
+        if: steps.check-changes.outputs.run_generate == 'true' && steps.puppeteer-cache.outputs.cache-hit != 'true'
+        run: npx puppeteer browsers install chrome
+        working-directory: site/
+
+      # Generate README.json and Screenshots (only if generating data)
+      - name: Generate data
+        if: steps.check-changes.outputs.run_generate == 'true'
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            npm run refresh
+          fi
+          npm run generate
+        env:
+          REFRESH_ALL_SCREENSHOTS: ${{ inputs.refresh_all || 'false' }}
+        working-directory: site/
+
+      # Format and lint code (only if generating data)
+      - name: Format and lint code
+        if: steps.check-changes.outputs.run_generate == 'true'
+        run: npm run format && npm run lint
+        working-directory: site/
+
+      # Commit and Push the generated data (only if generating data)
+      - name: Commit and Push generated data
+        if: steps.check-changes.outputs.run_generate == 'true'
+        uses: EndBug/add-and-commit@v10
+        with:
+          author_name: "github-actions[bot]"
+          author_email: "41898282+github-actions[bot]@users.noreply.github.com"
+          message: "chore(generator): update latest generated data"
+          add: .
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build the site
+      - name: Build the site
+        run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        run: |
+          git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com" 
+          git config user.name "github-actions[bot]"
+          if git diff --quiet --exit-code site/; then
+            npx gh-pages -d build -t --nojekyll -m "Deploy latest generated data to site (${{ github.sha }})"
+          else
+            npx gh-pages -d build -t --nojekyll -m "Deploy latest data and changes to site (${{ github.sha }})"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
