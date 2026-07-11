@@ -8,12 +8,14 @@ import puppeteer from 'puppeteer';
  * @param {Boolean} isAnimated - Whether to capture animated content (GIFs)
  * @return {Promise<Object>} - The result of the screenshot saving process
  */
-const captureScreenshot = async (path, userName, isAnimated = false) => {
+const captureScreenshot = async (path, userName, isAnimated = false, browserInstance = null) => {
 	// Define browser and page variables
-	const browser = await puppeteer.launch({
-		headless: true, // run in headless mode
-		args: ['--no-sandbox'] // disable sandboxing for safety
-	});
+	const browser =
+		browserInstance ||
+		(await puppeteer.launch({
+			headless: true, // run in headless mode
+			args: ['--no-sandbox'] // disable sandboxing for safety
+		}));
 	const url = `https://github.com/${userName}`;
 
 	// Dynamic viewport and timing based on content type
@@ -152,7 +154,7 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 		throw error;
 	} finally {
 		if (page) await page.close().catch(() => {});
-		if (browser) await browser.close().catch(() => {});
+		if (!browserInstance && browser) await browser.close().catch(() => {});
 	}
 };
 

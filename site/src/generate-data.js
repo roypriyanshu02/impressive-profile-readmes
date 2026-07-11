@@ -1,5 +1,6 @@
 import { readFile, writeFile, readdir, unlink } from 'fs/promises';
 import { resolve } from 'path';
+import puppeteer from 'puppeteer';
 import markdownToJSONConverter from './lib/utility/markdown-to-json-converter.js';
 import captureScreenshot from './lib/utility/capture-screenshot.js';
 import { detectMultipleProfiles } from './lib/utility/github-utils.js';
@@ -91,29 +92,62 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 		console.log('Detecting animated content for profiles to be added...');
 		animatedDetectionResults = await detectMultipleProfiles(added, 500);
 
-		for (let i = 0; i < added.length; i++) {
-			const profile = added[i];
-			const detectionResult = animatedDetectionResults[i];
-			const isAnimated = detectionResult?.isAnimated || false;
-			if (typeof isAnimated !== 'boolean') {
-				console.warn(`Unexpected detection result for ${profile}, assuming static`);
-				console.log(`Capturing ${profile}'s profile screenshot...`);
-			} else {
+		// Launch a single browser instance to be shared across concurrent screenshot tasks
+		console.log('Launching browser for screenshot capturing...');
+		const browser = await puppeteer.launch({
+			headless: true,
+			args: ['--no-sandbox']
+		});
+
+		try {
+			// Helper to run tasks with a concurrency limit
+			const runWithLimit = async (tasks, limit) => {
+				const executing = new Set();
+				const results = [];
+				for (const task of tasks) {
+					const p = Promise.resolve().then(() => task());
+					results.push(p);
+					executing.add(p);
+					const clean = () => executing.delete(p);
+					p.then(clean, clean);
+					if (executing.size >= limit) {
+						await Promise.race(executing);
+					}
+				}
+				return Promise.all(results);
+			};
+
+			const tasks = added.map((profile, i) => async () => {
+				const detectionResult = animatedDetectionResults[i];
+				const isAnimated = detectionResult?.isAnimated || false;
+				if (typeof isAnimated !== 'boolean') {
+					console.warn(`Unexpected detection result for ${profile}, assuming static`);
+				}
 				console.log(
 					`Capturing ${profile}'s profile screenshot${isAnimated ? ' (animated)' : ''}...`
 				);
-			}
-			try {
-				await captureScreenshot(resolve(__dirname, '..', 'screenshots'), profile, isAnimated);
-				console.log(
-					`Successfully captured ${profile}'s profile ${isAnimated ? 'animated' : 'static'} screenshot`
-				);
-			} catch (error) {
-				console.error(
-					`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
-				);
-				throw error;
-			}
+				try {
+					await captureScreenshot(
+						resolve(__dirname, '..', 'screenshots'),
+						profile,
+						isAnimated,
+						browser
+					);
+					console.log(
+						`Successfully captured ${profile}'s profile ${isAnimated ? 'animated' : 'static'} screenshot`
+					);
+				} catch (error) {
+					console.error(
+						`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
+					);
+					throw error;
+				}
+			});
+
+			// Execute screenshot tasks concurrently (limit: 3)
+			await runWithLimit(tasks, 3);
+		} finally {
+			await browser.close().catch(() => {});
 		}
 	}
 
