@@ -86,6 +86,7 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 		: [...profileSet].filter((profile) => !screenshotSet.has(profile));
 	const removed = [...screenshotSet].filter((profile) => !profileSet.has(profile));
 
+	const failedProfiles = [];
 	let animatedDetectionResults = [];
 	if (added.length > 0) {
 		// Detect animated content for profiles to be added
@@ -98,8 +99,6 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 			headless: true,
 			args: ['--no-sandbox']
 		});
-
-		const failedProfiles = [];
 
 		try {
 			// Helper to run tasks with a concurrency limit
@@ -143,6 +142,12 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 						`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
 					);
 					failedProfiles.push({ profile, error: error.message });
+					try {
+						await unlink(resolve(__dirname, '..', 'screenshots', `${profile}.webp`));
+						console.log(`Deleted screenshot for broken profile: ${profile}`);
+					} catch {
+						// Ignore if file didn't exist
+					}
 				}
 			});
 
@@ -179,6 +184,8 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 		console.log(`Animated profiles found: ${animatedCount}`);
 		console.log(`Static profiles found: ${added.length - animatedCount}`);
 	}
+
+	return failedProfiles.map((p) => p.profile.toLowerCase());
 };
 
 // Copy all screenshots to the static directory so SvelteKit serves them statically
@@ -194,12 +201,117 @@ const copyScreenshotsToStatic = async () => {
 	}
 };
 
+// Filter out failed profiles from the JSON contents
+const filterFailedProfiles = (json, failedUsernamesSet) => {
+	if (failedUsernamesSet.size === 0) return json;
+	if (!json || !json.contents || !json.contents.children) return json;
+
+	const children = json.contents.children;
+	const newChildren = [];
+
+	for (let i = 0; i < children.length; i++) {
+		const section = children[i];
+
+		if (section.tag === 'h4') {
+			const nextSection = children[i + 1];
+			if (nextSection && nextSection.tag === 'ul') {
+				const filteredList = nextSection.children.filter((profile) => {
+					const username = profile?.children?.[0]?.children?.[0]?.value?.toLowerCase();
+					return username && !failedUsernamesSet.has(username);
+				});
+
+				if (filteredList.length > 0) {
+					newChildren.push(section);
+					newChildren.push({
+						tag: 'ul',
+						children: filteredList
+					});
+				}
+				i++;
+			} else {
+				newChildren.push(section);
+			}
+		} else {
+			newChildren.push(section);
+		}
+	}
+
+	json.contents.children = newChildren;
+	return json;
+};
+
+// Filter out failed profiles and empty categories from the source README.md file
+const filterMarkdownFile = async (filePath, failedUsernamesSet) => {
+	if (failedUsernamesSet.size === 0) return;
+	try {
+		const content = await readFile(filePath, 'utf-8');
+		const lines = content.split('\n');
+		const newLines = [];
+
+		for (let i = 0; i < lines.length; i++) {
+			const line = lines[i].trim();
+			// Match patterns like "- [username]"
+			const match = line.match(/^-\s*\[([^\]]+)\]/);
+			if (match) {
+				const username = match[1].toLowerCase();
+				if (failedUsernamesSet.has(username)) {
+					console.log(`Removing ${username} from README.md`);
+					continue;
+				}
+			}
+			newLines.push(lines[i]);
+		}
+
+		// Clean up empty category headers (h4 followed by no list items)
+		const finalLines = [];
+		for (let i = 0; i < newLines.length; i++) {
+			const line = newLines[i];
+			if (line.startsWith('#### ')) {
+				let hasItems = false;
+				for (let j = i + 1; j < newLines.length; j++) {
+					const nextLine = newLines[j].trim();
+					if (
+						nextLine.startsWith('#### ') ||
+						nextLine.startsWith('## ') ||
+						nextLine.startsWith('---')
+					) {
+						break;
+					}
+					if (nextLine.startsWith('- ')) {
+						hasItems = true;
+						break;
+					}
+				}
+				if (!hasItems) {
+					console.log(`Removing empty category header: ${line.trim()}`);
+					// Skip empty lines/spacing around the removed header if any
+					while (i + 1 < newLines.length && newLines[i + 1].trim() === '') {
+						i++;
+					}
+					continue;
+				}
+			}
+			finalLines.push(line);
+		}
+
+		await writeFile(filePath, finalLines.join('\n'), 'utf-8');
+		console.log('Successfully cleaned up README.md');
+	} catch (error) {
+		console.error(`Failed to clean up README.md: ${error.message}`);
+	}
+};
+
 (async () => {
 	const markdown = await readMarkdownFile();
 	const json = await markdownToJSONConverter(markdown);
-	await writeJsonFile(json);
 	const screenshotList = await readScreenshotFiles();
 	const profilesList = await readProfilesList(json);
-	await handleScreenshots(profilesList, screenshotList);
+	const failedUsernames = await handleScreenshots(profilesList, screenshotList);
+
+	const failedSet = new Set(failedUsernames);
+	const filteredJson = filterFailedProfiles(json, failedSet);
+
+	await writeJsonFile(filteredJson);
+	await filterMarkdownFile(resolve(__dirname, '..', 'README.md'), failedSet);
 	await copyScreenshotsToStatic();
 })();
