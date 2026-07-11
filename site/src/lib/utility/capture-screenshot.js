@@ -55,41 +55,42 @@ const captureScreenshot = async (path, userName, isAnimated = false) => {
 			height: config.viewportHeight
 		});
 
-		// For animated capture, take full page screenshot
-		let screenshotBuffer;
+		// Locate the README DOM element
+		const readmeElement = await page.$(config.domSelector);
+		if (!readmeElement) {
+			throw new Error(`Selector "${config.domSelector}" not found on the page`);
+		}
+
+		// Get the README DOM height
+		const domHeight = await page.evaluate((selector) => {
+			const readme = document.querySelector(selector);
+			return readme ? readme.getBoundingClientRect().bottom : 0;
+		}, config.domSelector);
+
+		const windowHeight = Math.min(
+			Math.max(domHeight, config.windowMinHeight),
+			config.windowMaxHeight
+		);
+
+		await page.setViewport({
+			width: config.viewportWidth,
+			height: Math.ceil(windowHeight)
+		});
+
 		if (isAnimated) {
 			// Wait for animations to complete
 			await new Promise((resolve) => setTimeout(resolve, config.waitTime));
-
-			// Take full page screenshot using page.screenshot with fullPage option
-			screenshotBuffer = await page.screenshot({
-				fullPage: true,
-				type: 'png' // Use PNG for better animation quality
-			});
-		} else {
-			// For static capture, use optimized clip-based screenshot
-			// Get the README DOM height
-			let domHeight = await page.evaluate((selector) => {
-				const readme = document.querySelector(selector);
-				return readme ? readme.getBoundingClientRect().bottom : 0;
-			}, config.domSelector);
-
-			// Ensure window height captures entire README
-			const windowHeight = Math.min(
-				Math.max(domHeight, config.windowMinHeight),
-				config.windowMaxHeight
-			);
-
-			// Take screenshot of README
-			screenshotBuffer = await page.screenshot({
-				clip: {
-					width: config.windowWidth,
-					height: windowHeight - config.navbarOffset,
-					x: 0,
-					y: config.pageOffset
-				}
-			});
 		}
+
+		// Take screenshot of README using page-level viewport clipping
+		const screenshotBuffer = await page.screenshot({
+			clip: {
+				width: config.windowWidth,
+				height: windowHeight - 54,
+				x: 0,
+				y: 83 // remove navbar
+			}
+		});
 
 		// Convert to webp with animated support
 		let result;
