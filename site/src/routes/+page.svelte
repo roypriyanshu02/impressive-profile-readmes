@@ -1,56 +1,72 @@
-<script>
-	import { onMount } from 'svelte';
-	import FilterBar from '$lib/components/filter-bar.svelte';
-	import CardSection from '$lib/components/card-section.svelte';
-	import IntersectionObserver from '$lib/components/intersection-observer.svelte';
-	import Card from '$lib/components/card.svelte';
+<script lang="ts">
+	import FilterBar from '$lib/components/FilterBar.svelte';
+	import CardSection from '$lib/components/CardSection.svelte';
+	import Card from '$lib/components/Card.svelte';
+	import type { PageData } from './$types';
 
-	export let data;
-
-	let filteredData = {
-		category: '',
-		profiles: [],
-		totalCount: 0
-	};
-
-	const updateFilteredData = (selectedCategory) => {
-		filteredData.category = selectedCategory;
-		if (selectedCategory == 'All') {
-			filteredData.profiles = data.profiles.sort(() => Math.random() - 0.5);
-		} else if (selectedCategory == 'Most starred') {
-			filteredData.profiles = data.profiles.sort((a, b) => b.starCount - a.starCount);
-		} else {
-			filteredData.profiles = data.profiles.filter(
-				(profile) => profile.category === selectedCategory
-			);
-		}
-		filteredData.totalCount = filteredData.profiles.length;
-	};
-
-	onMount(() => {
-		updateFilteredData('All');
+	// Load all screenshots dynamically using Vite's glob import
+	const rawScreenshots = import.meta.glob('$lib/screenshots/*.webp', {
+		query: { enhanced: true, quality: '60' },
+		import: 'default',
+		eager: true
 	});
+
+	// Normalize keys: maps lowercase username to the enhanced image object
+	const screenshotMap = new Map<string, any>();
+	for (const [path, img] of Object.entries(rawScreenshots)) {
+		const match = path.match(/\/([^/]+)\.webp$/);
+		if (match) {
+			screenshotMap.set(match[1].toLowerCase(), img);
+		}
+	}
+
+	export let data: PageData;
+
+	let selectedCategory = 'All';
+
+	// Compute categoryMap reactively
+	$: categoryMap = (() => {
+		const map = new Map<string, typeof data.profiles>();
+		data.profiles.forEach((profile) => {
+			if (!map.has(profile.category)) {
+				map.set(profile.category, []);
+			}
+			map.get(profile.category)!.push(profile);
+		});
+		return map;
+	})();
+
+	// Filter and sort profiles reactively
+	$: filteredProfiles = (() => {
+		if (selectedCategory === 'All') {
+			return data.profiles;
+		} else if (selectedCategory === 'Most starred') {
+			return [...data.profiles].sort((a, b) => b.starCount - a.starCount);
+		} else {
+			return categoryMap.get(selectedCategory) || [];
+		}
+	})();
+
+	const updateFilteredData = (category: string) => {
+		selectedCategory = category;
+	};
 </script>
 
 <FilterBar
 	filterItems={data.categories}
-	selectedFilter={filteredData.category}
-	totalCardsCount={filteredData.totalCount}
+	selectedFilter={selectedCategory}
+	totalCardsCount={filteredProfiles.length}
 	updateFilteredDataCallback={updateFilteredData}
 />
 
 <CardSection>
-	{#each filteredData.profiles as profile, index}
-		<IntersectionObserver let:intersecting once>
-			{#if intersecting}
-				<Card
-					screenshot={`./screenshots/${profile.username.toLowerCase()}.webp`}
-					username={profile.username}
-					category={profile.category}
-					starCount={profile.starCount}
-				/>
-			{/if}
-		</IntersectionObserver>
+	{#each filteredProfiles as profile (profile.username)}
+		<Card
+			screenshot={screenshotMap.get(profile.username.toLowerCase())}
+			username={profile.username}
+			category={profile.category}
+			starCount={profile.starCount}
+		/>
 	{/each}
 </CardSection>
 
@@ -81,9 +97,8 @@
 	<meta name="twitter:title" content="Impressive Profile READMEs" />
 	<meta
 		name="twitter:description"
-		content="Get inspired to make your GitHub profile stand out! Browse our collection of Impressive Profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
 	/>
-	<meta name="twitter:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
 	<meta
 		name="twitter:image"
 		content="https://roypriyanshu02.github.io/impressive-profile-readmes/meta.webp"
