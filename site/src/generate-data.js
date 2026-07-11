@@ -78,7 +78,11 @@ const writeJsonFile = async (json) => {
 const handleScreenshots = async (profilesList, screenshotList) => {
 	const screenshotSet = new Set(screenshotList);
 	const profileSet = new Set(profilesList);
-	const added = [...profileSet].filter((profile) => !screenshotSet.has(profile));
+	
+	const refreshAll = process.env.REFRESH_ALL_SCREENSHOTS === 'true';
+	const added = refreshAll
+		? [...profileSet]
+		: [...profileSet].filter((profile) => !screenshotSet.has(profile));
 	const removed = [...screenshotSet].filter((profile) => !profileSet.has(profile));
 
 	let animatedDetectionResults = [];
