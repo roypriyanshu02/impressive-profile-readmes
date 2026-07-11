@@ -79,7 +79,7 @@ const writeJsonFile = async (json) => {
 const handleScreenshots = async (profilesList, screenshotList) => {
 	const screenshotSet = new Set(screenshotList);
 	const profileSet = new Set(profilesList);
-	
+
 	const refreshAll = process.env.REFRESH_ALL_SCREENSHOTS === 'true';
 	const added = refreshAll
 		? [...profileSet]
@@ -98,6 +98,8 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 			headless: true,
 			args: ['--no-sandbox']
 		});
+
+		const failedProfiles = [];
 
 		try {
 			// Helper to run tasks with a concurrency limit
@@ -140,7 +142,7 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 					console.error(
 						`Failed to capture the screenshot for the profile: "${profile}" ${isAnimated ? '(animated)' : ''}: ${error.message}`
 					);
-					throw error;
+					failedProfiles.push({ profile, error: error.message });
 				}
 			});
 
@@ -148,6 +150,13 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 			await runWithLimit(tasks, 3);
 		} finally {
 			await browser.close().catch(() => {});
+			if (failedProfiles.length > 0) {
+				console.log('\n=== Failed Profiles Summary ===');
+				failedProfiles.forEach(({ profile, error }) => {
+					console.log(`- ${profile}: ${error}`);
+				});
+				console.log('===============================\n');
+			}
 		}
 	}
 
