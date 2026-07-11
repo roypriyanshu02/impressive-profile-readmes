@@ -91,7 +91,7 @@
 >
 	<div class="image-container">
 		{#if screenshot}
-			<enhanced:img
+			<img
 				src={screenshot}
 				loading="lazy"
 				alt={`${username}'s Github profile screenshot`}

@@ -7,12 +7,6 @@
 
 	export let data;
 
-	// Dynamically import all screenshots at compile-time using Vite glob & SvelteKit enhanced-img query
-	const screenshots = import.meta.glob('../../../screenshots/*.webp', {
-		eager: true,
-		query: { enhanced: true }
-	});
-
 	let filteredData = {
 		category: '',
 		profiles: [],
@@ -64,8 +58,7 @@
 		<IntersectionObserver let:intersecting once>
 			{#if intersecting}
 				<Card
-					screenshot={screenshots[`../../../screenshots/${profile.username.toLowerCase()}.webp`]
-						?.default}
+					screenshot={`./screenshots/${profile.username.toLowerCase()}.webp`}
 					username={profile.username}
 					category={profile.category}
 					starCount={profile.starCount}

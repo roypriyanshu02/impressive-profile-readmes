@@ -1,4 +1,4 @@
-import { readFile, writeFile, readdir, unlink } from 'fs/promises';
+import { readFile, writeFile, readdir, unlink, cp } from 'fs/promises';
 import { resolve } from 'path';
 import puppeteer from 'puppeteer';
 import markdownToJSONConverter from './lib/utility/markdown-to-json-converter.js';
@@ -172,6 +172,19 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 	}
 };
 
+// Copy all screenshots to the static directory so SvelteKit serves them statically
+const copyScreenshotsToStatic = async () => {
+	const srcDir = resolve(__dirname, '..', 'screenshots');
+	const destDir = resolve(__dirname, 'static', 'screenshots');
+	try {
+		await cp(srcDir, destDir, { recursive: true });
+		console.log('Successfully copied screenshots to static/screenshots');
+	} catch (error) {
+		console.error('Failed to copy screenshots to static directory:', error.message);
+		throw error;
+	}
+};
+
 (async () => {
 	const markdown = await readMarkdownFile();
 	const json = await markdownToJSONConverter(markdown);
@@ -179,4 +192,5 @@ const handleScreenshots = async (profilesList, screenshotList) => {
 	const screenshotList = await readScreenshotFiles();
 	const profilesList = await readProfilesList(json);
 	await handleScreenshots(profilesList, screenshotList);
+	await copyScreenshotsToStatic();
 })();
