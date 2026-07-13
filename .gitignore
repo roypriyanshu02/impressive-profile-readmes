@@ -1,8 +1,8 @@
 # Custom
 .DS_Store
-/.svelte-kit
-/build
-/package
+.svelte-kit/
+build/
+package/
 .env
 .env.*
 !.env.example
