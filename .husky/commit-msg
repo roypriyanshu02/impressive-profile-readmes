@@ -1,0 +1,2 @@
+#!/bin/sh
+npx --prefix site commitlint --config site/commitlint.config.js --edit "$1"

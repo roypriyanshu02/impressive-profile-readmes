@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/crates/oxlint/configuration_schema.json",
+  "ignorePatterns": [
+    "build/**",
+    ".svelte-kit/**"
+  ],
+  "categories": {
+    "correctness": "deny"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.svelte"],
+      "rules": {
+        "no-unassigned-vars": "off"
+      }
+    }
+  ]
+}
