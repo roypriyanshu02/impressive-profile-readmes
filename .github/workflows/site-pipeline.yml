@@ -1,0 +1,191 @@
+name: Site Pipeline
+
+on:
+  schedule:
+    - cron: "0 0 2 1 *"       # Runs annually on Jan 2 at 00:00 UTC (rebuild all screenshots)
+    - cron: "0 0 2 4,7,10 *" # Runs quarterly (Apr 2, Jul 2, Oct 2) at 00:00 UTC (full sync)
+  workflow_dispatch:
+    inputs:
+      sync_mode:
+        description: 'Sync Mode'
+        required: true
+        type: choice
+        default: 'sync'
+        options:
+          - 'sync'
+          - 'sync:full'
+          - 'sync:rebuild'
+  push:
+    branches: [main]
+    paths:
+      - "README.md"
+      - "site/src/lib/screenshots/**"
+      - "site/**"
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, closed]
+    paths:
+      - "README.md"
+      - "site/src/lib/screenshots/**"
+      - "site/**"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate Pull Request
+    if: github.event_name == 'pull_request' && github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: 'site/package-lock.json'
+
+      - name: Install packages
+        run: npm ci
+        working-directory: site/
+
+      - name: Format and lint check
+        run: npm run lint
+        working-directory: site/
+
+      - name: Build validation
+        run: npm run build
+        working-directory: site/
+
+  deploy:
+    name: Build & Deploy Site
+    if: |
+      github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'push' && github.ref == 'refs/heads/main') ||
+      (github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for README or screenshot changes
+        id: check-changes
+        run: |
+          if [ "${{ github.event_name }}" = "schedule" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run_generate=true" >> $GITHUB_OUTPUT
+          else
+            BEFORE="${{ github.event.before || github.event.pull_request.base.sha }}"
+            if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ] || ! git rev-parse --verify "$BEFORE" >/dev/null 2>&1; then
+              BEFORE="HEAD~1"
+            fi
+            if git diff --name-only "$BEFORE" HEAD 2>/dev/null | grep -qE '^(README\.md|site/src/lib/screenshots/)'; then
+              echo "run_generate=true" >> $GITHUB_OUTPUT
+            else
+              echo "run_generate=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+          cache-dependency-path: 'site/package-lock.json'
+
+      - name: Install packages
+        run: npm ci
+        working-directory: site/
+
+      - name: Cache Puppeteer Chrome
+        if: steps.check-changes.outputs.run_generate == 'true'
+        uses: actions/cache@v4
+        id: puppeteer-cache
+        with:
+          path: ~/.cache/puppeteer
+          key: ${{ runner.os }}-puppeteer-${{ hashFiles('site/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-puppeteer-
+
+      - name: Install Puppeteer Chrome
+        if: steps.check-changes.outputs.run_generate == 'true' && steps.puppeteer-cache.outputs.cache-hit != 'true'
+        run: npx puppeteer browsers install chrome
+        working-directory: site/
+
+      - name: Sync data
+        if: steps.check-changes.outputs.run_generate == 'true'
+        id: sync-step
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            SYNC_MODE="${{ inputs.sync_mode }}"
+          elif [ "${{ github.event_name }}" = "schedule" ]; then
+            CRON_SCHEDULE="$(echo "${{ github.event.schedule }}" | xargs)"
+            if [ "$CRON_SCHEDULE" = "0 0 2 1 *" ]; then
+              SYNC_MODE="sync:rebuild"
+            else
+              SYNC_MODE="sync:full"
+            fi
+          else
+            SYNC_MODE="sync"
+          fi
+
+          npm run $SYNC_MODE
+
+          if [ "$SYNC_MODE" = "sync:rebuild" ]; then
+            echo "commit_msg=chore(data): rebuild screenshots and sync profile data [skip ci]" >> $GITHUB_OUTPUT
+          elif [ "$SYNC_MODE" = "sync:full" ]; then
+            echo "commit_msg=chore(data): full profile data sync and link check [skip ci]" >> $GITHUB_OUTPUT
+          else
+            echo "commit_msg=chore(data): sync profile data [skip ci]" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        working-directory: site/
+
+      - name: Format and lint code
+        if: steps.check-changes.outputs.run_generate == 'true'
+        run: npm run lint
+        working-directory: site/
+
+      - name: Commit and Push generated data
+        if: steps.check-changes.outputs.run_generate == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md site/src/lib/data site/src/lib/screenshots
+          if ! git diff --cached --quiet; then
+            git commit -m "${{ steps.sync-step.outputs.commit_msg }}"
+            git push
+          fi
+
+      - name: Build the site
+        run: npm run build
+        working-directory: site/
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          npx gh-pages -d build -t --nojekyll -m "Deploy latest site build (${{ github.sha }})"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: site/
