@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Spelunk Codemap v1 Schema",
+  "type": "object",
+  "properties": {
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "parsed": { "type": "boolean" },
+          "reason": { "type": ["string", "null"] },
+          "hash": { "type": ["string", "null"] },
+          "exports": { "type": "array", "items": { "type": "string" } },
+          "imports": { "type": "array", "items": { "type": "string" } },
+          "summary": { "type": ["string", "null"] },
+          "summary_hash": { "type": ["string", "null"] },
+          "mtime": { "type": ["integer", "null"] },
+          "size": { "type": ["integer", "null"] },
+          "rank": {
+            "type": ["integer", "null"],
+            "description": "Optional dependency traversal depth rank (returned by spelunk_deps)"
+          }
+        },
+        "required": ["path", "parsed", "exports", "imports"]
+      }
+    },
+    "limit": { "type": "integer" },
+    "offset": { "type": "integer" },
+    "total_count": { "type": "integer" },
+    "has_more": { "type": "boolean" }
+  },
+  "required": ["files"]
+}
