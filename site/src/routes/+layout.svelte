@@ -1,16 +1,24 @@
 <script>
 	import '../app.css';
-	import Header from '$lib/components/header.svelte';
-	import BackToTop from '$lib/components/back-to-top.svelte';
-	import Footer from '$lib/components/footer.svelte';
+	import Header from '$lib/components/Header.svelte';
+	import BackToTop from '$lib/components/BackToTop.svelte';
+	import Footer from '$lib/components/Footer.svelte';
+
 	export let data;
-	const updateAt = data.lastModified;
-	export const prerender = true;
 </script>
 
-<Header />
-<main>
+<Header repoStats={data.repoStats} />
+<main class="main-container">
 	<slot />
 	<BackToTop />
 </main>
-<Footer {updateAt} />
+<Footer updateAt={data.lastModified} />
+
+<style>
+	.main-container {
+		max-width: 1536px;
+		margin: 0 auto;
+		padding: 0 0.75rem;
+		width: 100%;
+	}
+</style>
