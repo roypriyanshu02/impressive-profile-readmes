@@ -11,16 +11,25 @@ export const load = async () => {
 		// Extract relevant information from README.json
 		const lastModified = result.lastModified;
 
-		// Return extracted information
+		let repoStats = { stars: 184, open_issues: 1, open_prs: 0, forks: 32 };
+		try {
+			const statsPath = join(process.cwd(), 'static', 'repo_stats.json');
+			const statsContents = await readFile(statsPath, 'utf-8');
+			repoStats = JSON.parse(statsContents);
+		} catch (e) {
+			console.warn('Could not read static/repo_stats.json, using default stats:', e.message);
+		}
+
 		return {
-			lastModified
+			lastModified,
+			repoStats
 		};
 	} catch (error) {
-		// If an error occurs, log it and return an error object
 		const lastModified = Date.now();
 		console.error(error);
 		return {
 			lastModified: lastModified,
+			repoStats: { stars: 184, open_issues: 1, open_prs: 0, forks: 32 },
 			error: error
 		};
 	}
