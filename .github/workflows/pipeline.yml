@@ -19,14 +19,14 @@ on:
     branches: [main]
     paths:
       - "README.md"
-      - "screenshots/**"
+      - "site/src/lib/screenshots/**"
       - "site/**"
   pull_request:
     branches: [main]
     types: [opened, synchronize, reopened, closed]
     paths:
       - "README.md"
-      - "screenshots/**"
+      - "site/src/lib/screenshots/**"
       - "site/**"
 
 concurrency:

@@ -3,8 +3,8 @@
 	"version": "1.2.2",
 	"private": true,
 	"scripts": {
-		"dev": "cp -r ../screenshots static/ && vite dev",
-		"build": "cp -r ../screenshots static/ && vite build",
+		"dev": "vite dev",
+		"build": "vite build",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
