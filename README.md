@@ -189,7 +189,6 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [gautamkrishnar](https://github.com/gautamkrishnar)
 - [halfrost](https://github.com/halfrost)
 - [harshkumarkhatri](https://github.com/harshkumarkhatri)
-- [harshkumarkhatri](https://github.com/harshkumarkhatri)
 - [Nanra](https://github.com/Nanra)
 - [orhun](https://github.com/orhun)
 - [prathimacode-hub](https://github.com/prathimacode-hub)

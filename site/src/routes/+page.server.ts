@@ -58,11 +58,14 @@ export const load = async () => {
 		categories.unshift({ categoryTitle: 'Most starred', totalProfileCount: profiles.length });
 		categories.unshift({ categoryTitle: 'All', totalProfileCount: profiles.length });
 
-		// Sort profiles by username and return extracted information
-		profiles.sort((a, b) => a.username.localeCompare(b.username));
+		// Deduplicate profiles by username and sort
+		const uniqueProfiles = Array.from(
+			new Map(profiles.map((p) => [p.username.toLowerCase(), p])).values()
+		);
+		uniqueProfiles.sort((a, b) => a.username.localeCompare(b.username));
 		return {
 			categories,
-			profiles,
+			profiles: uniqueProfiles,
 			lastModified: result.lastModified ?? Date.now()
 		};
 	} catch (error) {

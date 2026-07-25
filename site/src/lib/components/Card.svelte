@@ -62,8 +62,8 @@
 
 	<div class="image-container">
 		{#if screenshot}
-			<enhanced:img
-				src={screenshot}
+			<img
+				src={typeof screenshot === 'string' ? screenshot : screenshot.src || screenshot}
 				loading="lazy"
 				alt={`${username}'s Github profile screenshot`}
 				role="presentation"
