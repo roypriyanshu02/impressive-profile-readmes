@@ -1,7 +1,8 @@
 <script>
 	import { fly } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	import { Search16, Tasklist16, ChevronDown16, X16 } from 'svelte-octicons';
+	import Search16 from './icons/Search16.svelte';
+	import X16 from './icons/X16.svelte';
 
 	export let filterItems;
 	export let selectedFilter;
@@ -57,14 +58,16 @@
 
 <div class="dropdown-wrapper" bind:this={wrapperRef}>
 	<button
-		class="action-icon-btn category-btn"
+		class="categories-h2-btn"
 		class:active={isDropdownVisible}
 		on:click={toggleDropdown}
 		aria-expanded={isDropdownVisible}
-		title="Categories & Search"
+		title="Click to select category or search"
 	>
-		<Tasklist16 width={14} height={14} />
-		<span class="selected-badge">{selectedFilter}</span>
+		<span class="markdown-hash">##</span>
+		<span class="heading-text">Categories</span>
+		<span class="category-separator">-</span>
+		<span class="selected-category-name">{selectedFilter}</span>
 	</button>
 
 	{#if isDropdownVisible}
@@ -109,45 +112,60 @@
 <style>
 	.dropdown-wrapper {
 		position: relative;
-		display: inline-block;
+		display: block;
+		width: 100%;
+		margin-top: 1.5rem;
+		margin-bottom: 1.25rem;
 	}
-	.action-icon-btn {
+	.categories-h2-btn {
 		background: transparent;
 		border: none;
-		border-radius: var(--border-radius);
-		color: var(--color-text-secondary);
-		cursor: pointer;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		padding: 0.35rem;
-		gap: 0.35rem;
-		text-decoration: none;
-		transition: all var(--transition-default);
-	}
-	.action-icon-btn:hover,
-	.action-icon-btn.active {
-		background: rgba(110, 118, 129, 0.15);
+		border-bottom: 1px solid var(--color-border);
 		color: var(--color-text-primary);
-	}
-	.selected-badge {
-		background: var(--color-topic-bg);
-		color: var(--color-topic-text);
-		font-size: 0.6875rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		padding: 0 0 0.35rem 0;
+		margin: 0;
+		font-size: 1.5rem;
 		font-weight: 600;
-		padding: 0.05rem 0.45rem;
-		border-radius: 2em;
+		font-family: inherit;
+		text-align: left;
+		gap: 0.5rem;
+	}
+	.markdown-hash {
+		color: var(--color-text-secondary);
+		user-select: none;
+		font-weight: 600;
+	}
+	.heading-text {
+		color: var(--color-text-primary);
+		font-weight: 600;
+	}
+	.category-separator {
+		color: var(--color-text-secondary);
+		font-weight: 400;
+		user-select: none;
+	}
+	.selected-category-name {
+		color: var(--color-text-secondary);
+		font-weight: 500;
+		font-size: 1.05rem;
+		transition: color 0.25s ease;
+	}
+	.categories-h2-btn:hover .selected-category-name {
+		color: var(--color-text-primary);
 	}
 	.category-dropdown-popover {
 		background: var(--color-foreground);
 		border: 1px solid var(--color-border);
 		border-radius: var(--border-radius);
-		box-shadow: var(--shadow-card);
 		min-width: 16rem;
 		padding: 0.5rem;
 		position: absolute;
 		top: calc(100% + 0.4rem);
-		right: 0;
+		left: 0;
 		z-index: 100;
 	}
 	.dropdown-search-box {
@@ -159,14 +177,19 @@
 		gap: 0.35rem;
 		padding: 0.35rem 0.5rem;
 		margin-bottom: 0.5rem;
+		transition: border-color 0.2s ease;
 	}
 	.dropdown-search-box:focus-within {
 		border-color: var(--color-link);
-		box-shadow: 0 0 0 2px rgba(47, 129, 247, 0.3);
 	}
+
 	:global(.search-icon) {
 		color: var(--color-text-secondary);
 		flex-shrink: 0;
+		transition: color 0.2s ease;
+	}
+	.dropdown-search-box:focus-within :global(.search-icon) {
+		color: var(--color-link);
 	}
 	.dropdown-search-input {
 		background: transparent;
@@ -188,9 +211,13 @@
 		display: flex;
 		justify-content: center;
 		padding: 0 0.2rem;
+		transition:
+			color 0.2s ease,
+			transform 0.2s ease;
 	}
 	.clear-btn:hover {
 		color: var(--color-text-primary);
+		transform: scale(1.1);
 	}
 	:global(.clear-svg) {
 		fill: currentColor;
@@ -211,7 +238,9 @@
 		justify-content: space-between;
 		padding: 0.4rem 0.65rem;
 		text-decoration: none;
-		transition: var(--transition-default);
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
 	}
 	.filter-item:hover {
 		background: var(--color-surface-hover);
@@ -224,12 +253,17 @@
 		font-weight: 600;
 	}
 	.item-count {
-		background: rgba(110, 118, 129, 0.2);
+		background: var(--color-surface-translucent);
 		border-radius: 10px;
 		color: var(--color-text-secondary);
 		font-size: 0.75rem;
 		padding: 0.1rem 0.45rem;
+		transition:
+			background-color 0.2s ease,
+			color 0.2s ease;
+	}
+	.filter-item:hover .item-count {
+		background: var(--color-topic-bg);
+		color: var(--color-link);
 	}
 </style>
-
-

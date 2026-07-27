@@ -1,36 +1,157 @@
-<script lang="ts">
+<script>
+	import { onMount } from 'svelte';
+	import { scale, fade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
+	import { quintOut } from 'svelte/easing';
 	import Card from '$lib/components/Card.svelte';
 	import CardSection from '$lib/components/CardSection.svelte';
 	import FilterBar from '$lib/components/FilterBar.svelte';
-	import { Pencil16, Tasklist16, Search16, RepoForked16 } from 'svelte-octicons';
-	import type { PageData } from './$types';
+	import Pencil16 from '$lib/components/icons/Pencil16.svelte';
+	import Search16 from '$lib/components/icons/Search16.svelte';
+	import RepoForked16 from '$lib/components/icons/RepoForked16.svelte';
+	import { marked } from 'marked';
+	import {
+		renderMarkdownLinks,
+		parseMarkdownHeader,
+		parseMarkdownList
+	} from '$lib/utility/markdown';
 
-	const screenshots = import.meta.glob('$lib/screenshots/*.webp', {
-		eager: true,
-		import: 'default'
-	});
+	export let data;
 
-	const screenshotMap = new Map<string, any>();
-	for (const path in screenshots) {
-		const match = path.match(/\/([^/]+)\.webp$/);
-		if (match) {
-			screenshotMap.set(match[1].toLowerCase(), screenshots[path]);
+	const renderer = {
+		link({ href, title, text }) {
+			if (href.includes('CONTRIBUTING.md')) {
+				return `<a href="#contributing" class="tab-switch-link" data-tab="contributing"${title ? ` title="${title}"` : ''}>${text}</a>`;
+			}
+			if ((href.includes('LICENSE') || href.includes('license')) && !href.startsWith('http')) {
+				return `<a href="#license" class="tab-switch-link" data-tab="license"${title ? ` title="${title}"` : ''}>${text}</a>`;
+			}
+			if (href.includes('roypriyanshu02.github.io/awesome-github-profile-readme')) {
+				return `<a href="#" class="scroll-link" data-scroll="categories"${title ? ` title="${title}"` : ''}>${text}</a>`;
+			}
+			if (!href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+				return `<span>${text}</span>`;
+			}
+			return `<a href="${href}" target="_blank" rel="noopener noreferrer"${title ? ` title="${title}"` : ''}>${text}</a>`;
 		}
-	}
+	};
+	marked.use({ renderer });
 
-	export let data: PageData;
+	const cleanContributingMarkdown = (md) => {
+		if (!md) return '';
+		return md.replace(/## Table of contents[\s\S]*?(?=## Pull request guidelines)/i, '');
+	};
+
+	$: parsedContributingHtml = data.contributingContent
+		? marked.parse(cleanContributingMarkdown(data.contributingContent))
+		: '';
+	$: parsedLicenseHtml = data.licenseContent ? marked.parse(data.licenseContent) : '';
+	$: parsedFaqHtml = data.readmeContent?.faq ? marked.parse(data.readmeContent.faq) : '';
+	$: parsedReadmeContributeHtml = data.readmeContent?.contribute
+		? marked.parse(data.readmeContent.contribute)
+		: '';
+	$: parsedReadmeLicenseHtml = data.readmeContent?.license
+		? marked.parse(data.readmeContent.license)
+		: '';
+
+	const screenshots = import.meta.glob('$lib/screenshots/*.webp', { eager: true, import: 'default' });
+	const getScreenshotUrl = (username) => {
+		const key = `/src/lib/screenshots/${username.toLowerCase()}.webp`;
+		return screenshots[key] || `/screenshots/${username.toLowerCase()}.webp`;
+	};
 
 	let selectedCategory = 'All';
 	let searchQuery = '';
-	let activeTab: 'readme' | 'contributing' | 'license' = 'readme';
+	let activeTab = 'readme';
+
+	const handleGlobalClick = (e) => {
+		const target = e.target.closest('a');
+		if (target) {
+			const href = target.getAttribute('href') || '';
+			const dataTab = target.getAttribute('data-tab');
+			const dataScroll = target.getAttribute('data-scroll');
+			if (href.includes('CONTRIBUTING.md') || dataTab === 'contributing') {
+				e.preventDefault();
+				e.stopPropagation();
+				activeTab = 'contributing';
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			} else if ((href.includes('LICENSE') || href.includes('license') || dataTab === 'license') && !href.startsWith('http')) {
+				e.preventDefault();
+				e.stopPropagation();
+				activeTab = 'license';
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			} else if (
+				href.includes('roypriyanshu02.github.io/awesome-github-profile-readme') ||
+				href === '#categories' ||
+				dataScroll === 'categories'
+			) {
+				e.preventDefault();
+				e.stopPropagation();
+				activeTab = 'readme';
+				const catElem = document.getElementById('categories');
+				if (catElem) {
+					catElem.scrollIntoView({ behavior: 'smooth' });
+				}
+			}
+		}
+	};
+
+	onMount(() => {
+		const params = new URLSearchParams(window.location.search);
+		const cat = params.get('category');
+		const q = params.get('q');
+		if (cat && data.categories.some((c) => c.categoryTitle === cat)) {
+			selectedCategory = cat;
+		}
+		if (q) {
+			searchQuery = q;
+		}
+
+		window.addEventListener('click', handleGlobalClick, true);
+		return () => window.removeEventListener('click', handleGlobalClick, true);
+	});
+
+	const syncUrlParams = (cat, q) => {
+		if (typeof window === 'undefined') return;
+		const url = new URL(window.location.href);
+		if (cat && cat !== 'All') {
+			url.searchParams.set('category', cat);
+		} else {
+			url.searchParams.delete('category');
+		}
+		if (q.trim()) {
+			url.searchParams.set('q', q.trim());
+		} else {
+			url.searchParams.delete('q');
+		}
+		window.history.replaceState({}, '', url.toString());
+	};
+
+	$: syncUrlParams(selectedCategory, searchQuery);
+
+	$: itemListSchema = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'ItemList',
+		name: 'Awesome GitHub Profile README Examples',
+		description: 'A curated list of impressive GitHub Profile README examples and templates.',
+		numberOfItems: data.profiles.length,
+		itemListElement: data.profiles.map((p, index) => ({
+			'@type': 'ListItem',
+			position: index + 1,
+			name: `${p.username}'s GitHub Profile README`,
+			url: `https://github.com/${p.username}`
+		}))
+	});
+
+	$: headerInfo = parseMarkdownHeader(data.readmeContent?.header);
 
 	$: categoryMap = (() => {
-		const map = new Map<string, typeof data.profiles>();
+		const map = new Map();
 		data.profiles.forEach((profile) => {
 			if (!map.has(profile.category)) {
 				map.set(profile.category, []);
 			}
-			map.get(profile.category)!.push(profile);
+			map.get(profile.category).push(profile);
 		});
 		return map;
 	})();
@@ -52,7 +173,7 @@
 		return list;
 	})();
 
-	const updateFilteredData = (category: string) => {
+	const updateFilteredData = (category) => {
 		selectedCategory = category;
 	};
 
@@ -87,14 +208,14 @@
 				class:active={activeTab === 'license'}
 				on:click={() => (activeTab = 'license')}
 			>
-				MIT license
+				License
 			</button>
 		</nav>
 
 		<div class="header-actions">
 			{#if activeTab === 'readme'}
 				<a
-					href="https://github.com/roypriyanshu02/impressive-profile-readmes/edit/main/README.md"
+					href="https://github.com/roypriyanshu02/awesome-github-profile-readme/edit/main/README.md"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="action-icon-btn edit-btn-with-label"
@@ -103,26 +224,9 @@
 					<Pencil16 width={14} height={14} class="btn-icon-align" />
 					<span class="btn-label">Add Profile</span>
 				</a>
-				<!-- Category Selector Button and Dropdown -->
-				<FilterBar
-					filterItems={data.categories}
-					selectedFilter={selectedCategory}
-					bind:searchQuery
-					updateFilteredDataCallback={updateFilteredData}
-				/>
 			{:else if activeTab === 'contributing'}
 				<a
-					href="https://github.com/roypriyanshu02/impressive-profile-readmes/edit/main/CONTRIBUTING.md"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="action-icon-btn edit-btn-with-label"
-					title="Edit CONTRIBUTING.md on GitHub"
-				>
-					<Pencil16 width={14} height={14} class="btn-icon-align" />
-					<span class="btn-label">Edit Contributing</span>
-				</a>
-				<a
-					href="https://github.com/roypriyanshu02/impressive-profile-readmes/fork"
+					href="https://github.com/roypriyanshu02/awesome-github-profile-readme/fork"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="action-icon-btn edit-btn-with-label"
@@ -138,21 +242,93 @@
 	<article class="markdown-body">
 		{#if activeTab === 'readme'}
 			<h1 class="markdown-h1">
-				<span class="markdown-hash">#</span> Impressive Profile READMEs
+				<span class="markdown-hash">#</span>
+				{headerInfo.title}
 			</h1>
 			<p class="markdown-desc">
-				Get inspired to make your GitHub Profile stand out! Explore our gallery of community-curated Profile READMEs.
+				{#each renderMarkdownLinks(headerInfo.desc) as part}
+					{#if part.type === 'text'}
+						{part.content}
+					{:else if part.type === 'link'}
+						{#if part.href.includes('CONTRIBUTING.md')}
+							<a href="#contributing" data-tab="contributing">{part.text}</a>
+						{:else if (part.href.includes('LICENSE') || part.href.includes('license')) && !part.href.startsWith('http')}
+							<a href="#license" data-tab="license">{part.text}</a>
+						{:else if part.href.includes('roypriyanshu02.github.io/awesome-github-profile-readme')}
+							<a href="#" data-scroll="categories">{part.text}</a>
+						{:else}
+							<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+						{/if}
+					{/if}
+				{/each}
 			</p>
+			{#if headerInfo.intros && headerInfo.intros.length > 0}
+				{#each headerInfo.intros as introParagraph}
+					<p class="markdown-intro">
+						{#each renderMarkdownLinks(introParagraph) as part}
+							{#if part.type === 'text'}
+								{part.content}
+							{:else if part.type === 'link'}
+								{#if part.href.includes('CONTRIBUTING.md')}
+									<a href="#contributing" data-tab="contributing">{part.text}</a>
+								{:else if (part.href.includes('LICENSE') || part.href.includes('license')) && !part.href.startsWith('http')}
+									<a href="#license" data-tab="license">{part.text}</a>
+								{:else if part.href.includes('roypriyanshu02.github.io/awesome-github-profile-readme')}
+									<a href="#" data-scroll="categories">{part.text}</a>
+								{:else}
+									<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+								{/if}
+							{/if}
+						{/each}
+					</p>
+				{/each}
+			{/if}
+			<div class="readme-badges">
+				<img
+					src="https://img.shields.io/github/stars/roypriyanshu02/awesome-github-profile-readme?color=dfb317&style=for-the-badge"
+					alt="Stars"
+				/>
+				<img
+					src="https://img.shields.io/github/issues/roypriyanshu02/awesome-github-profile-readme?color=0284c7&style=for-the-badge"
+					alt="Issues"
+				/>
+				<img
+					src="https://img.shields.io/github/issues-pr/roypriyanshu02/awesome-github-profile-readme?color=8b5cf6&style=for-the-badge"
+					alt="Pull requests"
+				/>
+				<a href="#" data-scroll="categories">
+					<img
+						src="https://img.shields.io/badge/showcase-live_gallery-black?style=for-the-badge"
+						alt="Showcase"
+					/>
+				</a>
+			</div>
+
+			<!-- Category Selector replacing ## Categories heading -->
+			<div class="categories-filter-wrapper" id="categories">
+				<FilterBar
+					filterItems={data.categories}
+					selectedFilter={selectedCategory}
+					bind:searchQuery
+					updateFilteredDataCallback={updateFilteredData}
+				/>
+			</div>
 
 			{#if filteredProfiles.length > 0}
 				<CardSection>
 					{#each filteredProfiles as profile (profile.username)}
-						<Card
-							screenshot={screenshotMap.get(profile.username.toLowerCase())}
-							username={profile.username}
-							category={profile.category}
-							starCount={profile.starCount}
-						/>
+						<div
+							transition:scale={{ duration: 250, start: 0.96, easing: quintOut }}
+							animate:flip={{ duration: 350, easing: quintOut }}
+							class="card-wrapper"
+						>
+							<Card
+								screenshot={getScreenshotUrl(profile.username)}
+								username={profile.username}
+								category={profile.category}
+								starCount={profile.starCount}
+							/>
+						</div>
 					{/each}
 				</CardSection>
 			{:else}
@@ -165,66 +341,181 @@
 					<button class="btn-clear" on:click={clearFilters}>Clear filters</button>
 				</div>
 			{/if}
-		{:else if activeTab === 'contributing'}
-			<div class="doc-container">
-				<h1 class="markdown-h1">
-					<span class="markdown-hash">#</span> Contributing Guidelines 🗒️
-				</h1>
-				<p class="markdown-desc">
-					Hi! We're really excited that you're interested in contributing to our project! Before submitting your contribution, please take a moment to read through the guidelines below:
-				</p>
 
-				<section class="doc-section">
-					<h2 class="doc-h2"><span class="markdown-hash">##</span> Pull Request Guidelines 🔧</h2>
-					<p class="doc-p">If you're interested in making changes, follow the steps below before submitting a pull request:</p>
-
-					<h3 class="doc-h3"><span class="markdown-hash">###</span> To Add, Remove, or Update GitHub Profile READMEs 📊</h3>
-					<ol class="doc-list">
-						<li>Fork this repository on GitHub.</li>
-						<li>Clone your new repository to your system.</li>
-						<li>Add, remove, or update your profile entry in <code>README.md</code> in alphabetical order under the correct category heading.</li>
-						<li>Commit changes and push to your fork repository using: <code>[Add/Remove/Update] [username] profile</code>.</li>
-						<li>Open and submit a pull request.</li>
-					</ol>
-
-					<h3 class="doc-h3"><span class="markdown-hash">###</span> To Fix a Bug, Add an Improvement, or New Feature 🐛🛠️🚀</h3>
-					<ol class="doc-list">
-						<li>Fork this repository and clone it locally.</li>
-						<li>Make your changes and verify functionality.</li>
-						<li>Commit with a descriptive message and submit a pull request.</li>
-					</ol>
+			<!-- Article Section dynamically loaded from README -->
+			{#if data.readmeContent?.article}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="article">
+						<span class="markdown-hash">##</span> Article
+					</h2>
+					<ul class="doc-list">
+						{#each parseMarkdownList(data.readmeContent.article) as item}
+							<li>
+								<a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}</a>
+								{#if item.desc}
+									<span class="item-desc">
+										{#each renderMarkdownLinks(item.desc) as part}
+											{#if part.type === 'text'}
+												{part.content}
+											{:else if part.type === 'link'}
+												<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+											{/if}
+										{/each}
+									</span>
+								{/if}
+							</li>
+						{/each}
+					</ul>
 				</section>
+			{/if}
+
+			<!-- Tools Section dynamically loaded from README -->
+			{#if data.readmeContent?.tools}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="tools">
+						<span class="markdown-hash">##</span> Tools
+					</h2>
+					<ul class="doc-list">
+						{#each parseMarkdownList(data.readmeContent.tools) as item}
+							<li>
+								<a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}</a>
+								{#if item.desc}
+									<span class="item-desc">
+										{#each renderMarkdownLinks(item.desc) as part}
+											{#if part.type === 'text'}
+												{part.content}
+											{:else if part.type === 'link'}
+												<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+											{/if}
+										{/each}
+									</span>
+								{/if}
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
+
+			<!-- Featured Projects Section dynamically loaded from README -->
+			{#if data.readmeContent?.featuredProjects}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="featured-projects">
+						<span class="markdown-hash">##</span> Featured Projects
+					</h2>
+					<ul class="doc-list">
+						{#each parseMarkdownList(data.readmeContent.featuredProjects) as item}
+							<li>
+								<a href={item.href} target="_blank" rel="noopener noreferrer">{item.title}</a>
+								{#if item.desc}
+									<span class="item-desc">
+										{#each renderMarkdownLinks(item.desc) as part}
+											{#if part.type === 'text'}
+												{part.content}
+											{:else if part.type === 'link'}
+												<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
+											{/if}
+										{/each}
+									</span>
+								{/if}
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
+
+			<!-- Frequently Asked Questions (FAQ) Section -->
+			{#if data.readmeContent?.faq}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="faq">
+						<span class="markdown-hash">##</span> Frequently Asked Questions (FAQ)
+					</h2>
+					<div class="markdown-rendered">
+						{@html parsedFaqHtml}
+					</div>
+				</section>
+			{/if}
+
+			<!-- Contribute Section -->
+			{#if data.readmeContent?.contribute}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="contribute">
+						<span class="markdown-hash">##</span> Contribute
+					</h2>
+					<div class="markdown-rendered">
+						{@html parsedReadmeContributeHtml}
+					</div>
+				</section>
+			{/if}
+
+			<!-- License Section -->
+			{#if data.readmeContent?.license}
+				<section class="readme-dynamic-section">
+					<h2 class="doc-h2" id="license">
+						<span class="markdown-hash">##</span> License
+					</h2>
+					<div class="markdown-rendered">
+						{@html parsedReadmeLicenseHtml}
+					</div>
+				</section>
+			{/if}
+		{:else if activeTab === 'contributing'}
+			<div class="doc-container markdown-rendered">
+				{#if parsedContributingHtml}
+					{@html parsedContributingHtml}
+				{:else}
+					<p class="doc-p">No contributing guidelines found.</p>
+				{/if}
 			</div>
 		{:else if activeTab === 'license'}
-			<div class="doc-container">
-				<h1 class="markdown-h1">
-					<span class="markdown-hash">#</span> MIT License
-				</h1>
-				<pre class="license-block">MIT License
-
-Copyright (c) 2023-present Priyanshu Roy and Rakesh Chowdhury
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.</pre>
+			<div class="doc-container markdown-rendered">
+				{#if parsedLicenseHtml}
+					{@html parsedLicenseHtml}
+				{:else}
+					<p class="doc-p">This project is dual-licensed under MIT and CC BY 4.0.</p>
+				{/if}
 			</div>
 		{/if}
 	</article>
 </div>
+
+<svelte:head>
+	<meta name="theme-color" content="var(--color-background)" />
+	<title>Awesome GitHub Profile README</title>
+	<meta
+		name="description"
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+	/>
+	<link rel="canonical" href="https://roypriyanshu02.github.io/awesome-github-profile-readme/" />
+	<meta name="author" content="Contributors" />
+	<meta name="robots" content="index, follow" />
+	<!-- Meta Tags For Open Graph / Facebook -->
+	<meta property="og:type" content="Website" />
+	<meta property="og:title" content="Awesome GitHub Profile README" />
+	<meta
+		property="og:description"
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+	/>
+	<meta
+		property="og:url"
+		content="https://roypriyanshu02.github.io/awesome-github-profile-readme/"
+	/>
+	<meta
+		property="og:image"
+		content="https://roypriyanshu02.github.io/awesome-github-profile-readme/meta.webp"
+	/>
+	<!-- Meta Tags For Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Awesome GitHub Profile README" />
+	<meta
+		name="twitter:description"
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://roypriyanshu02.github.io/awesome-github-profile-readme/meta.webp"
+	/>
+	{@html '<script type="application/ld+json">' + itemListSchema + '</script>'}
+</svelte:head>
 
 <style>
 	.readme-box {
@@ -251,33 +542,72 @@ SOFTWARE.</pre>
 		align-items: center;
 		overflow-x: auto;
 		margin-bottom: -1px;
+		position: relative;
 	}
 	.tab-link {
 		background: none;
 		border: none;
-		border-bottom: 2px solid transparent;
 		color: var(--color-text-secondary);
 		cursor: pointer;
 		font-family: inherit;
 		font-size: 0.8125rem;
 		font-weight: 500;
 		padding: 0.5rem 0.25rem 0.6rem 0.25rem;
-		transition: color var(--transition-default);
+		transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		white-space: nowrap;
+		position: relative;
+	}
+	.tab-link::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: var(--color-active-tab);
+		border-radius: 2px;
+		transform: scaleX(0);
+		opacity: 0;
+		transition:
+			transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.3s ease;
 	}
 	.tab-link:hover {
 		color: var(--color-text-primary);
 	}
+	.tab-link:hover::after {
+		transform: scaleX(0.5);
+		opacity: 0.5;
+	}
 	.tab-link.active {
-		border-bottom-color: var(--color-active-tab);
 		color: var(--color-text-primary);
 		font-weight: 600;
 	}
+	.tab-link.active::after {
+		transform: scaleX(1);
+		opacity: 1;
+	}
+	.markdown-body {
+		padding: 1.25rem;
+		animation: fadeInTab 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	@keyframes fadeInTab {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
 	.header-actions {
 		display: flex;
 		align-items: center;
 		gap: 0.5rem;
-		padding-bottom: 0.4rem;
+		margin-bottom: -1px;
+		align-self: center;
 	}
 	.action-icon-btn {
 		background: transparent;
@@ -288,48 +618,38 @@ SOFTWARE.</pre>
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.35rem;
+		padding: 0.35rem 0.6rem;
 		text-decoration: none;
 		transition: all var(--transition-default);
-		line-height: 1;
-	}
-	.action-icon-btn:hover {
-		background: rgba(110, 118, 129, 0.15);
-		color: var(--color-text-primary);
-	}
-	:global(.btn-icon-align) {
-		display: inline-block;
-		vertical-align: middle;
-		flex-shrink: 0;
-	}
-	.edit-btn-with-label {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		gap: 0.35rem;
-		padding: 0.35rem 0.5rem;
-		line-height: 1;
-	}
-	.btn-label {
-		display: inline-flex;
-		align-items: center;
 		font-size: 0.8125rem;
 		font-weight: 500;
+		gap: 0.35rem;
+	}
+	.action-icon-btn:hover {
+		background: var(--color-surface-translucent);
+		color: var(--color-text-primary);
+	}
+	.action-icon-btn :global(svg) {
+		display: block;
+		flex-shrink: 0;
+	}
+	.btn-label {
 		color: inherit;
 		line-height: 1;
 	}
 	.markdown-body {
 		padding: 1.25rem;
 	}
-	.markdown-h1 {
+	.markdown-h1,
+	:global(.markdown-rendered h1) {
 		color: var(--color-text-primary);
-		font-size: 1.35rem;
+		font-size: 2rem;
 		font-weight: 600;
 		letter-spacing: -0.01em;
 		line-height: 1.25;
-		margin-bottom: 0.75rem;
+		margin-bottom: 1rem;
 		border-bottom: 1px solid var(--color-border);
-		padding-bottom: 0.35rem;
+		padding-bottom: 0.4rem;
 	}
 	.markdown-hash {
 		color: var(--color-text-secondary);
@@ -340,7 +660,42 @@ SOFTWARE.</pre>
 		color: var(--color-text-secondary);
 		font-size: 0.9375rem;
 		line-height: 1.5;
+		margin-bottom: 0.75rem;
+	}
+	.markdown-intro {
+		color: var(--color-text-primary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
 		margin-bottom: 1.25rem;
+	}
+	.readme-badges {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin-bottom: 1rem;
+	}
+	.readme-badges img {
+		height: 28px;
+	}
+	.markdown-tip {
+		color: var(--color-text-secondary);
+		font-size: 0.875rem;
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-bottom: 1.5rem;
+	}
+	.inline-badge {
+		height: 20px;
+		vertical-align: middle;
+	}
+	.readme-dynamic-section {
+		margin-top: 2rem;
+	}
+	.item-desc {
+		color: var(--color-text-secondary);
+		font-size: 0.875rem;
+		margin-left: 0.25rem;
 	}
 	.blankslate {
 		align-items: center;
@@ -388,24 +743,29 @@ SOFTWARE.</pre>
 	.doc-container {
 		color: var(--color-text-primary);
 	}
-	.doc-section {
-		margin-top: 1.5rem;
-	}
-	.doc-h2 {
+	.doc-h2,
+	:global(.markdown-rendered h2) {
 		color: var(--color-text-primary);
-		font-size: 1.15rem;
+		font-size: 1.5rem;
 		font-weight: 600;
-		margin-bottom: 0.5rem;
+		line-height: 1.25;
+		margin: 1.5rem 0 0.75rem 0;
 		border-bottom: 1px solid var(--color-border);
-		padding-bottom: 0.25rem;
+		padding-bottom: 0.35rem;
 	}
-	.doc-h3 {
+	:global(.markdown-rendered h3) {
+		color: var(--color-text-primary);
+		font-size: 1.25rem;
+		font-weight: 600;
+		margin: 1.25rem 0 0.5rem 0;
+	}
+	:global(.markdown-rendered h4) {
 		color: var(--color-text-primary);
 		font-size: 1rem;
 		font-weight: 600;
 		margin: 1rem 0 0.5rem 0;
 	}
-	.doc-p {
+	:global(.markdown-rendered p) {
 		color: var(--color-text-secondary);
 		font-size: 0.9375rem;
 		line-height: 1.6;
@@ -413,68 +773,64 @@ SOFTWARE.</pre>
 	}
 	.doc-list {
 		color: var(--color-text-secondary);
+		font-size: 0.9375rem;
+		line-height: 1.6;
+		list-style-type: disc;
+		margin-bottom: 1.5rem;
+		padding-left: 1.75rem;
+	}
+	.doc-list li {
+		margin-bottom: 0.5rem;
+	}
+	.item-desc {
+		color: var(--color-text-secondary);
+		margin-left: 0.35rem;
+		font-style: italic;
+	}
+
+	:global(.markdown-rendered ul),
+	:global(.markdown-rendered ol) {
+		color: var(--color-text-secondary);
 		font-size: 0.875rem;
 		line-height: 1.6;
 		margin-left: 1.5rem;
 		margin-bottom: 1rem;
 	}
-	.doc-list li {
+	:global(.markdown-rendered li) {
 		margin-bottom: 0.35rem;
 	}
-	.doc-list code {
-		background: rgba(110, 118, 129, 0.15);
+	:global(.markdown-rendered code) {
+		background: var(--color-surface-translucent);
 		border-radius: 4px;
 		color: var(--color-text-primary);
 		font-family: var(--font-mono);
 		font-size: 0.8125rem;
 		padding: 0.15rem 0.35rem;
 	}
-	.license-block {
+	:global(.markdown-rendered pre) {
 		background: var(--color-foreground);
 		border: 1px solid var(--color-border);
 		border-radius: var(--border-radius);
-		color: var(--color-text-primary);
-		font-family: var(--font-mono);
-		font-size: 0.8125rem;
+		padding: 0.75rem 1rem;
+		overflow-x: auto;
+		margin-bottom: 1rem;
+	}
+	:global(.markdown-rendered pre code) {
+		background: none;
+		padding: 0;
+	}
+	:global(.markdown-rendered a) {
+		color: var(--color-link);
+		text-decoration: underline;
+		transition: color var(--transition-default);
+	}
+	:global(.markdown-rendered a:hover) {
+		color: var(--color-link-hover);
+	}
+	.doc-p {
+		color: var(--color-text-secondary);
+		font-size: 0.9375rem;
 		line-height: 1.6;
-		padding: 1.25rem;
-		white-space: pre-wrap;
-		word-break: break-word;
+		margin-bottom: 0.75rem;
 	}
 </style>
-
-
-<svelte:head>
-	<meta name="theme-color" content="var(--color-background)" />
-	<title>Impressive Profile READMEs</title>
-	<meta
-		name="description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
-	/>
-	<link rel="canonical" href="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
-	<meta name="author" content="Contributors" />
-	<meta name="robots" content="index, follow" />
-	<!-- Meta Tags For Open Graph / Facebook -->
-	<meta property="og:type" content="Website" />
-	<meta property="og:title" content="Impressive Profile READMEs" />
-	<meta
-		property="og:description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
-	/>
-	<meta property="og:url" content="https://roypriyanshu02.github.io/impressive-profile-readmes/" />
-	<meta
-		property="og:image"
-		content="https://roypriyanshu02.github.io/impressive-profile-readmes/meta.webp"
-	/>
-	<!-- Meta Tags For Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content="Impressive Profile READMEs" />
-	<meta
-		name="twitter:description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
-	/>
-	<meta
-		name="twitter:image"
-		content="https://roypriyanshu02.github.io/impressive-profile-readmes/meta.webp"
-	/>
-</svelte:head>

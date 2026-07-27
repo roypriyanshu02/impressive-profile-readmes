@@ -15,7 +15,8 @@ export const load = async () => {
 			const starsContents = await readFile(starsPath, 'utf-8');
 			starsMap = JSON.parse(starsContents);
 		} catch (e) {
-			console.warn('⚠ Could not read static/stars.json, fallback to 0 stars:', e.message);
+			const msg = e instanceof Error ? e.message : String(e);
+			console.warn('⚠ Could not read static/stars.json, fallback to 0 stars:', msg);
 		}
 
 		// Extract relevant information from README.json
@@ -63,9 +64,21 @@ export const load = async () => {
 			new Map(profiles.map((p) => [p.username.toLowerCase(), p])).values()
 		);
 		uniqueProfiles.sort((a, b) => a.username.localeCompare(b.username));
+		let contributingContent = '';
+		let licenseContent = '';
+		try {
+			contributingContent = await readFile(join(process.cwd(), '..', 'CONTRIBUTING.md'), 'utf-8');
+		} catch {}
+		try {
+			licenseContent = await readFile(join(process.cwd(), '..', 'LICENSE'), 'utf-8');
+		} catch {}
+
 		return {
 			categories,
 			profiles: uniqueProfiles,
+			readmeContent: result.readmeContent ?? {},
+			contributingContent,
+			licenseContent,
 			lastModified: result.lastModified ?? Date.now()
 		};
 	} catch (error) {
@@ -74,9 +87,8 @@ export const load = async () => {
 		return {
 			categories: [{ categoryTitle: 'All', totalProfileCount: 0 }],
 			profiles: [],
-			error: error
+			error
 		};
 	}
 };
 
-export const prerender = true;

@@ -1,7 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Star16, Code16, IssueOpened16, GitPullRequest16 } from 'svelte-octicons';
-	import { siGithub } from 'simple-icons';
+	import Star16 from './icons/Star16.svelte';
+	import Code16 from './icons/Code16.svelte';
+	import IssueOpened16 from './icons/IssueOpened16.svelte';
+	import GitPullRequest16 from './icons/GitPullRequest16.svelte';
+	import GithubIcon from './GithubIcon.svelte';
 
 	export let repoStats = {
 		stars: 184,
@@ -14,9 +17,24 @@
 	let header;
 
 	onMount(() => {
-		let headerHeight = header.offsetHeight;
+		// Live fetch latest repo stats in browser
+		fetch('https://api.github.com/repos/roypriyanshu02/awesome-github-profile-readme')
+			.then((res) => (res.ok ? res.json() : null))
+			.then((data) => {
+				if (data && typeof data.stargazers_count === 'number') {
+					repoStats = {
+						...repoStats,
+						stars: data.stargazers_count,
+						open_issues: Math.max(0, (data.open_issues_count ?? repoStats.open_issues)),
+						forks: data.forks_count ?? repoStats.forks
+					};
+				}
+			})
+			.catch(() => {});
+
+		const headerHeight = header.offsetHeight;
 		const handleScroll = () => {
-			const currentScrollPos = window.pageYOffset;
+			const currentScrollPos = window.scrollY;
 			if (prevScrollPos > currentScrollPos || currentScrollPos < 50) {
 				header.style.transform = 'translateY(0)';
 			} else {
@@ -24,7 +42,7 @@
 			}
 			prevScrollPos = currentScrollPos;
 		};
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('scroll', handleScroll, { passive: true });
 		return () => window.removeEventListener('scroll', handleScroll);
 	});
 </script>
@@ -32,18 +50,26 @@
 <header class="github-header" bind:this={header}>
 	<div class="header-main">
 		<div class="repo-info">
-			<svg viewBox="0 0 24 24" width="16" height="16" class="octocat-icon" aria-hidden="true">
-				<path fill="currentColor" d={siGithub.path} />
-			</svg>
-			<a href="https://github.com/roypriyanshu02" target="_blank" rel="noopener noreferrer" class="owner">roypriyanshu02</a>
+			<GithubIcon width={16} height={16} class="octocat-icon" />
+			<a
+				href="https://github.com/roypriyanshu02"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="owner">roypriyanshu02</a
+			>
 			<span class="slash">/</span>
-			<a href="https://github.com/roypriyanshu02/impressive-profile-readmes" target="_blank" rel="noopener noreferrer" class="repo-title">impressive-profile-readmes</a>
+			<a
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="repo-title">awesome-github-profile-readme</a
+			>
 			<span class="badge-public">Public</span>
 		</div>
 
 		<div class="repo-actions">
 			<a
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="btn-star"
@@ -58,18 +84,28 @@
 	</div>
 
 	<nav class="repo-nav">
-		<a href="/" class="nav-tab active">
+		<a href="/" class="nav-tab active" data-sveltekit-reload>
 			<Code16 width={16} height={16} class="nav-icon" />
 			<span>Code</span>
 		</a>
-		<a href="https://github.com/roypriyanshu02/impressive-profile-readmes/issues" target="_blank" rel="noopener noreferrer" class="nav-tab">
+		<a
+			href="https://github.com/roypriyanshu02/awesome-github-profile-readme/issues"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="nav-tab"
+		>
 			<IssueOpened16 width={16} height={16} class="nav-icon" />
 			<span>Issues</span>
 			{#if repoStats.open_issues !== undefined}
 				<span class="counter-badge">{repoStats.open_issues}</span>
 			{/if}
 		</a>
-		<a href="https://github.com/roypriyanshu02/impressive-profile-readmes/pulls" target="_blank" rel="noopener noreferrer" class="nav-tab">
+		<a
+			href="https://github.com/roypriyanshu02/awesome-github-profile-readme/pulls"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="nav-tab"
+		>
 			<GitPullRequest16 width={16} height={16} class="nav-icon" />
 			<span>Pull requests</span>
 			{#if repoStats.open_prs !== undefined}
@@ -175,17 +211,25 @@
 		gap: 0.375rem;
 		line-height: 1;
 		padding: 0.35rem 0.75rem;
-		transition: background-color var(--transition-default);
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		position: relative;
+		overflow: hidden;
 	}
 	.btn-star:hover {
 		background-color: var(--color-surface-hover);
+		border-color: var(--color-star);
 		text-decoration: none;
 	}
+
 	:global(.star-icon) {
 		color: var(--color-star);
 		display: inline-block;
 		vertical-align: middle;
 		flex-shrink: 0;
+		transition: transform 0.4s ease-in-out;
+	}
+	.btn-star:hover :global(.star-icon) {
+		transform: rotate(72deg);
 	}
 	.btn-count {
 		align-items: center;
@@ -198,7 +242,12 @@
 		line-height: 1;
 		padding: 0.15rem 0.45rem;
 		margin-left: 0.2rem;
+		transition: background-color 0.25s ease;
 	}
+	.btn-star:hover .btn-count {
+		background: rgba(234, 179, 8, 0.15);
+	}
+
 	.counter-badge {
 		background: rgba(110, 118, 129, 0.2);
 		border-radius: 2em;

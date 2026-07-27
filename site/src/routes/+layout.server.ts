@@ -15,9 +15,25 @@ export const load = async () => {
 		try {
 			const statsPath = join(process.cwd(), 'static', 'repo_stats.json');
 			const statsContents = await readFile(statsPath, 'utf-8');
-			repoStats = JSON.parse(statsContents);
+			const parsed = JSON.parse(statsContents);
+			if (typeof parsed.stars === 'number') {
+				repoStats = {
+					stars: parsed.stars,
+					open_issues: parsed.open_issues ?? 0,
+					open_prs: parsed.open_prs ?? 0,
+					forks: parsed.forks ?? 0
+				};
+			} else if (parsed.repoStats && typeof parsed.repoStats.stars === 'number') {
+				repoStats = {
+					stars: parsed.repoStats.stars,
+					open_issues: parsed.repoStats.open_issues ?? 0,
+					open_prs: parsed.repoStats.open_prs ?? 0,
+					forks: parsed.repoStats.forks ?? 0
+				};
+			}
 		} catch (e) {
-			console.warn('Could not read static/repo_stats.json, using default stats:', e.message);
+			const msg = e instanceof Error ? e.message : String(e);
+			console.warn('Could not read static/repo_stats.json, using default stats:', msg);
 		}
 
 		return {
@@ -28,9 +44,9 @@ export const load = async () => {
 		const lastModified = Date.now();
 		console.error(error);
 		return {
-			lastModified: lastModified,
+			lastModified,
 			repoStats: { stars: 184, open_issues: 1, open_prs: 0, forks: 32 },
-			error: error
+			error
 		};
 	}
 };

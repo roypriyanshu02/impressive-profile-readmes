@@ -1,5 +1,5 @@
 <script>
-	import { siGithub } from 'simple-icons';
+	import GithubIcon from './GithubIcon.svelte';
 
 	export let updateAt;
 	const formattedDate = updateAt
@@ -17,23 +17,21 @@
 	<div class="footer-container">
 		<div class="footer-left">
 			<a
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme"
 				target="_blank"
 				rel="noreferrer"
 				aria-label="GitHub Repository"
 				class="octocat-brand"
 			>
-				<svg viewBox="0 0 24 24" width="20" height="20" class="octocat-icon" aria-hidden="true">
-					<path fill="currentColor" d={siGithub.path} />
-				</svg>
+				<GithubIcon width={20} height={20} class="octocat-icon" />
 			</a>
-			<span class="copyright">Impressive Profile READMEs</span>
+			<span class="copyright">Awesome GitHub Profile README</span>
 		</div>
 
 		<nav class="footer-links">
 			<a
 				class="footer-link"
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes/blob/main/CONTRIBUTING.md#to-add-remove-or-update-github-profile-readmes-"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme/blob/main/CONTRIBUTING.md#to-add-remove-or-update-github-profile-readmes-"
 				target="_blank"
 				rel="noreferrer"
 			>
@@ -41,7 +39,7 @@
 			</a>
 			<a
 				class="footer-link"
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes/blob/main/CONTRIBUTING.md#to-fix-a-bug-add-an-improvement-or-new-feature-%EF%B8%8F"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme/blob/main/CONTRIBUTING.md#to-fix-a-bug-add-an-improvement-or-new-feature-%EF%B8%8F"
 				target="_blank"
 				rel="noreferrer"
 			>
@@ -49,7 +47,7 @@
 			</a>
 			<a
 				class="footer-link"
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes/blob/main/CONTRIBUTING.md#issues-guidelines-"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme/blob/main/CONTRIBUTING.md#issues-guidelines-"
 				target="_blank"
 				rel="noreferrer"
 			>
@@ -57,7 +55,7 @@
 			</a>
 			<a
 				class="footer-link"
-				href="https://github.com/roypriyanshu02/impressive-profile-readmes"
+				href="https://github.com/roypriyanshu02/awesome-github-profile-readme"
 				target="_blank"
 				rel="noreferrer"
 			>
@@ -156,5 +154,3 @@
 		padding: 0.25rem 0.65rem;
 	}
 </style>
-
-
