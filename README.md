@@ -19,6 +19,7 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 
 ## Table of content:
 
+- [Featured Projects](#featured-projects)
 - [Categories](#categories)
   - [A Little Bit of Everything](#a-little-bit-of-everything)
   - [Animation](#animation)
@@ -384,6 +385,32 @@ Remember to give a ![Stars](https://img.shields.io/badge/Star-FFD700?style=flat-
 - [Steak stats](https://streak-stats.demolab.com/demo/) - Display your total contributions, current streak, and longest streak on your GitHub profile README
 - [SVG icons](https://simpleicons.org/) - Over 2400 Free SVG icons of popular brands
 - [Twitter posts](https://gtce.itsvg.in/) - Showcase your Twitter latest post on your Readme
+
+## Featured Projects
+
+- **[Spelunk](https://github.com/roypriyanshu02/spelunk)** - AST-powered codebase indexer skill for AI coding agents. Parses code with Tree-sitter and caches symbol definitions in SQLite for instant lookups and up to 90% token savings. Read the [release blog post](https://roypriyanshu02.hashnode.dev/ai-agent-codebase-indexer-skill-spelunk) for details.
+
+## FAQ
+
+### What is a GitHub Profile README?
+
+A GitHub Profile README is a markdown file placed in a special repository matching your GitHub username. As detailed in the [GitHub Documentation](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme), it renders on your public profile page to showcase your tech stack, projects, and live stats.
+
+### How do I make my profile README stand out?
+
+To build a clean, memorable profile that highlights your work effectively:
+
+1. **Clear Positioning:** Lead with a concise tagline defining your focus, primary tech stack, and current projects—keep introductions scannable and direct.
+2. **Tech Stack Badges:** Group your core tools cleanly using [Shields.io](https://shields.io/) or [Simple Icons](https://simpleicons.org/) instead of crowding the page with excessive badges.
+3. **Dynamic Activity Widgets:** Display real-time contribution metrics and language stats using [GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats) or showcase contribution streaks with [Streak Stats](https://streak-stats.demolab.com/demo/).
+4. **Featured Projects:** Showcase your top 2–3 active repositories or open-source contributions with short descriptions and direct links rather than long static lists.
+5. **Subtle Motion:** Add dynamic header text using [Readme Typing SVG](https://readme-typing-svg.demolab.com/demo/) or visual contribution animations to bring the layout to life.
+6. **Curated Showcase:** Explore over 180 profile examples in our [Live Showcase Gallery](https://roypriyanshu02.github.io/awesome-github-profile-readme/) to find layout styles matching your work.
+
+### How do I add my profile README to this list?
+
+Submit a pull request updating `README.md` following our [Contributing Guide](CONTRIBUTING.md). Our automated GitHub Actions workflow will check your submission and merge eligible pull requests automatically.
+>>>>>>> a643d99 (fixup! feat(projects): add featured projects section showcasing spelunk)
 
 ## Contribute
 
