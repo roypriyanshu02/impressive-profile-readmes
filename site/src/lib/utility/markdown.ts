@@ -77,7 +77,7 @@ export const parseMarkdownList = (markdownText?: string): MarkdownListItem[] => 
 	return markdownText
 		.split('\n')
 		.map((line) => {
-			const match = line.match(/^-\s+\[([^\]]+)\]\(([^)]+)\)(?:\s*(.*?))?$/);
+			const match = line.match(/^-\s+(?:\*\*)?\[([^\]]+)\]\(([^)]+)\)(?:\*\*)?(?:\s*(.*?))?$/);
 			if (match) {
 				let desc = (match[3] || '').trim();
 				if (desc.startsWith('_- ') && desc.endsWith('_')) {

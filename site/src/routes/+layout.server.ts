@@ -17,7 +17,8 @@ export const load = async () => {
 			const statsContents = await readFile(statsPath, 'utf-8');
 			repoStats = JSON.parse(statsContents);
 		} catch (e) {
-			console.warn('Could not read static/repo_stats.json, using default stats:', e.message);
+			const msg = e instanceof Error ? e.message : String(e);
+			console.warn('Could not read static/repo_stats.json, using default stats:', msg);
 		}
 
 		return {
@@ -28,9 +29,9 @@ export const load = async () => {
 		const lastModified = Date.now();
 		console.error(error);
 		return {
-			lastModified: lastModified,
+			lastModified,
 			repoStats: { stars: 184, open_issues: 1, open_prs: 0, forks: 32 },
-			error: error
+			error
 		};
 	}
 };
