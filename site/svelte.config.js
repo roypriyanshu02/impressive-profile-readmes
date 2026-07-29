@@ -8,7 +8,14 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build'
-		})
+		}),
+		paths: {
+			base: process.env.BASE_PATH ?? (process.env.NODE_ENV === 'production' ? '/awesome-github-profile-readme' : '')
+		},
+		prerender: {
+			handleHttpError: 'warn',
+			handleMissingId: 'warn'
+		}
 	}
 };
 

@@ -1,48 +1,49 @@
 {
-	"name": "awesome-github-profile-readme",
-	"version": "2.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write .",
-		"refresh": "node src/refresh-data.js",
-		"generate": "node src/generate-data.js",
-		"deploy": "touch build/.nojekyll && gh-pages -d build -t true"
-	},
-	"devDependencies": {
-		"@dimerapp/markdown": "latest",
-		"@eslint/js": "latest",
-		"@sveltejs/adapter-static": "latest",
-		"@sveltejs/kit": "latest",
-		"@sveltejs/vite-plugin-svelte": "latest",
-		"@types/node": "latest",
-		"dotenv": "latest",
-		"eslint": "latest",
-		"eslint-config-prettier": "latest",
-		"eslint-plugin-svelte": "latest",
-		"gh-pages": "latest",
-		"globals": "latest",
-		"prettier": "latest",
-		"prettier-plugin-svelte": "latest",
-		"puppeteer": "latest",
-		"sharp": "latest",
-		"svelte": "latest",
-		"svelte-check": "latest",
-		"svelte-eslint-parser": "latest",
-		"typescript": "latest",
-		"vite": "latest"
-	},
-	"type": "module",
-	"dependencies": {},
-	"overrides": {
-		"cookie": "^0.7.1"
-	},
-	"allowScripts": {
-		"puppeteer@25.3.0": true
-	}
+  "name": "awesome-github-profile-readme-site",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "oxlint .",
+    "sync": "node scripts/sync-data.js",
+    "sync:full": "node scripts/sync-data.js --check-links",
+    "sync:rebuild": "node scripts/sync-data.js --check-links --force-screenshots",
+    "deploy": "touch build/.nojekyll && gh-pages -d build -t true",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": [
+      "oxlint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.1",
+    "@commitlint/config-conventional": "^21.2.0",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.70.2",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.8.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.3.0",
+    "marked": "^18.0.7",
+    "oxlint": "^1.76.0",
+    "puppeteer": "^25.4.0",
+    "sharp": "^0.35.3",
+    "svelte": "^5.56.8",
+    "vite": "^8.2.0"
+  },
+  "overrides": {
+    "cookie": "^0.7.1"
+  },
+  "allowScripts": {
+    "puppeteer@25.4.0": true
+  }
 }

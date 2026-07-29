@@ -54,10 +54,12 @@
 		? marked.parse(data.readmeContent.license)
 		: '';
 
+	import { base } from '$app/paths';
+
 	const screenshots = import.meta.glob('$lib/screenshots/*.webp', { eager: true, import: 'default' });
 	const getScreenshotUrl = (username) => {
 		const key = `/src/lib/screenshots/${username.toLowerCase()}.webp`;
-		return screenshots[key] || `/screenshots/${username.toLowerCase()}.webp`;
+		return screenshots[key] || `${base}/screenshots/${username.toLowerCase()}.webp`;
 	};
 
 	let selectedCategory = 'All';
@@ -255,7 +257,7 @@
 						{:else if (part.href.includes('LICENSE') || part.href.includes('license')) && !part.href.startsWith('http')}
 							<a href="#license" data-tab="license">{part.text}</a>
 						{:else if part.href.includes('roypriyanshu02.github.io/awesome-github-profile-readme')}
-							<a href="#" data-scroll="categories">{part.text}</a>
+							<a href="#categories" data-scroll="categories">{part.text}</a>
 						{:else}
 							<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
 						{/if}
@@ -274,7 +276,7 @@
 								{:else if (part.href.includes('LICENSE') || part.href.includes('license')) && !part.href.startsWith('http')}
 									<a href="#license" data-tab="license">{part.text}</a>
 								{:else if part.href.includes('roypriyanshu02.github.io/awesome-github-profile-readme')}
-									<a href="#" data-scroll="categories">{part.text}</a>
+									<a href="#categories" data-scroll="categories">{part.text}</a>
 								{:else}
 									<a href={part.href} target="_blank" rel="noopener noreferrer">{part.text}</a>
 								{/if}
@@ -296,7 +298,7 @@
 					src="https://img.shields.io/github/issues-pr/roypriyanshu02/awesome-github-profile-readme?color=8b5cf6&style=for-the-badge"
 					alt="Pull requests"
 				/>
-				<a href="#" data-scroll="categories">
+				<a href="#categories" data-scroll="categories">
 					<img
 						src="https://img.shields.io/badge/showcase-live_gallery-black?style=for-the-badge"
 						alt="Showcase"
@@ -483,7 +485,7 @@
 	<title>Awesome GitHub Profile README</title>
 	<meta
 		name="description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Awesome GitHub Profile READMEs and take your profile to the next level."
 	/>
 	<link rel="canonical" href="https://roypriyanshu02.github.io/awesome-github-profile-readme/" />
 	<meta name="author" content="Contributors" />
@@ -493,7 +495,7 @@
 	<meta property="og:title" content="Awesome GitHub Profile README" />
 	<meta
 		property="og:description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Awesome GitHub Profile READMEs and take your profile to the next level."
 	/>
 	<meta
 		property="og:url"
@@ -508,7 +510,7 @@
 	<meta name="twitter:title" content="Awesome GitHub Profile README" />
 	<meta
 		name="twitter:description"
-		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Impressive Profile READMEs and take your profile to the next level."
+		content="Get inspired to make your GitHub Profile stand out! Check out our gallery of Awesome GitHub Profile READMEs and take your profile to the next level."
 	/>
 	<meta
 		name="twitter:image"
@@ -676,18 +678,6 @@
 	}
 	.readme-badges img {
 		height: 28px;
-	}
-	.markdown-tip {
-		color: var(--color-text-secondary);
-		font-size: 0.875rem;
-		display: flex;
-		align-items: center;
-		gap: 0.35rem;
-		margin-bottom: 1.5rem;
-	}
-	.inline-badge {
-		height: 20px;
-		vertical-align: middle;
 	}
 	.readme-dynamic-section {
 		margin-top: 2rem;
