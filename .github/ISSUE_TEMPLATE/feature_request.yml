@@ -1,0 +1,45 @@
+name: Feature request
+description: Suggest an improvement, new gallery feature, or workflow script
+title: "[ENHANCEMENT] "
+labels: ["enhancement"]
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        > **Note:** To add or update a GitHub profile entry, please submit a [Pull Request](https://github.com/roypriyanshu02/awesome-github-profile-readme/blob/main/CONTRIBUTING.md#profile-entries-add-remove-update) directly instead of opening a feature request.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem? Please describe.
+      description: "A clear and concise description of what the problem is (e.g. \"Mobile gallery browsing lacks category filtering\", \"Generating screenshots locally takes too long\")."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution you'd like
+      description: "A clear description of what you want to happen. If suggesting a new script or flag:"
+      value: |
+        - Proposed command syntax: (e.g. `node site/scripts/screenshot.mjs --profile username`)
+        - Target output structure: (e.g., new category filter UI, automated diff report)
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: How this improves the Showcase & Workflow
+      description: Explain how this feature helps users discover profile READMEs better or improves maintainer workflow.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Add any other context, mockup outputs, screenshots, or reference implementations.
+    validations:
+      required: false

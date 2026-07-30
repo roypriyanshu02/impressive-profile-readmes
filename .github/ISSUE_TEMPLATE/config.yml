@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Submit or Update a GitHub Profile README
+    url: https://github.com/roypriyanshu02/awesome-github-profile-readme/blob/main/CONTRIBUTING.md#profile-entries-add-remove-update
+    about: Please submit a Pull Request to README.md following our Contributing Guidelines.
