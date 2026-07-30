@@ -1,46 +1,31 @@
-# Type of change
+## Description
 
-- [ ] Added, Removed or Updated GitHub Profile README
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Improvement
+Please include a clear summary of the changes introduced in this PR and the motivation behind them. If this PR resolves an existing issue, reference it here (e.g., `Fixes #123`).
 
-## Describe change does this PR introduce?
+## Type of Change
 
-<!--
-If you've added, removed, or updated your GitHub Profile README, please take a moment to describe the changes.
---->
-
-<!--
-Similarly, if you've made any changes to your site, please provide a clear and precise description of the changes, including any relevant motivation and context. Additionally, please list any dependencies that are required for this change to be implemented.
---->
-
-## Related Issue (If any)
-
-Fixes/Implements #(issue number)
+- [ ] Profile entry change (Add, Remove, or Update a profile)
+- [ ] Bug fix (non-breaking change which fixes an issue in gallery site, scripts, or workflows)
+- [ ] New feature (non-breaking change which adds functionality to live gallery or tooling)
+- [ ] Documentation update (updates to `README.md`, `CONTRIBUTING.md`, or templates)
 
 ## Checklist
 
-- [ ] The commit message follows our guidelines.
-- [ ] The code has been self reviewed and tested.
-- [ ] Added or Updated Github Profile README.
-  - [ ] The Github Profile README is impressive and visually appealing.
-  - [ ] Added it below the heading of the category in alphabetical order.
+### Profile Entries (Add, Remove, Update)
 
-## Additional context
+- [ ] **Add:** Added profile under the appropriate category header in alphabetical order (`- [username](https://github.com/username)`).
+- [ ] **Remove:** Deleted the line containing username and link.
+- [ ] **Update:** Moved entry under the new category header in alphabetical order (and deleted `[username].webp` from `site/static/screenshots/` if updating website preview).
+- [ ] Committed changes using [Conventional Commits](https://www.conventionalcommits.org/) format (e.g., `add(profile): username to Category`, `update(profile): ...`, `remove(profile): ...`).
+- [ ] Kept PR focused on a single change.
 
-<!--
-If you've added, removed, or updated your GitHub Profile README:
+### Bug Fixes & Feature Improvements (if modifying `site/` or scripts)
 
-- Link of the Github Profile
-- Screenshots of the Github Profile README
-- Any other relevant information
---->
+- [ ] Created a branch named after the change (e.g., `fix/preview-generator`, `feat/search-filter`).
+- [ ] Performed a self-review of code changes and tested locally (`npm run dev` or `npm run build` in `site/`).
+- [ ] Confirmed formatting, spelling, and lint checks pass without errors.
 
-<!--
-Similarly, if you've made any changes to the site:
+### Verification & CI Checks
 
-- Screenshots or mockups, if applicable
-- Environment details (e.g. browser, operating system, version of the project)
-- Any other relevant information
---->
+- [ ] Verified profile README is active, public, and visually appealing.
+- [ ] Verified automated link check and CI workflows pass.

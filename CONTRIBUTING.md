@@ -1,144 +1,95 @@
-# Contributing Guidelines 🗒️
+# Contributing to Awesome GitHub Profile README
 
-Hi! We're really excited that you're interested in contributing to our project! Before submitting your contribution, please take a moment to read through the following guidelines:
+Thank you for helping out! Whether you are submitting a profile, fixing a bug, or adding a feature, this guide will walk you through the setup and rules.
 
-- [Pull Request Guidelines](#pull-request-guidelines-)
-  - [To Add, Remove, or Update Github Profile Readmes](#to-add-remove-or-update-github-profile-readmes-)
-  - [To Fix a Bug, Add an Improvement, or New Feature](#to-fix-a-bug-add-an-improvement-or-new-feature-%EF%B8%8F)
-  - [Considerations](#considerations-)
-- [Issues Guidelines](#issues-guidelines-)
-  - [Issue Report](#issue-report-)
-  - [Feature Request](#feature-request-)
+## Table of contents
 
-## Pull Request Guidelines 🔧
+- [Pull request guidelines](#pull-request-guidelines)
+  - [Profile entries (Add, Remove, Update)](#profile-entries-add-remove-update)
+  - [Bug fixes and feature improvements](#bug-fixes-and-feature-improvements)
+  - [Formatting requirements](#formatting-requirements)
+- [Issue guidelines](#issue-guidelines)
+  - [Bug reports](#bug-reports)
+  - [Feature requests](#feature-requests)
 
-If you're interested in making change, please follow the steps outlined below before submitting a pull request. If you're working on your first pull request, we recommend referring to [First Contribution Guide](https://github.com/firstcontributions/first-contributions) for guidance.
+## Pull request guidelines
 
-### To Add, Remove, or Update Github Profile Readmes: 📊
+Profile pull requests that follow these guidelines pass automated validation and merge automatically through GitHub Actions.
 
-We welcome impressive Github profile readmes.
+### Profile entries (Add, Remove, Update)
 
-1. Fork this repository.
-
-2. Clone your new repository to your system.
-
-3. Add, remove, or update the profile.
-
-   - To add a profile, add it below the heading of the category that best fits it, alphabetically and following this format: `- [username](link to your GitHub profile)`.
-
-     Example: Adding profile of Aveek-Saha
-
+1. Fork this repository and clone it locally.
+2. Edit `README.md` to update the profile entry:
+   - **Add a profile:** Find the category header that fits best. Add your entry in alphabetical order: `- [username](https://github.com/username)`.
      ```diff
        ### Minimalistic
 
        - [alexmartinfr](https://github.com/alexmartinfr)
      + - [aveek-saha](https://github.com/aveek-saha)
        - [caneco](https://github.com/caneco)
-       - [dennishartrampf](https://github.com/dennishartrampf)
      ```
-
-   - To remove a profile, delete the exact line that contains the username and link of that profile.
-
-     Example: Removing profile of Aveek-Saha
-
+   - **Remove a profile:** Delete the line containing the username and link.
      ```diff
        ### Minimalistic
 
        - [alexmartinfr](https://github.com/alexmartinfr)
      - - [aveek-saha](https://github.com/aveek-saha)
        - [caneco](https://github.com/caneco)
-       - [dennishartrampf](https://github.com/dennishartrampf)
      ```
+   - **Update a profile:** Move the entry line under the new category header while maintaining alphabetical order. To update the website preview, delete `[username].webp` from `site/static/screenshots/`.
+     ```diff
+       ### Dynamic
 
-   - To update the category of a profile, simply move the specific line that includes the username and link of the profile from under the previous category heading to below the appropriate, newly chosen category heading. Additionally, to update the screenshot, remove or delete the `[<username>].webp` file from the `screenshot/` folder/directory. Finally, if you need to update the profile username or link, replace the current information with the updated username and link, making sure to maintain the alphabetical order and format.
+       - [andyruwruw](https://github.com/andyruwruw)
+     + - [aveek-saha](https://github.com/aveek-saha)
+       - [daniakash](https://github.com/daniakash)
 
-   Example: Updating profile of Aveek-Saha
+       ### Minimalistic
 
-   ```diff
-     ### Dynamic Realtime
+       - [alexmartinfr](https://github.com/alexmartinfr)
+     - - [aveek-saha](https://github.com/aveek-saha)
+       - [caneco](https://github.com/caneco)
+     ```
+3. Commit your changes using [Conventional Commits](https://www.conventionalcommits.org/): `<type>(<scope>): <description>`.
+   - Allowed types: `add`, `update`, `remove`, `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`.
+   - Example commit message:
+     ```bash
+     git commit -m "add(profile): Aveek-Saha to Minimalistic category"
+     ```
+4. Push to your fork and submit a pull request.
 
-     - [andyruwruw](https://github.com/andyruwruw)
-     - [anuraghazra](https://github.com/anuraghazra)
-   + - [aveek-saha](https://github.com/aveek-saha)
-     - [daniakash](https://github.com/daniakash)
-     - [denvercoder1](https://github.com/denvercoder1)
+### Bug fixes and feature improvements
 
-     ### Minimalistic
+1. Fork this repository and clone it locally.
+2. Create a branch named after your change (`fix/preview-generator`, `feat/search-filter`).
+3. Make your changes and commit with a clear Conventional Commit message.
+4. Submit a pull request targeting the `main` branch.
 
-     - [alexmartinfr](https://github.com/alexmartinfr)
-   - - [aveek-saha](https://github.com/aveek-saha)
-     - [caneco](https://github.com/caneco)
-     - [dennishartrampf](https://github.com/dennishartrampf)
-   ```
+### Formatting requirements
 
-4. Commit changes and push to the fork repository by following this commit message format: `[Add/Remove/Update] [<profile_username>] profile`.
+- Check spelling and grammar before pushing.
+- Configure your editor to trim trailing whitespace. Prettier is recommended.
+- Keep each pull request focused on a single change.
 
-   Example: Adding Aveek-Saha's profile commit message
+## Issue guidelines
 
-   ```bash
-   git commit -m"Add Aveek-Saha's profile to the Minimalistic category"
-   ```
+Before opening a new issue, search existing issues to avoid duplicates.
 
-5. Open and submit a pull request.
+### Bug reports
 
-### To Fix a Bug, Add an Improvement, or New Feature: 🐛🛠️🚀
+When submitting a bug report, include:
 
-We welcome contributions to enhance the quality and functionality of this project.
+- A clear summary of the issue.
+- Expected behavior vs actual result.
+- Steps to reproduce, screenshots, and browser/OS details if applicable.
 
-1. Fork this repository.
+### Feature requests
 
-2. Clone your new repository to your system.
+When submitting a feature request, include:
 
-3. Make your changes.
+- A summary of the proposed feature and why it helps.
+- Mockups, screenshots, or examples from other projects if available.
 
-4. Commit changes and push to the fork repository, ensuring to include a clear and descriptive commit message that adheres to the imperative mood formatting guidelines.
+---
 
-5. Open and submit a pull request.
-
-### Considerations: 🤔
-
-1. Please check your spelling and grammar.
-
-2. Please ensure your text editor is set to remove trailing whitespace. Additionally, using the prettier extension is preferable.
-
-3. Please make an individual pull request for each change.
-
-## Issues Guidelines 📝
-
-If you're experiencing a problem or have an idea for a new feature, please follow the steps outlined below before creating an issue.
-
-### Bug Report 🐛
-
-1. Search existing issues to see if someone else has already reported the same problem before creating a new issue.
-
-2. Create a new issue by clicking the "New Issue" button on the Issues page.
-
-3. Write a clear and descriptive description of the problem. This should include:
-
-   - A brief summary of the issue
-   - Expected and actual results
-   - Additional context, such as:
-     - Screenshots, if applicable
-     - Environment details (e.g. browser, operating system, version of the project)
-
-4. Assign appropriate labels to the issue.
-5. Submit the issue.
-
-### Feature Request 🚀
-
-1. Search existing issues to see if someone else has already requested a similar feature before creating a new issue.
-
-2. Create a new issue by clicking the "New Issue" button on the Issues page.
-
-3. Write a clear and descriptive description of the feature you would like to see added. This should include:
-
-   - A brief summary of the feature
-   - Additional context, such as:
-     - Screenshots or mockups, if applicable
-     - Any references or examples of similar features in other projects
-
-4. Assign the "feature request" label to the issue.
-
-5. Submit the issue.
-
-Thank you for considering contributing. 🤝
+If you get stuck during setup or have questions about category placement, open a [discussion or issue](https://github.com/roypriyanshu02/awesome-github-profile-readme/issues).
