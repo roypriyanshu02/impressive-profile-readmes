@@ -1,4 +1,4 @@
 This repository is dual-licensed:
 
 - **Source Code**: Licensed under the [MIT License](https://opensource.org/licenses/MIT).
-- **Documentation & Data**: The [`README.md`](README.md), [`screenshots/`](screenshots/), and [`data.json`](site/src/lib/data.json) are licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).
+- **Documentation & Data**: The [`README.md`](README.md), [`screenshots/`](screenshots/), and data files (`site/static/`) are licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/).

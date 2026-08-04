@@ -229,6 +229,52 @@ async function checkIsAnimated(profile) {
 	return false;
 }
 
+/** Batch fetch profile repo stars via GitHub GraphQL API */
+async function fetchProfileStarsGraphQL(profilesList) {
+	const starsMap = {};
+	if (!process.env.GITHUB_TOKEN || profilesList.length === 0) return starsMap;
+
+	const headers = { ...getGitHubHeaders(), 'Content-Type': 'application/json' };
+	const chunkSize = 50;
+
+	for (let i = 0; i < profilesList.length; i += chunkSize) {
+		const chunk = profilesList.slice(i, i + chunkSize);
+		const queries = chunk
+			.map((user, idx) => {
+				const alias = `user_${idx}`;
+				const safeUser = JSON.stringify(user);
+				return `${alias}: repository(owner: ${safeUser}, name: ${safeUser}) { stargazers { totalCount } }`;
+			})
+			.join('\n');
+
+		try {
+			const res = await fetchWithRetry(
+				'https://api.github.com/graphql',
+				{
+					method: 'POST',
+					headers,
+					body: JSON.stringify({ query: `query {\n${queries}\n}` })
+				},
+				1,
+				500
+			);
+
+			if (res && res.ok) {
+				const json = await res.json();
+				if (json.data) {
+					chunk.forEach((user, idx) => {
+						const repo = json.data[`user_${idx}`];
+						starsMap[user] = repo?.stargazers?.totalCount ?? 0;
+					});
+				}
+			}
+		} catch (err) {
+			log('warn', `GraphQL star batch fetch failed for chunk ${i}: ${err.message}`);
+		}
+	}
+	return starsMap;
+}
+
 /** Capture profile README screenshot & scrape star count via Puppeteer */
 async function captureScreenshot(path, userName, isAnimated = false, browserInstance = null, maxRetries = 2) {
 	const browser =
@@ -282,24 +328,12 @@ async function captureScreenshot(path, userName, isAnimated = false, browserInst
 		}
 
 		const pageData = await page.evaluate(
-			(selector, user) => {
+			(selector) => {
 				const readme = document.querySelector(selector);
 				const domHeight = readme ? readme.getBoundingClientRect().bottom : 0;
-				let stars = 0;
-				const repoLink = document.querySelector(
-					`a[href$="/${user}/${user}"], a[href$="/${user}/${user}/stargazers"]`
-				);
-				if (repoLink) {
-					const counter =
-						repoLink.querySelector('.Counter') || repoLink.parentElement?.querySelector('.Counter');
-					if (counter) {
-						stars = parseInt(counter.textContent.trim().replace(/,/g, ''), 10) || 0;
-					}
-				}
-				return { domHeight, stars };
+				return { domHeight };
 			},
-			domSelector,
-			userName
+			domSelector
 		);
 
 		const windowMinHeight = isAnimated ? 2000 : 1000;
@@ -344,8 +378,7 @@ async function captureScreenshot(path, userName, isAnimated = false, browserInst
 
 		return {
 			...result,
-			username: userName,
-			stars: pageData.stars
+			username: userName
 		};
 	} catch (error) {
 		log('err', `Screenshot failed: ${userName} - ${error.message}`);
@@ -571,6 +604,10 @@ async function syncScreenshots(profilesList, forceRebuild = false) {
 			log('info', `Removed stale screenshot: ${safeName}.webp`);
 		}
 	}
+
+	log('info', `Fetching star counts for ${profilesList.length} profiles via GraphQL API...`);
+	const freshStars = await fetchProfileStarsGraphQL(profilesList);
+	Object.assign(existingStars, freshStars);
 
 	const prunedStars = {};
 	for (const profile of profilesList) {
