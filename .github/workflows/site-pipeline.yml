@@ -33,9 +33,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: "true"
-
 permissions:
   contents: read
 
@@ -48,12 +45,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: 'site/package-lock.json'
 
@@ -82,7 +79,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -104,9 +101,9 @@ jobs:
           fi
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: 22
+          node-version: 24
           cache: 'npm'
           cache-dependency-path: 'site/package-lock.json'
 
@@ -116,7 +113,7 @@ jobs:
 
       - name: Cache Puppeteer Chrome
         if: steps.check-changes.outputs.run_generate == 'true'
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: puppeteer-cache
         with:
           path: ~/.cache/puppeteer
@@ -170,7 +167,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add README.md site/src/lib/data site/src/lib/screenshots
+          git add README.md site/static site/src/lib/screenshots
           if ! git diff --cached --quiet; then
             git commit -m "${{ steps.sync-step.outputs.commit_msg }}"
             git push
