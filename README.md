@@ -320,6 +320,8 @@ It acts as an actively maintained alternative to older lists like [abhisheknaiid
 
 ### Animation
 
+- [8bithemant](https://github.com/8bithemant)
+- [abdessamadbettal](https://github.com/abdessamadbettal)
 - [ari-hacks](https://github.com/ari-hacks)
 - [BrunnerLivio](https://github.com/BrunnerLivio)
 - [darshan-jain](https://github.com/darshan-jain)
