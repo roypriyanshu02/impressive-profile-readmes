@@ -3828,20 +3828,6 @@
 							{
 								"children": [
 									{
-										"value": "8bithemant"
-									}
-								],
-								"props": {
-									"href": "https://github.com/8bithemant"
-								}
-							}
-						]
-					},
-					{
-						"children": [
-							{
-								"children": [
-									{
 										"value": "abdessamadbettal"
 									}
 								],
@@ -6675,7 +6661,7 @@
 		"contribute": "Contributions are welcome! Read the [Contributing Guide](CONTRIBUTING.md) to get started.",
 		"license": "This project is dual-licensed under the following terms:\n- **Source Code:** [MIT License](https://opensource.org/licenses/MIT)\n- **Documentation & Data:** [Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)\nSee [LICENSE](LICENSE) for details."
 	},
-	"lastModified": 1785855297682,
+	"lastModified": 1785855679870,
 	"starsMap": {
 		"aakarsh-b": 0,
 		"abhishek-choudharys": 0,
