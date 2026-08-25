@@ -554,6 +554,7 @@ It acts as an actively maintained alternative to older lists like [abhisheknaiid
 ## Tools
 
 - [Badges](https://shields.io/) - Customizable badges and labels for GitHub profiles and project READMEs.
+- [gh-stats](https://gh-stats.com/) - Dynamically generated profile stats cards and widgets for your README.
 - [GitHub profile readme generator](https://gprm.itsvg.in/) - Generates a GitHub profile README.
 - [GitHub profile readme generator](https://rahuldkjain.github.io/gh-profile-readme-generator/) - Generates a profile README in minutes.
 - [GitHub readme generator](https://readme.so/) - Simple editor to customize sections for your README.
